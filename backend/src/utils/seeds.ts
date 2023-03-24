@@ -1,13 +1,16 @@
-import User from "./src/db/models/user.js";
+import User from "../db/models/user";
 
-export async function createSuperAdmin(MAIL_ADMIN, CONTRASENA_ADMIN) {
+export async function createSuperAdmin(
+  MAIL_ADMIN: string,
+  CONTRASENA_ADMIN: string
+): Promise<void> {
   try {
     let superAdmin = await User.findOne({
       email: MAIL_ADMIN,
     }).exec();
     if (!superAdmin) {
       superAdmin = await User.register(
-        { email: MAIL_ADMIN, username: MAIL_ADMIN, rol: "superadministrador" },
+        { email: MAIL_ADMIN, rol: "superadministrador" },
         CONTRASENA_ADMIN
       );
       console.log("superadministrador creado", superAdmin.email);

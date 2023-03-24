@@ -1,14 +1,27 @@
-import mongoose from "mongoose";
+import { model, Schema } from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
 
-const userSchema = new mongoose.Schema(
+export interface InterfaceUser extends Document {
+  email: string;
+  nombre: string;
+  nacimiento: Date;
+  telefono: number;
+  activo: boolean;
+  rol: string;
+  verificado: boolean;
+  registradoEn: string;
+  mascotas: Schema.Types.ObjectId[];
+  extractProfile: () => Object;
+}
+
+const userSchema = new Schema(
   {
     email: {
       type: String,
       trim: true,
       lowercase: true,
       unique: true,
-      required: "Un email es requerido",
+      required: [true, "Email requerido"],
       match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Mail invalido"],
     },
     nombre: {
@@ -46,7 +59,7 @@ const userSchema = new mongoose.Schema(
       enum: ["local", "google"],
       default: "local",
     },
-    mascotas: [{ type: mongoose.Schema.Types.ObjectId, ref: "Pet" }],
+    mascotas: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
   },
   {
     timestamps: true,
@@ -56,17 +69,17 @@ const userSchema = new mongoose.Schema(
 userSchema.methods.extractProfile = async function () {
   return {
     id: this._id,
-    username: this.username,
+    email: this.email,
     nombre: this.nombre,
     telefono: this.telefono,
-    role: this.role,
-    verified: this.verified,
-    // mascotas: this.mascotas,
+    rol: this.rol,
+    verificado: this.verificado,
+    mascotas: this.mascotas,
   };
 };
 
 userSchema.plugin(passportLocalMongoose);
 
-const User = mongoose.model("User", userSchema);
+const User = model("User", userSchema);
 
 export default User;
