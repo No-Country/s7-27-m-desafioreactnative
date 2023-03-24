@@ -7,10 +7,11 @@ export async function createSuperAdmin(
   try {
     let superAdmin = await User.findOne({
       email: MAIL_ADMIN,
+      username: MAIL_ADMIN,
     }).exec();
     if (!superAdmin) {
       superAdmin = await User.register(
-        { email: MAIL_ADMIN, rol: "superadministrador" },
+        { email: MAIL_ADMIN, username: MAIL_ADMIN, rol: "superadministrador" },
         CONTRASENA_ADMIN
       );
       console.log("superadministrador creado", superAdmin.email);
