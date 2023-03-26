@@ -1,15 +1,16 @@
 import { model, Schema } from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
+import { TypeRolUsuario, TypeRegistradoEn } from "../../types";
 
 export interface InterfaceUser extends Document {
-  email: string;
-  nombre: string;
-  nacimiento: Date;
-  telefono: number;
-  activo: boolean;
-  rol: string;
+  email?: string;
+  nombre?: string;
+  nacimiento?: Date;
+  telefono?: number;
+  rol: TypeRolUsuario;
   verificado: boolean;
-  registradoEn: string;
+  registradoEn: TypeRegistradoEn;
+  registradoEnId?: string;
   mascotas: Schema.Types.ObjectId[];
   extractProfile: () => Object;
 }
@@ -18,10 +19,9 @@ const userSchema = new Schema(
   {
     email: {
       type: String,
-      trim: true,
+      trim: true, 
       lowercase: true,
-      unique: true,
-      required: [true, "Email requerido"],
+      // unique: true,
       match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Mail invalido"],
     },
     nombre: {
@@ -39,14 +39,10 @@ const userSchema = new Schema(
         "El número de telefono no puede tener mas de 12 caracteres",
       ],
     },
-    activo: {
-      type: Boolean,
-      default: true,
-    },
     rol: {
       type: String,
       lowercase: true,
-      enum: ["usuario", "administrador", "superadministrador"],
+      enum: ["usuario", "administrador", "superadministrador", "baneado"],
       default: "usuario",
     },
     verificado: {
@@ -56,8 +52,12 @@ const userSchema = new Schema(
     registradoEn: {
       type: String,
       lowercase: true,
-      enum: ["local", "google"],
+      enum: ["local", "google", "facebook"],
       default: "local",
+    },
+    registradoEnId: {
+      type: String,
+      trim: true,
     },
     mascotas: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
   },
@@ -69,7 +69,7 @@ const userSchema = new Schema(
 userSchema.methods.extractProfile = async function () {
   return {
     id: this._id,
-    email: this.email,
+    email: this?.email,
     nombre: this.nombre,
     telefono: this.telefono,
     rol: this.rol,

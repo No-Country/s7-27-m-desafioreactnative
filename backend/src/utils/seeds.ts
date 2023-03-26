@@ -6,15 +6,14 @@ export async function createSuperAdmin(
 ): Promise<void> {
   try {
     let superAdmin = await User.findOne({
-      email: MAIL_ADMIN,
       username: MAIL_ADMIN,
     }).exec();
     if (!superAdmin) {
       superAdmin = await User.register(
-        { email: MAIL_ADMIN, username: MAIL_ADMIN, rol: "superadministrador" },
+        { username: MAIL_ADMIN, rol: "superadministrador" },
         CONTRASENA_ADMIN
       );
-      console.log("superadministrador creado", superAdmin.email);
+      console.log("superadministrador creado", superAdmin.username);
     }
   } catch (error) {
     console.log("error al crear super administrador", error);

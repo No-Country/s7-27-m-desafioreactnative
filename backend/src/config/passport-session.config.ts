@@ -5,6 +5,7 @@ import User from "../db/models/user";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import config from "./config";
+import "./auth/strategies/strategies";
 
 export default function iniciarPassportSessions(app: express.Application) {
   let sessionConfig: session.SessionOptions = {

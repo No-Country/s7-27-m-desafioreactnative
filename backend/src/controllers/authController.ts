@@ -5,16 +5,16 @@ import { InterfaceUser } from "../db/models/user";
 
 export const registrarUsuario = wrapAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const { email, password, nombre, nacimiento, telefono } = req.body;
+    const { username, password, nombre, nacimiento, telefono } = req.body;
 
     // Consultamos si el mail esta en uso
-    const existe = await User.findOne({ email });
+    const existe = await User.findOne({ username });
 
     // Si no existe creamos el usuario => no estamos guardandolo en la DB todavia
     if (!existe) {
       const usuarioNuevo = await new User({
-        email,
-        username: email,
+        username,
+        email: username,
         nombre,
         nacimiento,
         telefono,
@@ -34,7 +34,7 @@ export const registrarUsuario = wrapAsync(
       return res.status(200).send({ mensaje: "Usuario creado", usuario });
     } else {
       // Si ya existe devolvemos error
-      if (!existe.activo) {
+      if (existe.rol === "baneado") {
         return res.status(401).send({ mensaje: "Email baneado" });
       }
       return res.status(400).send({ mensaje: "Email en uso" });
@@ -46,9 +46,9 @@ export const inicioSesionLocal = wrapAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     let user = req.user as InterfaceUser;
     if (!user) return res.status(400).send("Error");
+    console.log("req.user", req.user);
     // Verificamos que el perfil este activo o baneado
-    if (user.activo) {
-      // Extraemos perfil del usuario inicializado por passport
+    if (user.rol !== "baneado") {
       return res.status(200).json({ usuario: await user.extractProfile() });
     } else {
       req.logout((err) => {
@@ -57,6 +57,28 @@ export const inicioSesionLocal = wrapAsync(
         }
       });
       return res.status(401).json({ mensaje: "Email baneado" });
+    }
+  }
+);
+
+export const inicioSesionRedes = wrapAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const usuario = req.user as InterfaceUser;
+    const root = { root: req.viewsUrl };
+    if (usuario.rol === "baneado") {
+      req.logout((err) => {
+        if (err) {
+          return next(err);
+        }
+      });
+      return res.sendFile("userBanned.html", root);
+    } else {
+      req.login(usuario, (err) => {
+        if (err) {
+          return next(err);
+        }
+      });
+      return res.sendFile("logeoGoogle.html", root);
     }
   }
 );

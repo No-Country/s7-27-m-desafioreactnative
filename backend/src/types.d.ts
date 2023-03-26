@@ -1,4 +1,10 @@
-export type Autentificacion = "local" | "google" | "facebook";
-export type TUser = { _id?: number; username: string };
+// Auth
+export type TypeRegistradoEn = "local" | "google" | "facebook";
+export type TypeRolUsuario =
+  | "usuario"
+  | "administrador"
+  | "superadministrador"
+  | "baneado";
+
 export type Acciones = "usuario" | "";
 export type Mascota = "gato" | "perro" | "oso";
