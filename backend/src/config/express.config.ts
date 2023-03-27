@@ -4,6 +4,7 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import path from "path";
 import { InterfaceUser } from "../db/models/user";
+import config from "./config";
 
 declare global {
   namespace Express {
@@ -16,8 +17,6 @@ declare global {
   }
 }
 
-const { PATH_FRONT } = process.env;
-
 export function iniciarExpress(app: express.Application): void {
   app.use(morgan("dev"));
   app.use(bodyParser.json());
@@ -25,7 +24,7 @@ export function iniciarExpress(app: express.Application): void {
   app.use(express.json());
   app.use(
     cors({
-      origin: [`${PATH_FRONT}`, `http://localhost:3000`],
+      origin: [`${config.frontUrl}`, `http://localhost:3000`],
       credentials: true,
       methods: "GET,POST,PUT,DELETE,OPTIONS,PATCH",
     })

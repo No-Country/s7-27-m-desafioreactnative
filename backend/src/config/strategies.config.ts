@@ -2,16 +2,16 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as FacebookStrategy } from "passport-facebook";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
-import User from "../../../db/models/user";
-import config from "../../config";
-import { InterfaceUser } from "../../../db/models/user";
+import User from "../db/models/user";
+import config from "./config";
+import { InterfaceUser } from "../db/models/user";
 
 passport.use(
   new GoogleStrategy(
     {
       clientID: config.auth.google.clientID,
       clientSecret: config.auth.google.clientSecret,
-      callbackURL: "http://localhost:3001/auth/google/redirect",
+      callbackURL: `${config.backUrl}/auth/google/redirect`,
     },
     async function (_accessToken, _refreshToken, profile, cb) {
       try {
@@ -58,7 +58,7 @@ passport.use(
     {
       clientID: config.auth.facebook.appID,
       clientSecret: config.auth.facebook.appSecret,
-      callbackURL: "http://localhost:3001/auth/facebook/redirect",
+      callbackURL: `${config.backUrl}/auth/facebook/redirect`,
       profileFields: ["id", "displayName", "email", "verified"],
     },
     async function (_accessToken, _refreshToken, profile, cb) {

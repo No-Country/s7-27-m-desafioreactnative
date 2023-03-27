@@ -10,7 +10,7 @@ import {
   cambiarContrasena,
 } from "../controllers/authController";
 import config from "../config/config";
-import "../config/auth/strategies/strategies";
+import "../config/strategies.config";
 
 const authRouter: Router = Router();
 
