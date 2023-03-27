@@ -3,6 +3,13 @@ type Session = {
   secreto: string;
 };
 
+type Nodemailer = {
+  usuario: string;
+  clientId: string;
+  clientSecret: string;
+  refreshToken: string;
+};
+
 type Auth = {
   google: {
     clientID: string;
@@ -11,6 +18,9 @@ type Auth = {
   facebook: {
     appID: string;
     appSecret: string;
+  };
+  jwt: {
+    jwtSecret: string;
   };
 };
 
@@ -24,6 +34,7 @@ interface Configuraciones {
   nodeEnv: string;
   session: Session;
   auth: Auth;
+  nodemailerOAuth: Nodemailer;
 }
 
 const config: Configuraciones = {
@@ -47,6 +58,15 @@ const config: Configuraciones = {
       appID: process.env.FACEBOOK_APP_ID as string,
       appSecret: process.env.FACEBOOK_APP_SECRET as string,
     },
+    jwt: {
+      jwtSecret: process.env.JWT_SECRET as string,
+    },
+  },
+  nodemailerOAuth: {
+    usuario: process.env.GOOGLE_API_USUARIO as string,
+    clientId: process.env.GOOGLE_API_MAIL_ID as string,
+    clientSecret: process.env.GOOGLE_API_MAIL_SECRETO as string,
+    refreshToken: process.env.GOOGLE_API_MAIL_TOKEN as string,
   },
 };
 

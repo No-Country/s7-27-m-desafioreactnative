@@ -21,7 +21,7 @@ const { PATH_FRONT } = process.env;
 export function iniciarExpress(app: express.Application): void {
   app.use(morgan("dev"));
   app.use(bodyParser.json());
-  app.use(express.urlencoded({ extended: false }));
+  app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use(
     cors({

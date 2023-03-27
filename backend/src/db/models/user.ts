@@ -3,6 +3,7 @@ import passportLocalMongoose from "passport-local-mongoose";
 import { TypeRolUsuario, TypeRegistradoEn } from "../../types";
 
 export interface InterfaceUser extends Document {
+  username: string;
   email?: string;
   nombre?: string;
   nacimiento?: Date;
@@ -12,14 +13,15 @@ export interface InterfaceUser extends Document {
   registradoEn: TypeRegistradoEn;
   registradoEnId?: string;
   mascotas: Schema.Types.ObjectId[];
-  extractProfile: () => Object;
+  extraerPerfil: () => Object;
+  save: () => any;
 }
 
 const userSchema = new Schema(
   {
     email: {
       type: String,
-      trim: true, 
+      trim: true,
       lowercase: true,
       // unique: true,
       match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Mail invalido"],
@@ -66,7 +68,7 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.methods.extractProfile = async function () {
+userSchema.methods.extraerPerfil = async function () {
   return {
     id: this._id,
     email: this?.email,
