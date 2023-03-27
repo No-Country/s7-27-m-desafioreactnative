@@ -38,9 +38,9 @@ interface Configuraciones {
 }
 
 const config: Configuraciones = {
-  dbUrl: process.env.DB_URƒ || "mongodb://localhost:27017/noCountryS7-27",
-  frontUrl: (process.env.PATH_FRONT as string) || "http://localhost:3000",
-  backUrl: (process.env.PATH_BACK as string) || "http://localhost:3001",
+  dbUrl: process.env.DB_URI as string,
+  frontUrl: process.env.PATH_FRONT as string,
+  backUrl: process.env.PATH_BACK as string,
   puerto: process.env.PORT as string,
   adminMail: process.env.MAIL_ADMIN as string,
   adminContrasena: process.env.CONTRASENA_ADMIN as string,

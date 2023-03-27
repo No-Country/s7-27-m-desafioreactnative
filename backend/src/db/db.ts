@@ -1,13 +1,9 @@
 import mongoose from "mongoose";
+import config from "../config/config";
 
 mongoose.set("strictQuery", true);
 
-const db_url = process.env.DB_URI || "mongodb://localhost:27017/noCountryS7-27";
-// const options = {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// };
-mongoose.connect(db_url);
+mongoose.connect(config.dbUrl);
 
 const db = mongoose.connection;
 
