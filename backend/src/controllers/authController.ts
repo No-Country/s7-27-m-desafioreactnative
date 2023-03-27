@@ -104,7 +104,7 @@ export const inicioSesionRedes = wrapAsync(
 export const recuperarContrasena = wrapAsync(
   async (req: Request, res: Response) => {
     let usuario = (await User.findOne({
-      username: req.body.username,
+      username: req.query.username,
     })) as InterfaceUser;
     if (usuario === null) {
       res.status(200).send("No se encontro usuario");
@@ -116,14 +116,14 @@ export const recuperarContrasena = wrapAsync(
         );
     } else {
       const token = jwt.sign(
-        { username: req.body.username },
+        { username: usuario.username },
         config.auth.jwt.jwtSecret,
         {
           expiresIn: "30m",
         }
       );
       const link = `${config.backUrl}/auth/cambiarcontrasena?token=${token}`;
-      await emailCambioContrasena(req.body.username, link);
+      await emailCambioContrasena(usuario.username as string, link);
       res.status(200).send("Mail enviado con exito");
     }
   }
