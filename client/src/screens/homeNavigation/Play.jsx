@@ -1,9 +1,14 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import {
   MaterialCommunityIcons,
   MaterialIcons,
 } from "react-native-vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import exitdoor from "../../../assets/exitdoor.png";
+import money from "../../../assets/money.png"
+
 const Play = ({ coins = 100 }) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.topbar}>
@@ -12,9 +17,7 @@ const Play = ({ coins = 100 }) => {
           <View style={styles.circles}></View>
           <View style={styles.circles}></View>
           <View style={styles.circles}></View>
-          <View style={styles.circles}>
-            <MaterialIcons name="attach-money" size={16} />
-          </View>
+       <Image source={money}/>
         </View>
         <View style={styles.topbarleft}>
           <View style={styles.pigcircle}>
@@ -28,8 +31,11 @@ const Play = ({ coins = 100 }) => {
         <View style={styles.gamecontainer}></View>
       </View>
 
-      <TouchableOpacity style={styles.footer}>
-        <MaterialIcons name="exit-to-app" size={35} style={styles.exit} />
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={styles.footer}
+      >
+        <Image source={exitdoor} style={styles.exit} />
       </TouchableOpacity>
     </View>
   );
@@ -68,13 +74,13 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: 25,
-    height: 25,
+    width: 23.6,
+    height: 23.6,
     borderRadius: 100,
     borderStyle: "solid",
-    borderWidth: 2,
-    borderColor: "black",
-    marginHorizontal: 2,
+    borderWidth: 1.7,
+    borderColor: "#50555C",
+    marginHorizontal: 1.5,
   },
   topbarleft: {
     display: "flex",
