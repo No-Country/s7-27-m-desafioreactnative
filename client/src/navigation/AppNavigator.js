@@ -4,10 +4,10 @@ import React from "react";
 import HomeNavigation from "./homeNavigation/HomeNavigation";
 
 const AppNavigator = () => {
+  const token = false;
   return (
     <NavigationContainer>
-      {/* si no está registrado -> */} <AuthNavigation />
-      {/* si ya tiene cuenta -> */} <HomeNavigation />
+      {!token ? <AuthNavigation /> : <HomeNavigation />}
     </NavigationContainer>
   );
 };
