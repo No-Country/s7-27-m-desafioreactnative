@@ -10,9 +10,18 @@ export const registrarUsuario = wrapAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { username, password, nombre, nacimiento, telefono } = req.body;
     // Consultamos si el mail esta en uso
-    const existe = await User.findOne({ username });
+    let existe = await User.findOne({ username });
+
     // Si no existe creamos el usuario => no estamos guardandolo en la DB todavia
     if (!existe) {
+      existe = await User.findOne({ email: username });
+      if (existe) {
+        if (existe.rol === "baneado") {
+          return res.status(401).send({ mensaje: "Email baneado" });
+        }
+        return res.status(400).send({ mensaje: "Email en uso" });
+      }
+
       const usuarioNuevo = await new User({
         username,
         email: username,

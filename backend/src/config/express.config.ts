@@ -45,7 +45,7 @@ export function manejoErroresExpress(app: express.Application): void {
     ): Response => {
       console.log("el error de mierda", err);
       const estado = _req.statusCode || 500;
-      const mensaje = _req.statusMessage || err;
+      const mensaje = _req.statusMessage || `${err}`;
       return res.status(estado).send(mensaje);
     }
   );
