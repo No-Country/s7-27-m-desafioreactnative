@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>no country s7-27</title>
+
+    <script id="script">
+      function mostrarContrasena() {
+        let inputContrasena = document.getElementById("password");
+        if (inputContrasena.type === "text") {
+          inputContrasena.type = "password";
+        } else {
+          inputContrasena.type = "text";
+        }
+      }
+      async function cambiarContrasena() {
+        let inputContrasena = document.getElementById("password");
+        if (inputContrasena.value.length < 6) {
+          alert("La contraseña debe tener minimo 6 caracteres");
+          return;
+        }
+        if (window.confirm("Controle que la contraseña sea correcta")) {
+          try {
+            const url = `${document.location.origin}/auth/cambiarcontrasena${document.location.search}`;
+            const cambio = await fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+              body: JSON.stringify({ password: inputContrasena.value }),
+            });
+            alert("Contraseña cambiada");
+            window.close();
+          } catch (error) {
+            alert("Hubo un problema al cambiar la contraseña");
+          }
+        }
+      }
+      function load() {
+        document
+          .getElementById("contrasena")
+          .addEventListener("click", mostrarContrasena, false);
+
+        document
+          .getElementById("cambiar")
+          .addEventListener("click", cambiarContrasena);
+      }
+      document.addEventListener("DOMContentLoaded", load, false);
+    </script>
+  </head>
+  <body id="body">
+    <h1>Cambia tu contraseña!</h1>
+
+    <label for="password">Contraseña: </label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      minlength="6"
+      maxlength="15"
+    />
+    <input type="button" value="mostrar" id="contrasena" />
+    <br />
+    <button type="submit" id="cambiar">Cambiar contraseña</button>
+  </body>
+</html>
