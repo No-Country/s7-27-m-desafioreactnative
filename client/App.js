@@ -10,6 +10,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <StatusBar StatusBarStyle="light-content" />
+      
       <AppNavigator />
     </Provider>
   );
