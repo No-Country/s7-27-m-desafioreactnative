@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import {
   Text,
@@ -8,6 +9,7 @@ import {
 } from "react-native";
 
 const LogIn = () => {
+  const navigation = useNavigation()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -30,8 +32,8 @@ const LogIn = () => {
           onChangeText={(text) => setPassword({ password: text })}
         />
       </View>
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>INGRESAR</Text>
+      <TouchableOpacity style={styles.loginBtn} onPress={()=>{navigation.navigate("Onboarding1")}}>
+        <Text style={styles.loginText} >INGRESAR</Text>
       </TouchableOpacity>
       <TouchableOpacity>
         <Text style={styles.loginText}>Olvidé mi contraseña</Text>
