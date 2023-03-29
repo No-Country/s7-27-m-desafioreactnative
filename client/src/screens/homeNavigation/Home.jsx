@@ -2,8 +2,10 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
 
 const Home = () => {
-  return (
+  return (   
     <View style={styles.containerPrincipal}>
+
+      {/* Inicio */}
       <View style={styles.containerStart}>
         <Text style={styles.textName}> POU </Text>
         <TouchableOpacity style={styles.buttonPersonaje}>
@@ -12,9 +14,12 @@ const Home = () => {
       </View>
       
       <View>
+        {/* Menu Money */}
         <View>
-            {/* Falta Menú Money´s */}
+          <View></View>
+          <View></View>
         </View>
+        {/* Menu Shopp */}
         <View style={styles.containerMenu}>
           <TouchableOpacity style={styles.buttonMenu}>
             <Image
@@ -29,6 +34,7 @@ const Home = () => {
             />
           </TouchableOpacity>
         </View>
+        {/* Personaje */}
         <View style={{ alignItems: 'center', justifyContent: 'center'}}>
           <Image source={require('../authNavigation/pou.png')}
           style={{width:255, height: 313, top:80 }}
@@ -36,6 +42,7 @@ const Home = () => {
         </View>
       </View>
 
+      {/* Menu Acciones */}
       <View style={styles.containerEnd}>
         <View style={styles.containerActions}>
           <TouchableOpacity style={styles.buttonAction}>
@@ -66,7 +73,6 @@ const Home = () => {
         </View>
       </View>
       
-      
     </View>
   );
 };
@@ -74,6 +80,7 @@ const Home = () => {
 
 
 const styles = StyleSheet.create({
+// Inicio
   containerPrincipal: {
     marginTop: Constants.statusBarHeight,
     flex: 1,
@@ -106,6 +113,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+//Settings
   containerMenu: {
     alignItems: "flex-end",
     margin: 12,
@@ -125,7 +133,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
   containerEnd: {
