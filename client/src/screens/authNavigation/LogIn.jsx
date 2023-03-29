@@ -12,6 +12,7 @@ const LogIn = () => {
   const [password, setPassword] = useState("");
   return (
     <View style={styles.container}>
+      <Text style={{alignItems:"flex-start"}}>Bienvenido</Text>
       <Text style={styles.logo}>Care U Pet</Text>
       <View style={styles.inputView}>
         <TextInput
