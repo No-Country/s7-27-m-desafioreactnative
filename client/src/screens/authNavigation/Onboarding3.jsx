@@ -7,18 +7,20 @@ import { useRoute } from '@react-navigation/native'
 const Onboarding3 = () => {
 
     const route= useRoute();
+    const navigation=useNavigation();
     // const {n}=route.params;
 
-
-
     const [nombre, setnombre] = useState('');
-
-    const navigation=useNavigation();
-
-    const enviarNombre =()=> {
-      navigation.navigate('Onboarding4', {nombre});
-    };
-
+    const [errorMessage, setErrorMessage] = useState('');
+  
+    const handlePress = () => {
+      if (nombre.trim() === '') {
+        setErrorMessage('Por favor ingrese un nombre');
+      } else {
+        // hacer algo con el valor ingresado
+        navigation.navigate('Onboarding4', {nombre});
+      }
+    }
   return (
     <View style={styles.containerPrincipal}>
         <View style={styles.containerText}>
@@ -34,7 +36,8 @@ const Onboarding3 = () => {
         onChangeText={setnombre}
         style={{borderWidth: 1, width: 284, height: 56, borderRadius:4, padding: 5}}
         />
-        <TouchableOpacity style={styles.boton} onPress={enviarNombre}>
+         {errorMessage !== '' && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
+        <TouchableOpacity style={styles.boton} onPress={handlePress}>
             <Text style={{color: 'white', fontWeight: '500'}}>CONTINUAR</Text>
         </TouchableOpacity>
         </View>
