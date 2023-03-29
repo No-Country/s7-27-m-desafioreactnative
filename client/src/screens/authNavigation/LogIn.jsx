@@ -7,20 +7,25 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import PrimaryButton from "../components/PrimaryButton";
 
 const LogIn = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
     <View style={styles.container}>
+      <Text style={{ alignSelf: "flex-start", marginLeft: "10%", padding: 10 }}>
+        Bienvenido
+      </Text>
+
       <Text style={styles.logo}>Care U Pet</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
           placeholder="Email..."
           placeholderTextColor="#003f5c"
-          onChangeText={(text) => setUsername({ email: text })}
+          onChangeText={(text) => setUsername({ username: text })}
         />
       </View>
       <View style={styles.inputView}>
@@ -32,25 +37,36 @@ const LogIn = () => {
           onChangeText={(text) => setPassword({ password: text })}
         />
       </View>
-      <TouchableOpacity style={styles.loginBtn} onPress={()=>{navigation.navigate("Onboarding1")}}>
-        <Text style={styles.loginText} >INGRESAR</Text>
-      </TouchableOpacity>
+      <PrimaryButton
+        text="INGRESAR"
+        handler={() => {
+          // navigation.navigate("LogIn");
+        }}
+      />
       <TouchableOpacity>
         <Text style={styles.loginText}>Olvidé mi contraseña</Text>
       </TouchableOpacity>
-      <View style={{ flexDirection: "row", alignItems: "center", width: '90%' }}>
+      <View
+        style={{ flexDirection: "row", alignItems: "center", width: "90%" }}
+      >
         <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
         <View>
           <Text style={{ width: 50, textAlign: "center" }}>o</Text>
         </View>
         <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
       </View>
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>Continuar con Google</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>Continuar con Facebook</Text>
-      </TouchableOpacity>
+      <PrimaryButton
+        text="Continuar con Google"
+        handler={() => {
+          // navigation.navigate("LogIn");
+        }}
+      />
+      <PrimaryButton
+        text="Continuar con Facebook"
+        handler={() => {
+          // navigation.navigate("LogIn");
+        }}
+      />
     </View>
   );
 };
@@ -70,7 +86,7 @@ const styles = StyleSheet.create({
   },
   inputView: {
     width: "80%",
-    backgroundColor: "#f8a",
+    backgroundColor: "#a8a",
     borderRadius: 25,
     height: 50,
     marginBottom: 20,
