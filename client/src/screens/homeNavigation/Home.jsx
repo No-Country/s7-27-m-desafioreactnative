@@ -1,12 +1,21 @@
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 const Home = () => {
+  const route = useRoute();
+  const {nombre} = route.params; 
+  // const navigation = useNavigation();
+
+  // handlePress = () =>{
+
+  // }
+
   return (
     <View style={styles.containerPrincipal}>
       {/* Inicio */}
       <View style={styles.containerStart}>
-        <Text style={styles.textName}> POU </Text>
+        <Text style={styles.textName}> {nombre} </Text>
         <TouchableOpacity style={styles.buttonPersonaje}>
           <Image source={require("./personajes.png")} />
         </TouchableOpacity>
