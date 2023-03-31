@@ -8,6 +8,9 @@ import Onboarding3 from "../../screens/authNavigation/Onboarding3";
 import Onboarding4 from "../../screens/authNavigation/Onboarding4";
 import Onboarding2 from "../../screens/authNavigation/Onboarding2";
 import Home from "../../screens/homeNavigation/Home";
+import TiendaInventario from "../../screens/homeNavigation/TiendaInventario/TiendaInventario";
+
+
 const AuthNavigation = ({ navigation }) => {
   const Stack = createNativeStackNavigator();
   return (
@@ -25,6 +28,8 @@ const AuthNavigation = ({ navigation }) => {
       <Stack.Screen name="Onboarding3" component={Onboarding3} />
       <Stack.Screen name="Onboarding4" component={Onboarding4} />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="TiendaInventario" component={TiendaInventario} />
+
     </Stack.Navigator>
   );
 };
