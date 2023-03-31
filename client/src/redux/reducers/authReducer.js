@@ -7,7 +7,7 @@ import {
 const initialState = {
   isLoading: false,
   userData: null,
-  token: null,
+  id: null,
   error: null,
 };
 
@@ -19,7 +19,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
         isLoading: true,
         user: null,
         error: null,
-        token: null,
+        id: null,
       };
     case LOGIN_USER_REJECTED:
       return {
@@ -27,16 +27,16 @@ export const authReducer = (state = initialState, { type, payload }) => {
         isLoading: false,
         user: null,
         error: payload,
-        token: null,
+        id: null,
       };
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         user: payload,
-        token: true,
+        id: true,
         // CAMBIAR AL CONECTAR EL BACK
-        // token: payload.token,
+        // id: payload.id,
         error: null,
       };
     default:
