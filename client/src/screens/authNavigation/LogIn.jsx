@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  Modal,
 } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 
@@ -13,8 +14,51 @@ const LogIn = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [modalRecoverPassVisible, setModalRecoverPassVisible] = useState(false);
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalRecoverPassVisible}
+        onRequestClose={() => {
+          // Alert.alert("Login Modal has been closed.");
+          setModalRecoverPassVisible(!modalRecoverPassVisible);
+        }}
+      >
+        <View style={styles.container}>
+          <Text style={styles.Text}>Recupera tu contraseña</Text>
+
+          <Text style={styles.Text}>
+            Para continuar necesitamos que ingreses el e-mail con el que te
+            registraste. Al finalizar, te enviaremos un mail para que puedas
+            crear una nueva contraseña.
+          </Text>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Email..."
+              placeholderTextColor="#003f5c"
+              onChangeText={(text) => setUsername({ username: text })}
+            />
+          </View>
+
+          <PrimaryButton
+            text="CONTINUAR"
+            handler={() => {
+              // navigation.navigate("LogIn");
+            }}
+          />
+
+          <PrimaryButton
+            text="VOLVER"
+            handler={() => {
+              // navigation.navigate("LogIn");
+            }}
+          />
+        </View>
+      </Modal>
+
       <Text style={{ alignSelf: "flex-start", marginLeft: "10%", padding: 10 }}>
         Bienvenido
       </Text>
@@ -43,7 +87,7 @@ const LogIn = () => {
           // navigation.navigate("LogIn");
         }}
       />
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setModalRecoverPassVisible(true)}>
         <Text style={styles.loginText}>Olvidé mi contraseña</Text>
       </TouchableOpacity>
       <View
@@ -109,6 +153,17 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: "black",
+  },
+  button: {
+    // display: "flex",
+
+    backgroundColor: "#A8A8A8",
+    width: 283,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 4,
+    margin: 10,
   },
 });
 
