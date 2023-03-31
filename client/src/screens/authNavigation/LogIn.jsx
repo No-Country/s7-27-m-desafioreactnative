@@ -84,7 +84,7 @@ const LogIn = () => {
       <PrimaryButton
         text="INGRESAR"
         handler={() => {
-          // navigation.navigate("LogIn");
+          navigation.navigate("Onboarding1");
         }}
       />
       <TouchableOpacity onPress={() => setModalRecoverPassVisible(true)}>

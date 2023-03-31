@@ -1,15 +1,26 @@
-import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Modal,
+} from "react-native";
 import Constants from "expo-constants";
-import { useNavigation, useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { useState } from "react";
+import Settings from "../components/Settings";
 
 const Home = () => {
   const route = useRoute();
-  const {nombre} = route.params; 
+  const { nombre } = route.params;
+  const [modalSetActive, setModalSetActive] = useState(false);
   // const navigation = useNavigation();
 
   // handlePress = () =>{
 
   // }
+  const navigation = useNavigation();
 
   return (
     <View style={styles.containerPrincipal}>
@@ -32,8 +43,14 @@ const Home = () => {
               <View style={styles.carga2}></View>
             </View>
             <View style={styles.level}>
-              <Image source={require("./cerdo.png")} style={{ zIndex: 130, top:11, left:26}} />
-              <Image source={require("./coins.png")} style={{ zIndex: 100, top:7, }} />
+              <Image
+                source={require("./cerdo.png")}
+                style={{ zIndex: 130, top: 11, left: 26 }}
+              />
+              <Image
+                source={require("./coins.png")}
+                style={{ zIndex: 100, top: 7 }}
+              />
               <Text style={styles.textCoins}>100</Text>
               <View style={styles.carga3}></View>
             </View>
@@ -46,12 +63,23 @@ const Home = () => {
                 style={{ justifyContent: "center", alignItems: "center" }}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonMenu}>
+            <TouchableOpacity
+              style={styles.buttonMenu}
+              onPress={() => setModalSetActive(true)}
+            >
               <Image
                 source={require("./settings.png")}
                 style={{ justifyContent: "center", alignItems: "center" }}
               />
             </TouchableOpacity>
+            {/* Modal Settings */}
+            <Modal
+              visible={modalSetActive}
+              animationType="slide"
+              transparent={true}
+            >
+              <Settings setModalSetActive={setModalSetActive} />
+            </Modal>
           </View>
         </View>
         {/* Personaje */}
@@ -86,7 +114,10 @@ const Home = () => {
               <Image source={require("./dormir.png")} />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonAction}>
+          <TouchableOpacity
+            style={styles.buttonAction}
+            onPress={() => navigation.navigate("Play")}
+          >
             <View>
               <Image source={require("./jugar.png")} />
             </View>
@@ -177,7 +208,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 500,
     top: 11,
-    left:55,
+    left: 55,
   },
   coins: {},
 
