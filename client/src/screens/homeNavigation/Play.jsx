@@ -1,23 +1,32 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import {
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "react-native-vector-icons";
+import { MaterialCommunityIcons, FontAwesome } from "react-native-vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import exitdoor from "../../../assets/exitdoor.png";
-import money from "../../../assets/money.png"
+import money from "../../../assets/money.png";
+import Memorama from "../components/Memorama/Memorama";
+import { useState } from "react";
 
 const Play = ({ coins = 100 }) => {
   const navigation = useNavigation();
+  const [score, setScore] = useState(0);
+
   return (
     <View style={styles.container}>
       <View style={styles.topbar}>
         <View style={styles.circlesleft}>
-          <View style={styles.circles}></View>
-          <View style={styles.circles}></View>
-          <View style={styles.circles}></View>
-          <View style={styles.circles}></View>
-       <Image source={money}/>
+          <View style={styles.circles}>
+            {score > 0 && <FontAwesome name="circle" size={20} />}
+          </View>
+          <View style={styles.circles}>
+            {score > 1 && <FontAwesome name="circle" size={20} />}
+          </View>
+          <View style={styles.circles}>
+            {score > 2 && <FontAwesome name="circle" size={20} />}
+          </View>
+          <View style={styles.circles}>
+            {score > 3 && <FontAwesome name="circle" size={20} />}
+          </View>
+          <Image source={money} />
         </View>
         <View style={styles.topbarleft}>
           <View style={styles.pigcircle}>
@@ -28,7 +37,9 @@ const Play = ({ coins = 100 }) => {
       </View>
 
       <View style={styles.body}>
-        <View style={styles.gamecontainer}></View>
+        <View style={styles.gamecontainer}>
+          <Memorama score={score} setScore={setScore} />
+        </View>
       </View>
 
       <TouchableOpacity
@@ -120,8 +131,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   gamecontainer: {
-    height: "70%",
-    width: "80%",
+    height: "75%",
+    width: "90%",
     backgroundColor: "white",
     marginTop: 60,
   },
@@ -135,7 +146,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   exit: {
-    marginTop: -20,
+    marginTop: 0,
     marginRight: 40,
   },
 });
