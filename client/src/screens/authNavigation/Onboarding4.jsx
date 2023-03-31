@@ -4,7 +4,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 const Onboarding4 = () => {
   const route = useRoute();
-  const { nombre } = route.params;
+  const { nombre,imagenSeleccionada1,imagenSeleccionada2 } = route.params;
   const navigation = useNavigation();
 
   const handlePress = () => navigation.navigate("Home", { nombre });
@@ -15,11 +15,13 @@ const Onboarding4 = () => {
         <Text style={{ fontWeight: "500", fontSize: 20, textAlign: "center" }}>
           {nombre}
         </Text>
-        <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <Image
-            source={require("./pou.png")}
-            style={{ width: 280, height: 240 }}
-          />
+        <View style={{ alignItems: 'center', justifyContent: 'center', position: 'relative',width:280, height: 240}}>
+            <Image source={imagenSeleccionada1}
+            style={{width:280, height: 240, position: 'absolute'}}
+            />
+            <Image source={imagenSeleccionada2}
+            style={{width:280, height: 240, position: 'absolute' }}
+            />
         </View>
         <View
           style={{

@@ -3,12 +3,11 @@ import React, { useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native'
-
 const Onboarding3 = () => {
-
-    const route= useRoute();
+  const route= useRoute();
+  const {imagenSeleccionada1,imagenSeleccionada2 }=route.params;
     const navigation=useNavigation();
-    // const {n}=route.params;
+    
 
     const [nombre, setnombre] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -18,16 +17,19 @@ const Onboarding3 = () => {
         setErrorMessage('Por favor ingrese un nombre');
       } else {
         // hacer algo con el valor ingresado
-        navigation.navigate('Onboarding4', {nombre});
+        navigation.navigate('Onboarding4', {nombre,imagenSeleccionada1,imagenSeleccionada2});
       }
     }
   return (
     <View style={styles.containerPrincipal}>
         <View style={styles.containerText}>
         <Text style={{fontWeight: '500', fontSize: 20, textAlign: 'center'}}>Felicidades! Ahora Elegi un nombre!</Text>
-        <View style={{ alignItems: 'center', justifyContent: 'center'}}>
-            <Image source={require('./pou.png')}
-            style={{width:280, height: 240 }}
+        <View style={{ alignItems: 'center', justifyContent: 'center', position: 'relative',width:280, height: 240}}>
+            <Image source={imagenSeleccionada1}
+            style={{width:280, height: 240, position: 'absolute'}}
+            />
+            <Image source={imagenSeleccionada2}
+            style={{width:280, height: 240, position: 'absolute' }}
             />
         </View>
         <TextInput
