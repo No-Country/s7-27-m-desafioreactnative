@@ -13,7 +13,7 @@ import Settings from "../components/Settings";
 
 const Home = () => {
   const route = useRoute();
-  // const { nombre } = route.params;
+  const { nombre } = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
   // const navigation = useNavigation();
 
@@ -21,13 +21,12 @@ const Home = () => {
 
   // }
   const navigation = useNavigation();
-  const temp = "nombre";
 
   return (
     <View style={styles.containerPrincipal}>
       {/* Inicio */}
       <View style={styles.containerStart}>
-        <Text style={styles.textName}> {temp} </Text>
+        <Text style={styles.textName}> {nombre} </Text>
         <TouchableOpacity style={styles.buttonPersonaje}>
           <Image source={require("./personajes.png")} />
         </TouchableOpacity>
