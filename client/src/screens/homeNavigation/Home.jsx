@@ -57,7 +57,10 @@ const Home = () => {
           </View>
           {/* Menu Shopp - Setting */}
           <View style={styles.containerMenu}>
-            <TouchableOpacity style={styles.buttonMenu}>
+            <TouchableOpacity
+              style={styles.buttonMenu}
+              onPress={() => navigation.navigate("Play")}
+            >
               <Image
                 source={require("./shopping-bag.png")}
                 style={{ justifyContent: "center", alignItems: "center" }}
