@@ -15,11 +15,7 @@ const Home = () => {
   const route = useRoute();
   const { nombre } = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
-  // const navigation = useNavigation();
 
-  // handlePress = () =>{
-
-  // }
   const navigation = useNavigation();
 
   return (
