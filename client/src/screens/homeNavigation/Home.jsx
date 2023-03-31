@@ -55,7 +55,7 @@ const Home = () => {
           <View style={styles.containerMenu}>
             <TouchableOpacity
               style={styles.buttonMenu}
-              onPress={() => navigation.navigate("Play")}
+              onPress={() => navigation.navigate("TiendaInventario")}
             >
               <Image
                 source={require("./shopping-bag.png")}
