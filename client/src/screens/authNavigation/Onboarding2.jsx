@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image,ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
 import { useNavigation } from '@react-navigation/native';
+
 const Onboarding2 = () => {
     
     const imagen1 = require('./pou.png');
@@ -18,16 +19,42 @@ const Onboarding2 = () => {
         setImagenSeleccionada2(imagen2);
         navigation.navigate('Onboarding3',{imagenSeleccionada2});
       };
+//
+      const scrollViewRef = useRef(null);
+
+      const handleScroll = (x) => {
+        if (scrollViewRef.current) {
+          scrollViewRef.current.scrollTo({ x, animated: true });
+        }
+      };
 
   return (
     <View style={styles.containerPrincipal}>
     <View style={styles.containertextp}>
     <Text style={styles.textPrincipal}>Elegi a tu nueva mascota:</Text>
     </View>
+    <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: 16,
+          position: 'absolute',
+          zIndex: 1
+        }}>
+        <TouchableOpacity onPress={() => handleScroll(0)} style={{top: 225}}>
+          <Image source={require('./izq.png')} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleScroll(500)} style={styles.flecha_der}>
+        <Image source={require('./der.png')} />
+        </TouchableOpacity>
+      </View>
     <ScrollView
+    ref={scrollViewRef}
       horizontal={true}
       pagingEnabled={true}
       showsHorizontalScrollIndicator={false}
+      style={{ flex: 1 }}
     >
       <View style={styles.itemContainer}>
 
@@ -43,7 +70,7 @@ const Onboarding2 = () => {
             </Text>
         </View>
         <View style={styles.container_boton}>
-    <TouchableOpacity style={styles.boton} onPress={continuar1}>
+        <TouchableOpacity style={styles.boton} onPress={continuar1}>
             <Text style={{color: 'white', fontWeight: '500'}}>CONTINUAR</Text>
         </TouchableOpacity>
     </View>
@@ -80,11 +107,12 @@ const styles= StyleSheet.create({
 
 
     containerPrincipal: {
-        flex: 1,
+       
         backgroundColor: '#fff',
         padding: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'relative'
     },
     containerText: {
         padding: 10, 
@@ -117,6 +145,10 @@ const styles= StyleSheet.create({
     container_boton: {
     alignItems: 'center',
     justifyContent: 'center',
+    },
+    flecha_der: {
+        left: 340,
+        top: 225,
     }
 })
 
