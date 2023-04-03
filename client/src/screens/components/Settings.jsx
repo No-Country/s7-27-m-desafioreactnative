@@ -1,8 +1,11 @@
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet, Modal } from "react-native";
 import Slider from "@react-native-community/slider";
 import { Feather, AntDesign } from "react-native-vector-icons";
 import PrimaryButton from "./PrimaryButton";
+import { useState } from "react";
+import PopupFree1 from "./PopupFree1";
 const Settings = ({ setModalSetActive }) => {
+  const [isModalActive, setIsModalActive] = useState(false);
   return (
     <View style={styles.capo}>
       <View style={styles.container}>
@@ -42,11 +45,17 @@ const Settings = ({ setModalSetActive }) => {
           </View>
 
           <View style={styles.buttonsCont}>
-            <PrimaryButton text="LIBERAR MASCOTA" />
+            <PrimaryButton
+              text="LIBERAR MASCOTA"
+              handler={() => setIsModalActive(true)}
+            />
             <PrimaryButton text="SALIR DEL JUEGO" secondary={true} />
           </View>
         </View>
       </View>
+      <Modal visible={isModalActive} transparent={false}>
+        <PopupFree1 setIsModalActive={setIsModalActive} />
+      </Modal>
     </View>
   );
 };

@@ -27,7 +27,7 @@ export default PrimaryButton;
 const styles = StyleSheet.create({
   boton: {
     display: "flex",
-    width: 283,
+    width: "95%",
     height: 40,
     alignItems: "center",
     justifyContent: "center",
