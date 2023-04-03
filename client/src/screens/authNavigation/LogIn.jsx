@@ -22,6 +22,8 @@ const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser({ username, password }));
+    // AGREGAR COMPROBACIÓN DE LOGIN EXITOSO
+    navigation.navigate("Onboarding1");
   };
   return (
     <View style={styles.container}>

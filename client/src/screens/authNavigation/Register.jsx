@@ -53,7 +53,8 @@ const Register = () => {
         telefono: tel,
       })
     );
-    // navigation.navigate("Onboarding1");
+    // AGREGAR COMPROBACIÓN DE REGISTER EXITOSO
+    navigation.navigate("Onboarding1");
   };
   return (
     <ScrollView style={styles.container}>
