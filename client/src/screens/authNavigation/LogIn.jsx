@@ -9,12 +9,20 @@ import {
   Modal,
 } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/actions/authActions";
 
 const LogIn = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [modalRecoverPassVisible, setModalRecoverPassVisible] = useState(false);
+
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser({ username, password }));
+  };
   return (
     <View style={styles.container}>
       <Modal
@@ -43,12 +51,7 @@ const LogIn = () => {
             />
           </View>
 
-          <PrimaryButton
-            text="CONTINUAR"
-            handler={() => {
-              // navigation.navigate("LogIn");
-            }}
-          />
+          <PrimaryButton text="CONTINUAR" />
 
           <PrimaryButton
             text="VOLVER"
@@ -69,7 +72,7 @@ const LogIn = () => {
           style={styles.inputText}
           placeholder="Email..."
           placeholderTextColor="#003f5c"
-          onChangeText={(text) => setUsername({ username: text })}
+          onChangeText={(text) => setUsername(text)}
         />
       </View>
       <View style={styles.inputView}>
@@ -78,15 +81,10 @@ const LogIn = () => {
           style={styles.inputText}
           placeholder="Password..."
           placeholderTextColor="#003f5c"
-          onChangeText={(text) => setPassword({ password: text })}
+          onChangeText={(text) => setPassword(text)}
         />
       </View>
-      <PrimaryButton
-        text="INGRESAR"
-        handler={() => {
-          navigation.navigate("Onboarding1");
-        }}
-      />
+      <PrimaryButton text="INGRESAR" handler={(e) => handleSubmit(e)} />
       <TouchableOpacity onPress={() => setModalRecoverPassVisible(true)}>
         <Text style={styles.loginText}>Olvidé mi contraseña</Text>
       </TouchableOpacity>

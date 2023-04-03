@@ -6,16 +6,68 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/actions/authActions";
+import { useNavigation } from "@react-navigation/native";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [fecha, setFecha] = useState("");
+  const [tel, setTel] = useState("");
+  const [errorMessage, setErrorMessage] = useState({
+    username: "",
+    password: "",
+    nombre: "",
+    nacimiento: "",
+    telefono: "",
+  });
+
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    if (username === "") {
+      setErrorMessage.username("Por favor ingrese su email");
+    }
+    if (password === "") {
+      setErrorMessage.password("Por favor ingrese una contraseña");
+    }
+    if (nombre === "") {
+      setErrorMessage.nombre("Por favor ingrese su nombre completo");
+    }
+    if (fecha === "") {
+      setErrorMessage.nacimiento("Por favor ingrese su fecha de nacimiento");
+    }
+    if (tel === "") {
+      setErrorMessage.telefono("Por favor ingrese su numero de telefono");
+    }
+    dispatch(
+      registerUser({
+        username: username,
+        password: password,
+        nombre: nombre,
+        nacimiento: fecha,
+        telefono: tel,
+      })
+    );
+    // navigation.navigate("Onboarding1");
+  };
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={{ alignSelf: "flex-start", marginLeft: "10%", padding: 10 }}>
         Registro
       </Text>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Nombre completo"
+          placeholderTextColor="#003f5c"
+          onChangeText={(text) => setNombre(text)}
+        />
+      </View>
 
       <View style={styles.inputView}>
         <TextInput
@@ -34,12 +86,23 @@ const Register = () => {
           onChangeText={(text) => setPassword(text)}
         />
       </View>
-      <PrimaryButton
-        text="CREAR CUENTA"
-        handler={() => {
-          // navigation.navigate("Register");
-        }}
-      />
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Fecha de Nacimiento"
+          placeholderTextColor="#003f5c"
+          onChangeText={(text) => setFecha(text)}
+        />
+      </View>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.inputText}
+          placeholder="Telefono"
+          placeholderTextColor="#003f5c"
+          onChangeText={(text) => setTel(text)}
+        />
+      </View>
+      <PrimaryButton text="CREAR CUENTA" handler={(e) => handleSubmit(e)} />
       <TouchableOpacity>
         <Text style={styles.loginText}>Acepto los terminos y condiciones</Text>
       </TouchableOpacity>
@@ -64,7 +127,7 @@ const Register = () => {
           // navigation.navigate("Register");
         }}
       />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -72,8 +135,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
   },
   logo: {
     fontWeight: "bold",
