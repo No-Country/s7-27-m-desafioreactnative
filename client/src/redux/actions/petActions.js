@@ -8,7 +8,7 @@ const postPetData = (payload, id) => {
     dispatch({ type: POST_PET_DATA_PENDING });
     try {
       const { data } = axios.post(`${URL_BACK}/${id}/nosabemostodavia`, payload);
-      return dispatch({ type: POST_PET_DATA_SUCCESS, payload: data });
+      return dispatch({ type: POST_PET_DATA_SUCCESS, payload: data.nuevaMascota });
     } catch (error) {
       return dispatch({ type: POST_PET_DATA_REJECTED, payload: error });
     }
