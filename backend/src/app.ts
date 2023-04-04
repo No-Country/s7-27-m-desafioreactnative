@@ -4,6 +4,8 @@ import { iniciarExpress, manejoErroresExpress } from "./config/express.config";
 
 // Rutas
 import authRoutes from "./routes/authRoutes";
+import petRoutes from "./routes/petRoutes";
+import accesoriesRouter from "./routes/accesoriesRoutes";
 
 const app = express();
 
@@ -16,6 +18,8 @@ app.get("/", (_, res: Response) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/mascota", petRoutes);
+app.use("/mascota/accesorio", accesoriesRouter);
 
 manejoErroresExpress(app);
 

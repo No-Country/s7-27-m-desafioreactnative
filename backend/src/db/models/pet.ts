@@ -1,24 +1,85 @@
-import { Document, Schema, model } from "mongoose";
+import { Schema, model, Model } from "mongoose";
+
+type TCaracteristicas = {
+  edad: Number;
+  sueno: Number;
+  energia: Number;
+  salud: Number;
+  felicidad: Number;
+  higiene: Number;
+};
+
+type TaccesoriosEnUso = {
+  fondo: string;
+  cuadro: string;
+};
+
+type TaccesoriosGanados = {
+  fondos: string[];
+  cuadros: string[];
+};
 
 export interface InterfacePet extends Document {
+  _id: Schema.Types.ObjectId;
   nombre: String;
+  tipoMascota: String;
+  caracteristicas: TCaracteristicas;
+  accesoriosEnUso: TaccesoriosEnUso;
+  accesoriosGanados: TaccesoriosGanados;
   usuario: Schema.Types.ObjectId;
+  modificarAccesoriosEnUso: (fondo: String, cuadro: String) => InterfacePet;
 }
 
-const petSchema = new Schema(
+const petSchema = new Schema<InterfacePet, Model<InterfacePet>>(
   {
     nombre: {
       type: String,
       trim: true,
       maxlength: [25, "El nombre no puede tener mas de 25 caracteres"],
+      required: true,
     },
-    usuario: { type: Schema.Types.ObjectId, ref: "User" },
+    tipoMascota: {
+      type: String,
+      required: true,
+    },
+    caracteristicas: {
+      edad: Number,
+      sueno: Number,
+      energia: Number,
+      salud: Number,
+      felicidad: Number,
+      higiene: Number,
+    },
+    accesoriosEnUso: {
+      fondo: { type: String },
+      cuadro: { type: String },
+    },
+    accesoriosGanados: {
+      fondos: [{ type: String }],
+      cuadros: [{ type: String }],
+    },
+    usuario: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
   {
     timestamps: true,
   }
 );
 
-const Pet = model("Pet", petSchema);
+petSchema.methods.modificarAccesoriosEnUso = async function (
+  fondo: string,
+  cuadro: string
+) {
+  if (fondo && this.accesoriosGanados.fondos.includes(fondo)) {
+    this.accesoriosEnUso.fondo = fondo;
+    await this.save();
+  }
+  if (cuadro && this.accesoriosGanados.cuadros.includes(cuadro)) {
+    this.accesoriosEnUso.cuadro = cuadro;
+    await this.save();
+  }
+  return this;
+};
+
+const Pet = model<InterfacePet>("Pet", petSchema);
 
 export default Pet;
