@@ -1,34 +1,46 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Model } from "mongoose";
 
 type TCaracteristicas = {
   edad: Number;
   sueno: Number;
   energia: Number;
-  sueño: Number;
   salud: Number;
   felicidad: Number;
   higiene: Number;
 };
 
-export interface InterfacePet {
+type TaccesoriosEnUso = {
+  fondo: string;
+  cuadro: string;
+};
+
+type TaccesoriosGanados = {
+  fondos: string[];
+  cuadros: string[];
+};
+
+export interface InterfacePet extends Document {
+  _id: Schema.Types.ObjectId;
   nombre: String;
-  tipoMascota: Schema.Types.ObjectId;
-  edad: String;
+  tipoMascota: String;
   caracteristicas: TCaracteristicas;
-  accesorios: Schema.Types.ObjectId;
+  accesoriosEnUso: TaccesoriosEnUso;
+  accesoriosGanados: TaccesoriosGanados;
   usuario: Schema.Types.ObjectId;
+  modificarAccesoriosEnUso: (fondo: String, cuadro: String) => InterfacePet;
 }
 
-const petSchema = new Schema<InterfacePet>(
+const petSchema = new Schema<InterfacePet, Model<InterfacePet>>(
   {
     nombre: {
       type: String,
       trim: true,
       maxlength: [25, "El nombre no puede tener mas de 25 caracteres"],
+      required: true,
     },
     tipoMascota: {
-      type: Schema.Types.ObjectId,
-      ref: "PetType",
+      type: String,
+      required: true,
     },
     caracteristicas: {
       edad: Number,
@@ -38,14 +50,36 @@ const petSchema = new Schema<InterfacePet>(
       felicidad: Number,
       higiene: Number,
     },
-    accesorios: [{ type: Schema.Types.ObjectId, ref: "Accesory" }],
-    usuario: { type: Schema.Types.ObjectId, ref: "User" },
+    accesoriosEnUso: {
+      fondo: { type: String },
+      cuadro: { type: String },
+    },
+    accesoriosGanados: {
+      fondos: [{ type: String }],
+      cuadros: [{ type: String }],
+    },
+    usuario: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
   {
     timestamps: true,
   }
 );
 
-const Pet = model("Pet", petSchema);
+petSchema.methods.modificarAccesoriosEnUso = async function (
+  fondo: string,
+  cuadro: string
+) {
+  if (fondo && this.accesoriosGanados.fondos.includes(fondo)) {
+    this.accesoriosEnUso.fondo = fondo;
+    await this.save();
+  }
+  if (cuadro && this.accesoriosGanados.cuadros.includes(cuadro)) {
+    this.accesoriosEnUso.cuadro = cuadro;
+    await this.save();
+  }
+  return this;
+};
+
+const Pet = model<InterfacePet>("Pet", petSchema);
 
 export default Pet;

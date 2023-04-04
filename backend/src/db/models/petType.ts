@@ -5,7 +5,7 @@ export interface InterfacePetType extends Document {
   caracteristicas: Object;
 }
 
-const petTypeSchema = new Schema<InterfacePetType>({
+const petTypeSchema = new Schema({
   nombre: {
     type: String,
     unique: true,
@@ -16,6 +16,6 @@ const petTypeSchema = new Schema<InterfacePetType>({
   },
 });
 
-const PetType = model("PetType", petTypeSchema);
+const PetType = model<InterfacePetType>("PetType", petTypeSchema);
 
 export default PetType;

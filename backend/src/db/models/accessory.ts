@@ -15,6 +15,6 @@ const accesoryShema = new Schema<InterfaceAccesory>({
   },
 });
 
-const AccesorySchema = model("Accesory", accesoryShema);
+const Accesory = model("Accesory", accesoryShema);
 
-export default AccesorySchema;
+export default Accesory;
