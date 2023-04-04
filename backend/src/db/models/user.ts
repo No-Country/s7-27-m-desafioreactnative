@@ -1,24 +1,37 @@
-import { model, Schema } from "mongoose";
+import {
+  model,
+  Schema,
+  Document,
+  PassportLocalDocument,
+  Model,
+} from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
 import { TypeRolUsuario, TypeRegistradoEn } from "../../types";
+import Pet from "./pet";
+// import { InterfacePet } from "./pet";
 
-export interface InterfaceUser extends Document {
+export interface InterfaceUser extends Document, PassportLocalDocument {
+  _id: Schema.Types.ObjectId;
   username: string;
   email?: string;
   nombre?: string;
-  nacimiento?: Date;
   telefono?: number;
   rol: TypeRolUsuario;
   verificado: boolean;
   registradoEn: TypeRegistradoEn;
   registradoEnId?: string;
+  dinero: string;
   mascotas: Schema.Types.ObjectId[];
   extraerPerfil: () => Object;
-  save: () => any;
+  liberarMascota: (idMascota: string) => Boolean;
+  // save: () => any;
 }
 
-const userSchema = new Schema(
+const userSchema = new Schema<InterfaceUser, Model<InterfaceUser>>(
   {
+    // username: {
+    //   type: String,
+    // },
     email: {
       type: String,
       trim: true,
@@ -30,9 +43,6 @@ const userSchema = new Schema(
       type: String,
       trim: true,
       maxlength: [25, "El nombre no puede tener mas de 25 caracteres"],
-    },
-    nacimiento: {
-      type: Date,
     },
     telefono: {
       type: Number,
@@ -61,6 +71,7 @@ const userSchema = new Schema(
       type: String,
       trim: true,
     },
+    dinero: { tipe: String },
     mascotas: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
   },
   {
@@ -80,8 +91,27 @@ userSchema.methods.extraerPerfil = async function () {
   };
 };
 
+userSchema.methods.liberarMascota = async function (idMascota: string) {
+  const mascotaEliminada = await Pet.deleteOne({
+    _id: idMascota,
+    usuario: this._id,
+  });
+  let eliminado = false;
+  if (mascotaEliminada.deletedCount) {
+    eliminado = true;
+    const mascotas = this.mascotas.filter(
+      (i: Schema.Types.ObjectId) => i.toString() !== idMascota
+    );
+    console.log(mascotas);
+    this.mascotas = mascotas;
+    await this.save();
+  }
+
+  return eliminado;
+};
+
 userSchema.plugin(passportLocalMongoose);
 
-const User = model("User", userSchema);
+const User = model<InterfaceUser>("User", userSchema);
 
 export default User;
