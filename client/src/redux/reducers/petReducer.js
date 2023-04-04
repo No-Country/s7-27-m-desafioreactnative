@@ -53,11 +53,6 @@ const petReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-
-
-
-
-
 // data:
 // {
 //     "nuevaMascota": {
