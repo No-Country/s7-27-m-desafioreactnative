@@ -7,14 +7,10 @@ import User, { InterfaceUser } from "../db/models/user";
 // GET
 export const mostrarMisMascotas = wrapAsync(
   async (req: Request, res: Response) => {
-    const usuario: InterfaceUser | null = await User.findById(req.user?._id);
-    const mascotas = await usuario?.populate("mascotas", [
-      "-usuario",
-      "-createdAt",
-      "-updatedAt",
-      "-__v",
-    ]);
-    return res.status(200).json({ mascotas: mascotas?.mascotas });
+    const usuario: InterfaceUser | null = await User.findById(
+      req.user?._id
+    ).populate("mascotas", ["-usuario", "-createdAt", "-updatedAt", "-__v"]);
+    return res.status(200).json({ mascotas: usuario?.mascotas });
   }
 );
 // POST
@@ -45,7 +41,6 @@ export const adoptarMascota = wrapAsync(async (req: Request, res: Response) => {
         tipoMascota: nuevaMascota.tipoMascota,
         caracteristicas: nuevaMascota.caracteristicas,
         accesoriosEnUso: nuevaMascota.accesoriosEnUso,
-        accesoriosGanados: nuevaMascota.accesoriosGanados,
         _id: nuevaMascota._id,
       },
     });
@@ -78,10 +73,13 @@ export const actualizarCaracteristicas = wrapAsync(
 
     const { idMascota } = req.params;
 
-    const mascota = await Pet.findOne({
-      _id: idMascota,
-      usuario: req.user?._id,
-    });
+    const mascota = await Pet.findOne(
+      {
+        _id: idMascota,
+        usuario: req.user?._id,
+      },
+      ["-usuario", "-createdAt", "-updatedAt", "-__v"]
+    );
 
     if (!mascota)
       return res.status(404).json({ mensaje: "Mascota no encontrada" });
@@ -101,62 +99,45 @@ export const actualizarAccesoriosEnUso = wrapAsync(
   async (req: Request, res: Response) => {
     const { fondo, cuadro } = req.body;
 
-    const mascota = await Pet.findOne({
-      _id: req.params.idMascota,
-      usuario: req.user?._id,
-    });
-
-    await mascota?.modificarAccesoriosEnUso(fondo, cuadro);
-    const mascotaActualizada = {
-      accesoriosEnUso: mascota?.accesoriosEnUso,
-      accesoriosGanados: mascota?.accesoriosGanados,
-      _id: mascota?._id,
-      nombre: mascota?.nombre,
-      tipoMascota: mascota?.tipoMascota,
-    };
-    return res.status(200).json({ mascotaActualizada });
-  }
-);
-// PATCH
-export const actualizarAccesoriosGanados = wrapAsync(
-  async (req: Request, res: Response) => {
-    const { fondos, cuadros } = req.body;
-    const mascota = await Pet.findOne({
-      _id: req.params.idMascota,
-      usuario: req.user?._id,
-    });
+    const mascota = await Pet.findOne(
+      {
+        _id: req.params.idMascota,
+        usuario: req.user?._id,
+      },
+      ["-usuario", "-createdAt", "-updatedAt", "-__v"]
+    );
     if (!mascota)
       return res.status(404).json({ mensaje: "Mascota no encontrada" });
-    // fondos
-    if (fondos?.length && Array.isArray(fondos)) {
-      fondos.forEach((e: "string") => {
-        if (!mascota.accesoriosGanados.fondos.includes(e))
-          mascota.accesoriosGanados.fondos.push(e);
-      });
-    }
-    if (cuadros?.length && Array.isArray(cuadros)) {
-      cuadros.forEach((e: "string") => {
-        if (!mascota.accesoriosGanados.cuadros.includes(e))
-          mascota.accesoriosGanados.cuadros.push(e);
-      });
-    }
-    await mascota.save();
-
-    const mascotaActualizada = {
-      accesoriosEnUso: mascota.accesoriosEnUso,
-      accesoriosGanados: mascota.accesoriosGanados,
-      _id: mascota._id,
-      nombre: mascota.nombre,
-      tipoMascota: mascota.tipoMascota,
-    };
-
-    return res.status(200).json({ mascotaActualizada });
+    await mascota.modificarAccesoriosEnUso(
+      fondo,
+      cuadro,
+      req.user?.accesoriosGanados
+    );
+    return res.status(200).json({ mascotaNueva: mascota });
   }
 );
+//PATCH
+export const eliminarAccesoriosEnUso = wrapAsync(
+  async (req: Request, res: Response) => {
+    const { fondo, cuadro } = req.body;
+
+    const mascota = await Pet.findOne(
+      {
+        _id: req.params.idMascota,
+        usuario: req.user?._id,
+      },
+      ["-usuario", "-createdAt", "-updatedAt", "-__v"]
+    );
+    if (!mascota)
+      return res.status(404).json({ mensaje: "Mascota no encontrada" });
+    await mascota.eliminarAccesoriosEnUso(fondo, cuadro);
+    return res.status(200).json({ mascotaNueva: mascota });
+  }
+);
+
 //DELETE
 export const liberarMascota = wrapAsync(async (req: Request, res: Response) => {
   const usuario = await User.findById(req.user?._id);
-  console.log(req.params);
   await usuario?.liberarMascota(req.params.idMascota as string);
   return res.status(200).json({ mensaje: "Mascota liberada" });
 });

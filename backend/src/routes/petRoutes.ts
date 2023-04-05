@@ -4,10 +4,10 @@ import {
   mostrarMisMascotas,
   liberarMascota,
   mostrarDetallesMascota,
-  actualizarAccesoriosGanados,
   actualizarAccesoriosEnUso,
   actualizarCaracteristicas,
-} from "../controllers/petUserController";
+  eliminarAccesoriosEnUso,
+} from "../controllers/petControllers";
 import { estaLogueado } from "../config/authMiddlewares";
 
 const petRoutes = Router();
@@ -22,7 +22,7 @@ petRoutes
   .get(estaLogueado, mostrarDetallesMascota)
   .post(estaLogueado, actualizarCaracteristicas)
   .put(estaLogueado, actualizarAccesoriosEnUso)
-  .patch(estaLogueado, actualizarAccesoriosGanados)
+  .patch(estaLogueado, eliminarAccesoriosEnUso)
   .delete(estaLogueado, liberarMascota);
 
 export default petRoutes;
