@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Modal } from "react-native";
+import { StyleSheet, Text, View, Modal, ImageBackground } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import LogIn from "./LogIn";
 import Register from "./Register";
@@ -7,8 +7,14 @@ import Register from "./Register";
 const Start = () => {
   const [modalLoginVisible, setModalLoginVisible] = useState(false);
   const [modalRegisterVisible, setModalRegisterVisible] = useState(false);
+  // const image = {uri: "../components/assets/bg.png"}
   return (
     <View style={styles.container}>
+      {/* <ImageBackground
+        source={image}
+        resizeMode="cover"
+        style={styles.image}
+      ></ImageBackground> */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -33,8 +39,7 @@ const Start = () => {
         <Register />
       </Modal>
       <View>
-        <View style={styles.whitebox}>
-        </View>
+        <View style={styles.whitebox}></View>
       </View>
       <View style={styles.btncontainer}>
         <PrimaryButton
@@ -60,9 +65,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#D9D9D9",
     height: "100%",
   },
+  
   whitebox: {
     backgroundColor: "white",
     height: 260,
@@ -70,8 +75,8 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     marginTop: -40,
   },
-  btncontainer:{
-    width:"90%"
+  btncontainer: {
+    width: "90%",
   },
   buttonClose: {
     width: 140,
