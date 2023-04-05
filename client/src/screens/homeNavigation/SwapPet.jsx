@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,33 +6,58 @@ import {
   SafeAreaView,
   FlatList,
   Image,
-  TouchableWithoutFeedback,
-  Dimensions
+  Dimensions,
+  Pressable,
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import data from "../../data/characters";
 
+
+
 export default function SwapPet() {
-  const renderItem = ({item, index}) => {
+  const [currentImage, setCurrentImage] = useState(data[0].image)
+  const [currentName, setCurrentName] = useState(data[0].name)
+
+  const createTwoButtonAlert = () =>
+    Alert.alert('Alerta!!!', 'Cambio de personaje', [
+      {
+        text: 'Cancelar',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ]);
+
+
+  
+  const renderItem = ({ item, index }) => {
     return (
-      <View style={styles.listContainer}>
-        <View style={styles.imageContainer}>
-          <Image source={item.image} style={styles.image} />
-        </View>
-        <Text style={styles.nameText}>{item.name}</Text>
-        <Text style={styles.priceText}>{item.price}</Text>
-        <TouchableWithoutFeedback onPress={() => {
-          console.log("Buy Now:", index)
-        }}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Buy now!</Text>
-          </View>
-        </TouchableWithoutFeedback>
+      <View style={styles.listContainer} >
+        <TouchableOpacity onPress={() => {
+          setCurrentImage(item.image)
+          setCurrentName(item.name)
+        }} style={styles.imageContainer}>
+          <Image  source={item.image} style={styles.itemImage} />
+        </TouchableOpacity>
+        <Pressable onPress={createTwoButtonAlert} style={styles.button}>
+          <Text style={styles.buttonText}>{item.name}</Text>
+        </Pressable>
+       
       </View>
     );
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Text style={styles.textCharacter}>MASCOTA ACTUAL</Text>
+        <Image
+          style={styles.characterImage}
+          source={currentImage}
+        />
+        <Text style={styles.textCharacter}>{currentName}</Text>
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}
@@ -48,21 +73,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    marginTop: 12,
     // alignItems: "center",
     // justifyContent: "center",
   },
   listContainer: {
-    width: Dimensions.get('window').width / 2 - 20,
+    width: Dimensions.get("window").width / 2 - 20,
     backgroundColor: "white",
     margin: 10,
     borderRadius: 20,
   },
   imageContainer: {
-    margin: 15,
+    margin: 5,
     borderRadius: 10,
     overflow: "hidden",
   },
-  image: {
+  characterImage: {
+    width: "80%",
+    height: undefined,
+    aspectRatio: 1,
+    alignSelf: "center",
+  },
+  itemImage: {
     width: "100%",
     height: undefined,
     aspectRatio: 1,
@@ -78,13 +110,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   button: {
-    backgroundColor: '#62513E',
+    backgroundColor: "#62513E",
     padding: 10,
-    margin: 15,
-    borderRadius: 10
+    margin: 5,
+    borderRadius: 10,
   },
   buttonText: {
-    color: 'white',
-    textAlign: 'center'
-  }
+    color: "white",
+    textAlign: "center",
+  },
+  textCharacter: {
+    textAlign: "center",
+    // backgroundColor: '#62513E',
+    // color: 'white',
+    fontWeight: "bold",
+  },
 });

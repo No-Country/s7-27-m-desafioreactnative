@@ -1,57 +1,48 @@
 const data = [
     {
       id: 1,
-      name: 'Lorem Ipsum',
-      price: '$100',
+      name: 'Mascota 1',
       image: require('../../assets/characters/image1.jpeg'),
     },
     {
       id: 2,
-      name: 'Lorem Ipsum',
-      price: '$110',
+      name: 'Mascota 2',
       image: require('../../assets/characters/image2.jpeg'),
     },
     {
       id: 3,
-      name: 'Lorem Ipsum',
-      price: '$90',
+      name: 'Mascota 3',
       image: require('../../assets/characters/image3.jpeg'),
     },
     {
       id: 4,
-      name: 'Lorem Ipsum',
-      price: '$95',
+      name: 'Mascota 4',
       image: require('../../assets/characters/image4.jpeg'),
     },
     {
       id: 5,
-      name: 'Lorem Ipsum',
-      price: '$115',
+      name: 'Mascota 5',
       image: require('../../assets/characters/image5.jpeg'),
     },
     {
       id: 6,
-      name: 'Lorem Ipsum',
-      price: '$120',
+      name: 'Mascota 6',
       image: require('../../assets/characters/image6.jpeg'),
     },
     {
       id: 7,
-      name: 'Lorem Ipsum',
-      price: '$100',
+      name: 'Mascota 7',
       image: require('../../assets/characters/image7.jpeg'),
     },
     {
       id: 8,
-      name: 'Lorem Ipsum',
-      price: '$99',
+      name: 'Mascota 8',
       image: require('../../assets/characters/image8.jpeg'),
     },
     {
       id: 9,
-      name: 'Lorem Ipsum',
-      price: '$130',
-      image: require('../../assets/characters/image1.jpeg'),
+      name: 'Mascota 9',
+      image: require('../../assets/characters/image9.jpeg'),
     },
   ];
 
