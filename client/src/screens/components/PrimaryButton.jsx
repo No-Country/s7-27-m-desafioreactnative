@@ -1,13 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { fondo, primario } from "../../config/constants";
 
 const PrimaryButton = ({ text, handler, secondary = false }) => {
   return (
     <TouchableOpacity
       style={[
         styles.boton,
-        secondary
-          ? { backgroundColor: "white" }
-          : { backgroundColor: "#A8A8A8" },
+        secondary ? { backgroundColor: fondo } : { backgroundColor: primario },
       ]}
       onPress={handler}
     >
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 4,
+    borderRadius: 60,
     margin: 10,
   },
   text: {
