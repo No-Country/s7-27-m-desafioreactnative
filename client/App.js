@@ -8,10 +8,11 @@ import { store } from "./src/redux/store";
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <StatusBar StatusBarStyle="light-content" />
-      
-      <AppNavigator />
-    </Provider>
+    <>
+      <Provider store={store}>
+        <StatusBar statusBarStyle="light-content" />
+        <AppNavigator />
+      </Provider>
+    </>
   );
 }

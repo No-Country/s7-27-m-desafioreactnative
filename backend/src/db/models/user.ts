@@ -32,6 +32,9 @@ export interface InterfaceUser extends Document, PassportLocalDocument {
 
 const userSchema = new Schema<InterfaceUser, Model<InterfaceUser>>(
   {
+    // username: {
+    //   type: String,
+    // },
     email: {
       type: String,
       trim: true,
@@ -64,6 +67,7 @@ const userSchema = new Schema<InterfaceUser, Model<InterfaceUser>>(
       accesorios: [{ type: String }],
     },
     dinero: { type: String },
+
     mascotas: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
   },
   {

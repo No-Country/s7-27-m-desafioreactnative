@@ -19,6 +19,7 @@ type TaccesoriosEnUso = {
 //   cuadros: string[];
 // };
 
+
 export interface InterfacePet extends Document {
   _id: Schema.Types.ObjectId;
   nombre: String;
@@ -76,6 +77,7 @@ const petSchema = new Schema<InterfacePet, Model<InterfacePet>>(
 
 petSchema.methods.modificarAccesoriosEnUso = async function (
   fondo: string,
+
   cuadro: string,
   accesoriosUsuario: { fondos: string[]; accesorios: string[] }
 ) {

@@ -21,6 +21,7 @@ app.use("/auth", authRoutes);
 app.use("/accesorio", accesoriesRouter);
 app.use("/mascota", petRoutes);
 
+
 manejoErroresExpress(app);
 
 export default app;

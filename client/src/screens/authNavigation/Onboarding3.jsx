@@ -3,29 +3,33 @@ import React, { useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native'
-
 const Onboarding3 = () => {
-
-    const route= useRoute();
-    // const {n}=route.params;
-
-
+  const route= useRoute();
+  const {imagenSeleccionada1,imagenSeleccionada2 }=route.params;
+    const navigation=useNavigation();
+    
 
     const [nombre, setnombre] = useState('');
-
-    const navigation=useNavigation();
-
-    const enviarNombre =()=> {
-      navigation.navigate('Onboarding4', {nombre});
-    };
-
+    const [errorMessage, setErrorMessage] = useState('');
+  
+    const handlePress = () => {
+      if (nombre.trim() === '') {
+        setErrorMessage('Por favor ingrese un nombre');
+      } else {
+        // hacer algo con el valor ingresado
+        navigation.navigate('Onboarding4', {nombre,imagenSeleccionada1,imagenSeleccionada2});
+      }
+    }
   return (
     <View style={styles.containerPrincipal}>
         <View style={styles.containerText}>
         <Text style={{fontWeight: '500', fontSize: 20, textAlign: 'center'}}>Felicidades! Ahora Elegi un nombre!</Text>
-        <View style={{ alignItems: 'center', justifyContent: 'center'}}>
-            <Image source={require('./pou.png')}
-            style={{width:280, height: 240 }}
+        <View style={{ alignItems: 'center', justifyContent: 'center', position: 'relative',width:280, height: 240}}>
+            <Image source={imagenSeleccionada1}
+            style={{width:280, height: 240, position: 'absolute'}}
+            />
+            <Image source={imagenSeleccionada2}
+            style={{width:280, height: 240, position: 'absolute' }}
             />
         </View>
         <TextInput
@@ -34,7 +38,8 @@ const Onboarding3 = () => {
         onChangeText={setnombre}
         style={{borderWidth: 1, width: 284, height: 56, borderRadius:4, padding: 5}}
         />
-        <TouchableOpacity style={styles.boton} onPress={enviarNombre}>
+         {errorMessage !== '' && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
+        <TouchableOpacity style={styles.boton} onPress={handlePress}>
             <Text style={{color: 'white', fontWeight: '500'}}>CONTINUAR</Text>
         </TouchableOpacity>
         </View>

@@ -120,8 +120,6 @@ body:
 ```json
 {
   "fondos": ["fondo1"], // Array con los id's del o de los fondos ganados
-  "accesorios": ["cuadro1"] // Array con los id's del o de los accesorios ganados
-}
 ```
 
 ### METHOD DELETE
