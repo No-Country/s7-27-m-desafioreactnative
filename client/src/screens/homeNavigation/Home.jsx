@@ -23,7 +23,7 @@ const Home = () => {
       {/* Inicio */}
       <View style={styles.containerStart}>
         <Text style={styles.textName}> {nombre} </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("SwapPet")} style={styles.buttonPersonaje}>
+        <TouchableOpacity style={styles.buttonPersonaje} onPress={()=>navigation.navigate("SwapPet")}>
           <Image source={require("./personajes.png")} />
         </TouchableOpacity>
       </View>
