@@ -16,10 +16,7 @@ body:
 ```json
 {
   "username": "email",
-  "password": "string",
-  "nombre": "Nombre Apellido", // hasta 25
-  "nacimiento": "1988-09-18",
-  "telefono": 541234567890
+  "password": "string"
 }
 ```
 
@@ -56,13 +53,6 @@ query: username ej: /auth/recuperarcontrasena?username=a@a.com
 ### METHOD GET
 
 uso: obtener todas las mascotas del usuario logeado
-respuesta:
-
-```json
-{
-  "mascotas": []
-}
-```
 
 ### METHOD POST
 
@@ -83,30 +73,7 @@ body:
     "felicidad": 100,
     "higiene": 100
   },
-  "accesoriosEnUso": ["idAccesorio"], // Array de id's de los accesorios en uso
-  "accesoriosGanados": ["idAccesorio"] // Array de los accesorios ganados
-}
-```
-
-respuesta:
-
-```json
-{
-  "nuevaMascota": {
-    "nombre": "Nombre mascota",
-    "tipoMascota": "a1",
-    "caracteristicas": {
-      "edad": 0,
-      "sueno": 100,
-      "energia": 100,
-      "salud": 100,
-      "felicidad": 100,
-      "higiene": 100
-    },
-    "accesoriosEnUso": [],
-    "accesoriosGanados": [],
-    "_id": "642b29043fd10d97610e396a"
-  }
+  "accesoriosEnUso": ["idAccesorio"] // Array de id's de los accesorios en uso
 }
 ```
 
@@ -115,26 +82,6 @@ respuesta:
 ### METHOD GET
 
 uso: obtener los detalles de una mascota en particular del usuario logeado
-respuesta:
-
-```json
-{
-  "mascota": {
-    "caracteristicas": {
-      "edad": 0,
-      "sueno": 100,
-      "energia": 100,
-      "salud": 100,
-      "felicidad": 100,
-      "higiene": 100
-    },
-    "_id": "642b29043fd10d97610e396a",
-    "nombre": "Nombre mascota",
-    "accesoriosEnUso": [],
-    "accesoriosGanados": []
-  }
-}
-```
 
 ### METHOD POST
 
@@ -158,6 +105,7 @@ body:
 ```json
 {
   // por cada accesorio que pueda elegir para usar la mascota, va ir una propiedad
+  // AVISAR QUE ACCESORIOS HAY QUE AGREGAR
   "fondo": "idFondo1", // id de fondo/cuadro que este en uso
   "cuadro": "idCuadro1"
 }
@@ -165,17 +113,32 @@ body:
 
 ### METHOD PATCH
 
-uso: modificar LOS ACCESORIOS GANADOS de una mascota en particular del usuario logeado
+uso: eliminar LOS ACCESORIOS EN USO de una mascota en particular del usuario logeado
 
 body:
 
 ```json
 {
-  "fondos": ["idFondo1"], // ARRAY de id's de fondo/cuadro que vaya ganando
-  "cuadros": ["idCuadro1"]
+  "fondos": ["fondo1"], // Array con los id's del o de los fondos ganados
+  "accesorios": ["cuadro1"] // Array con los id's del o de los accesorios ganados
 }
 ```
 
 ### METHOD DELETE
 
 uso: eliminar una mascota en particular del usuario logeado
+
+## /accesorio
+
+### METHOD POST
+
+uso: agregar accesorio ganado al usuario logeado
+
+body:
+
+```json
+{
+  "fondos": ["fondo1"], // Array con los id's del o de los fondos ganados
+  "accesorios": ["cuadro1"] // Array con los id's del o de los accesorios ganados
+}
+```

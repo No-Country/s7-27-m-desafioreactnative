@@ -2,7 +2,7 @@ import express, { Response } from "express";
 import iniciarPassportSessions from "./config/passport-session.config";
 import { iniciarExpress, manejoErroresExpress } from "./config/express.config";
 
-// Rutas
+// Importacion Rutas
 import authRoutes from "./routes/authRoutes";
 import petRoutes from "./routes/petRoutes";
 import accesoriesRouter from "./routes/accesoriesRoutes";
@@ -18,8 +18,8 @@ app.get("/", (_, res: Response) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/accesorio", accesoriesRouter);
 app.use("/mascota", petRoutes);
-app.use("/mascota/accesorio", accesoriesRouter);
 
 manejoErroresExpress(app);
 

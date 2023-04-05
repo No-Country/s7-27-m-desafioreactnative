@@ -14,10 +14,10 @@ type TaccesoriosEnUso = {
   cuadro: string;
 };
 
-type TaccesoriosGanados = {
-  fondos: string[];
-  cuadros: string[];
-};
+// type TaccesoriosGanados = {
+//   fondos: string[];
+//   cuadros: string[];
+// };
 
 export interface InterfacePet extends Document {
   _id: Schema.Types.ObjectId;
@@ -25,9 +25,18 @@ export interface InterfacePet extends Document {
   tipoMascota: String;
   caracteristicas: TCaracteristicas;
   accesoriosEnUso: TaccesoriosEnUso;
-  accesoriosGanados: TaccesoriosGanados;
+  // accesoriosGanados: TaccesoriosGanados;
   usuario: Schema.Types.ObjectId;
-  modificarAccesoriosEnUso: (fondo: String, cuadro: String) => InterfacePet;
+  modificarAccesoriosEnUso: (
+    fondo: String,
+    cuadro: Schema.Types.ObjectId[],
+    accesoriosUsuario?: Object,
+    mascotas?: any[]
+  ) => InterfacePet;
+  eliminarAccesoriosEnUso: (
+    fondo: String,
+    cuadro: Schema.Types.ObjectId[]
+  ) => InterfacePet;
 }
 
 const petSchema = new Schema<InterfacePet, Model<InterfacePet>>(
@@ -54,10 +63,10 @@ const petSchema = new Schema<InterfacePet, Model<InterfacePet>>(
       fondo: { type: String },
       cuadro: { type: String },
     },
-    accesoriosGanados: {
-      fondos: [{ type: String }],
-      cuadros: [{ type: String }],
-    },
+    // accesoriosGanados: {
+    //   fondos: [{ type: String }],
+    //   cuadros: [{ type: String }],
+    // },
     usuario: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
   {
@@ -67,14 +76,30 @@ const petSchema = new Schema<InterfacePet, Model<InterfacePet>>(
 
 petSchema.methods.modificarAccesoriosEnUso = async function (
   fondo: string,
-  cuadro: string
+  cuadro: string,
+  accesoriosUsuario: { fondos: string[]; accesorios: string[] }
 ) {
-  if (fondo && this.accesoriosGanados.fondos.includes(fondo)) {
+  if (fondo && accesoriosUsuario?.fondos?.includes(fondo)) {
     this.accesoriosEnUso.fondo = fondo;
     await this.save();
   }
-  if (cuadro && this.accesoriosGanados.cuadros.includes(cuadro)) {
+  if (cuadro && accesoriosUsuario?.accesorios?.includes(cuadro)) {
     this.accesoriosEnUso.cuadro = cuadro;
+    await this.save();
+  }
+  return this;
+};
+
+petSchema.methods.eliminarAccesoriosEnUso = async function (
+  fondo: string,
+  cuadro: string
+) {
+  if (fondo) {
+    this.accesoriosEnUso.fondo = null;
+    await this.save();
+  }
+  if (cuadro) {
+    this.accesoriosEnUso.cuadro = null;
     await this.save();
   }
   return this;

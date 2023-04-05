@@ -36,7 +36,6 @@ passport.use(
           }
           let usuarioNuevo = await new User({
             username: profile.id,
-            nombre: profile.displayName,
             verificado: true,
             registradoEn: "google",
             registradoEnId: profile.id,
@@ -72,7 +71,6 @@ passport.use(
         } else {
           let usuarioNuevo = await new User({
             username: profile.id,
-            nombre: profile.displayName,
             verificado: true,
             registradoEn: "facebook",
             registradoEnId: profile.id,

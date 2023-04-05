@@ -10,46 +10,34 @@ import { TypeRolUsuario, TypeRegistradoEn } from "../../types";
 import Pet from "./pet";
 // import { InterfacePet } from "./pet";
 
+type TypeAccesoriosGanados = {
+  fondos: string[];
+  accesorios: string[];
+};
+
 export interface InterfaceUser extends Document, PassportLocalDocument {
   _id: Schema.Types.ObjectId;
   username: string;
   email?: string;
-  nombre?: string;
-  telefono?: number;
   rol: TypeRolUsuario;
   verificado: boolean;
   registradoEn: TypeRegistradoEn;
   registradoEnId?: string;
   dinero: string;
   mascotas: Schema.Types.ObjectId[];
+  accesoriosGanados: TypeAccesoriosGanados;
   extraerPerfil: () => Object;
   liberarMascota: (idMascota: string) => Boolean;
-  // save: () => any;
 }
 
 const userSchema = new Schema<InterfaceUser, Model<InterfaceUser>>(
   {
-    // username: {
-    //   type: String,
-    // },
     email: {
       type: String,
       trim: true,
       lowercase: true,
       // unique: true,
       match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Mail invalido"],
-    },
-    nombre: {
-      type: String,
-      trim: true,
-      maxlength: [25, "El nombre no puede tener mas de 25 caracteres"],
-    },
-    telefono: {
-      type: Number,
-      max: [
-        999999999999,
-        "El número de telefono no puede tener mas de 12 caracteres",
-      ],
     },
     rol: {
       type: String,
@@ -71,7 +59,11 @@ const userSchema = new Schema<InterfaceUser, Model<InterfaceUser>>(
       type: String,
       trim: true,
     },
-    dinero: { tipe: String },
+    accesoriosGanados: {
+      fondos: [{ type: String }],
+      accesorios: [{ type: String }],
+    },
+    dinero: { type: String },
     mascotas: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
   },
   {
@@ -82,12 +74,11 @@ const userSchema = new Schema<InterfaceUser, Model<InterfaceUser>>(
 userSchema.methods.extraerPerfil = async function () {
   return {
     id: this._id,
-    email: this?.email,
-    nombre: this.nombre,
-    telefono: this.telefono,
+    username: this?.username,
     rol: this.rol,
     verificado: this.verificado,
     mascotas: this.mascotas,
+    accesoriosGanados: this.accesoriosGanados,
   };
 };
 
@@ -102,7 +93,6 @@ userSchema.methods.liberarMascota = async function (idMascota: string) {
     const mascotas = this.mascotas.filter(
       (i: Schema.Types.ObjectId) => i.toString() !== idMascota
     );
-    console.log(mascotas);
     this.mascotas = mascotas;
     await this.save();
   }

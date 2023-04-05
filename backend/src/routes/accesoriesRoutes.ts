@@ -1,9 +1,10 @@
 import { Router } from "express";
-// import { estaLogueado } from "../config/authMiddlewares";
-// import { mostrarAccesorios } from "../controllers/accesoriesController";
+import { estaLogueado } from "../config/authMiddlewares";
 
-const accesoriesRouter = Router();
+import { agregarAccesorios } from "../controllers/accesoriesController";
 
-// accesoriesRouter.route("/").get(estaLogueado, mostrarAccesorios);
+const accesoriesRouter: Router = Router();
+
+accesoriesRouter.route("/").post(estaLogueado, agregarAccesorios);
 
 export default accesoriesRouter;
