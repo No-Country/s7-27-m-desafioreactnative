@@ -8,7 +8,6 @@ import {
   actualizarCaracteristicas,
   eliminarAccesoriosEnUso,
 } from "../controllers/petControllers";
-
 import { estaLogueado } from "../config/authMiddlewares";
 
 const petRoutes = Router();
