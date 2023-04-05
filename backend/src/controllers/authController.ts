@@ -30,7 +30,10 @@ export const registrarUsuario = wrapAsync(
         telefono,
       });
       // Registramos al usuario con la estrategia de passport y mongoose => lo guardamos en la DB al mismo tiempo que creamos la contraseña hasheada
-      const usuarioRegistrado = await User.register(usuarioNuevo, password);
+      const usuarioRegistrado = (await User.register(
+        usuarioNuevo,
+        password
+      )) as InterfaceUser;
       // Serializamos al usuario con session cookie
       await req.login(usuarioRegistrado, (err) => {
         if (err) return next(err);
@@ -45,7 +48,7 @@ export const registrarUsuario = wrapAsync(
       );
       const link = `${config.backUrl}/auth/verificaremail?token=${token}`;
 
-      await emailRegistro(usuarioRegistrado.email, link);
+      await emailRegistro(usuarioRegistrado.email as string, link);
 
       // Obtenemos el perfil del usuario
       const usuario = await usuarioRegistrado.extraerPerfil();

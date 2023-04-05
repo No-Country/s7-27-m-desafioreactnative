@@ -9,11 +9,13 @@ export async function createSuperAdmin(
       username: MAIL_ADMIN,
     }).exec();
     if (!superAdmin) {
-      superAdmin = await User.register(
-        { username: MAIL_ADMIN, rol: "superadministrador" },
-        CONTRASENA_ADMIN
-      );
-      console.log("superadministrador creado", superAdmin.username);
+      const usuario = await new User({
+        username: MAIL_ADMIN,
+        mail: MAIL_ADMIN,
+        rol: "superadministrador",
+      });
+      await User.register(usuario, CONTRASENA_ADMIN);
+      console.log("superadministrador creado", usuario.username);
     }
   } catch (error) {
     console.log("error al crear super administrador", error);

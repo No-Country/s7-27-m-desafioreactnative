@@ -9,6 +9,7 @@ import Onboarding4 from "../../screens/authNavigation/Onboarding4";
 import Onboarding2 from "../../screens/authNavigation/Onboarding2";
 import Home from "../../screens/homeNavigation/Home";
 import TiendaInventario from "../../screens/homeNavigation/TiendaInventario/TiendaInventario";
+import SwapPet from "../../screens/homeNavigation/SwapPet";
 
 
 const AuthNavigation = ({ navigation }) => {
@@ -29,6 +30,7 @@ const AuthNavigation = ({ navigation }) => {
       <Stack.Screen name="Onboarding4" component={Onboarding4} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="TiendaInventario" component={TiendaInventario} />
+      <Stack.Screen name="SwapPet" component={SwapPet} />
 
     </Stack.Navigator>
   );
