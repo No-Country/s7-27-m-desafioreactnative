@@ -113,13 +113,15 @@ body:
 
 ### METHOD PATCH
 
-uso: eliminar LOS ACCESORIOS EN USO de una mascota en particular del usuario logeado
+uso: eliminar EL ACCESORIO EN USO ELEGIDO de una mascota en particular del usuario logeado
 
 body:
 
 ```json
 {
-  "fondos": ["fondo1"], // Array con los id's del o de los fondos ganados
+  "cuadro": "eliminar", // Enviar "eliminar" al accesorio que se desea dejar de usar
+  "fondo": false
+}
 ```
 
 ### METHOD DELETE

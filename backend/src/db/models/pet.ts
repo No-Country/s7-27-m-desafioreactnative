@@ -96,11 +96,11 @@ petSchema.methods.eliminarAccesoriosEnUso = async function (
   fondo: string,
   cuadro: string
 ) {
-  if (fondo) {
+  if (fondo === "eliminar") {
     this.accesoriosEnUso.fondo = null;
     await this.save();
   }
-  if (cuadro) {
+  if (cuadro === "eliminar") {
     this.accesoriosEnUso.cuadro = null;
     await this.save();
   }
