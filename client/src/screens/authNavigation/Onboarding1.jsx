@@ -12,14 +12,14 @@ const Onboarding1 = () => {
   return (
     <View style={styles.containerPrincipal}>
         <View style={styles.containerText}>
-        <Text style={{fontWeight: '500', fontSize: 20, textAlign: 'center'}}>Hola! Que bueno que decidiste adoptar una mascota! Estamos orgullosos de vos.</Text>
+        <Text style={{fontWeight: '700', fontSize: 22, textAlign: 'center', fontFamily: 'Roboto', fontStyle: 'normal', lineHeight: 28, color: '#1B223C'}}>Hola! Que bueno que decidiste adoptar una mascota! Estamos orgullosos de vos.</Text>
         <View style={{ alignItems: 'center', justifyContent: 'center'}}>
-            <Image source={require('./pou.png')}
-            style={{width:350, height: 300 }}
+            <Image source={require('./Capa_1.png')}
+            style={{width:328, height: 350 }}
             />
         </View>
         <TouchableOpacity style={styles.boton} onPress={continuar}>
-            <Text style={{color: 'white', fontWeight: '500'}}>CONTINUAR</Text>
+            <Text style={{color: 'white', fontWeight: '500', letterSpacing: 1}}>CONTINUAR</Text>
         </TouchableOpacity>
         </View>
       
@@ -36,8 +36,8 @@ const styles= StyleSheet.create({
     containerText: {
         padding: 10, 
         alignItems: 'center', 
-        marginTop: 50, 
-        gap: 65
+        marginTop: 30, 
+        gap: 50
     },
     containerPrincipal: {
         flex: 1,
@@ -45,12 +45,13 @@ const styles= StyleSheet.create({
         padding: 20
     },
     boton: {
-        backgroundColor: '#A8A8A8',
-        width: 283,
+        backgroundColor: '#EF7F79',
+        width: 328,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 4
+        borderRadius: 100,
+        
     }
 
 })
