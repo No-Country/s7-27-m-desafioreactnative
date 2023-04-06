@@ -2,17 +2,17 @@ const data = [
     {
       id: 1,
       name: 'Mascota 1',
-      image: require('../../assets/characters/image1.jpeg'),
+      image: require('../../assets/characters/dog1.png'),
     },
     {
       id: 2,
       name: 'Mascota 2',
-      image: require('../../assets/characters/image2.jpeg'),
+      image: require('../../assets/characters/dog2.jpg'),
     },
     {
       id: 3,
       name: 'Mascota 3',
-      image: require('../../assets/characters/image3.jpeg'),
+      image: require('../../assets/characters/cat1.png'),
     },
     {
       id: 4,
@@ -43,7 +43,7 @@ const data = [
       id: 9,
       name: 'Mascota 9',
       image: require('../../assets/characters/image9.jpeg'),
-    },
+    }
   ];
 
   export default data;
