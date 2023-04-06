@@ -12,14 +12,14 @@ const Onboarding1 = () => {
   return (
     <View style={styles.containerPrincipal}>
         <View style={styles.containerText}>
-        <Text style={{fontWeight: '500', fontSize: 20, textAlign: 'center'}}>Hola! Que bueno que decidiste adoptar una mascota! Estamos orgullosos de vos.</Text>
+        <Text style={{fontWeight: '600', fontSize: 22, textAlign: 'center'}}>Hola! Que bueno que decidiste adoptar una mascota! Estamos orgullosos de vos.</Text>
         <View style={{ alignItems: 'center', justifyContent: 'center'}}>
             <Image source={require('./pou.png')}
             style={{width:350, height: 300 }}
             />
         </View>
         <TouchableOpacity style={styles.boton} onPress={continuar}>
-            <Text style={{color: 'white', fontWeight: '500'}}>CONTINUAR</Text>
+            <Text style={{color: 'white', fontWeight: '500', fontSize: '16'}}>CONTINUAR</Text>
         </TouchableOpacity>
         </View>
       
@@ -32,6 +32,13 @@ const styles= StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         padding: 20,
+        position: 'relative'
+    },
+    containerHelp: {
+        width: 360,
+         height: 60, 
+         backgroundColor:'red',
+         zIndex:1 
     },
     containerText: {
         padding: 10, 
@@ -45,12 +52,12 @@ const styles= StyleSheet.create({
         padding: 20
     },
     boton: {
-        backgroundColor: '#A8A8A8',
-        width: 283,
+        backgroundColor: '#EF7F79',
+        width: 328,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 4
+        borderRadius: 100
     }
 
 })
