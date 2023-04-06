@@ -20,27 +20,32 @@ const Onboarding3 = () => {
         navigation.navigate('Onboarding4', {nombre,imagenSeleccionada1,imagenSeleccionada2});
       }
     }
+    const [nombreMostrado, setNombreMostrado] = useState('');
+
+    const mostrarNombre = () => {
+      setNombreMostrado(nombre);
+    }
   return (
     <View style={styles.containerPrincipal}>
+      <Text style={{fontWeight: '700', fontSize: 24, textAlign: 'center', marginTop: 20}}>Felicidades! </Text>
         <View style={styles.containerText}>
-        <Text style={{fontWeight: '500', fontSize: 20, textAlign: 'center'}}>Felicidades! Ahora Elegi un nombre!</Text>
+        <Text style={{fontWeight: '400', fontSize: 18, textAlign: 'center'}}>Ahora Elegi un nombre:</Text>
         <View style={{ alignItems: 'center', justifyContent: 'center', position: 'relative',width:280, height: 240}}>
-            <Image source={imagenSeleccionada1}
-            style={{width:280, height: 240, position: 'absolute'}}
+            <Image source={require('./tagnombre.png')}
+            style={{width:328, height: 244, position: 'absolute'}}
             />
-            <Image source={imagenSeleccionada2}
-            style={{width:280, height: 240, position: 'absolute' }}
-            />
+            <Text style={{fontWeight: '800', fontSize: 50, textAlign: 'center',color:'#ffffff', position: 'absolute'}}>{'\n'}{'\n'}{nombreMostrado}</Text>
         </View>
         <TextInput
-        placeholder='      Nombre'
+        placeholder='Ingresa un Nombre'
         value={nombre}
         onChangeText={setnombre}
-        style={{borderWidth: 1, width: 284, height: 56, borderRadius:4, padding: 5}}
+        onSubmitEditing={mostrarNombre}
+        style={{borderWidth: 1, width: 328, height: 48, borderRadius:4, paddingHorizontal: 16}}
         />
          {errorMessage !== '' && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
         <TouchableOpacity style={styles.boton} onPress={handlePress}>
-            <Text style={{color: 'white', fontWeight: '500'}}>CONTINUAR</Text>
+            <Text style={{color: 'white', fontWeight: '500', letterSpacing: 1}}>CONTINUAR</Text>
         </TouchableOpacity>
         </View>
       
@@ -52,26 +57,19 @@ const styles= StyleSheet.create({
     containerPrincipal: {
         flex: 1,
         backgroundColor: '#fff',
-        padding: 20
+        padding: 20,
     },
     containerText: {
-        padding: 10, 
         alignItems: 'center', 
-        margin: 25, 
-        gap: 30 
-    },
-    containerPrincipal: {
-        flex: 1,
-        backgroundColor: '#fff',
-        padding: 20
+        gap: 25 
     },
     boton: {
-        backgroundColor: '#A8A8A8',
-        width: 283,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 4
+      backgroundColor: '#EF7F79',
+      width: 328,
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 100,
     }
 
 })

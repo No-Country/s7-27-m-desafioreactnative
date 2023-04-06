@@ -4,8 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const Onboarding2 = () => {
     
-    const imagen1 = require('./pou.png');
-    const imagen2 = require('./gaturro.png');
+    const imagen1 = require('./gato.png');
+    const imagen2 = require('./perro.png');
 
     const [imagenSeleccionada1, setImagenSeleccionada1] = useState(imagen1);
     const [imagenSeleccionada2, setImagenSeleccionada2] = useState(imagen2);
@@ -31,7 +31,7 @@ const Onboarding2 = () => {
   return (
     <View style={styles.containerPrincipal}>
     <View style={styles.containertextp}>
-    <Text style={styles.textPrincipal}>Elegi a tu nueva mascota:</Text>
+    <Text style={styles.textPrincipal}>Elegí a tu nueva mascota:</Text>
     </View>
     <View
         style={{
@@ -42,11 +42,11 @@ const Onboarding2 = () => {
           position: 'absolute',
           zIndex: 1
         }}>
-        <TouchableOpacity onPress={() => handleScroll(0)} style={{top: 225}}>
-          <Image source={require('./izq.png')} />
+        <TouchableOpacity onPress={() => handleScroll(0)} style={{top: 215, right: 20}}>
+          <Image source={require('./izquierda.png')} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleScroll(500)} style={styles.flecha_der}>
-        <Image source={require('./der.png')} />
+        <Image source={require('./derecha.png')} />
         </TouchableOpacity>
       </View>
     <ScrollView
@@ -54,47 +54,48 @@ const Onboarding2 = () => {
       horizontal={true}
       pagingEnabled={true}
       showsHorizontalScrollIndicator={false}
-      style={{ flex: 1 }}
+      style={{ flex: 1, }}
     >
       <View style={styles.itemContainer}>
 
       <View style={styles.containerText}>
         <View style={{ alignItems: 'center', justifyContent: 'center'}}>
             <Image source={imagen1}
-            style={{width:278, height: 330 }}
+            style={{width:264, height: 320 }}
             />
         </View>
-        <View style={{width: 283, height: 118, backgroundColor: '#D9D9D9', padding: 10}}>
-            <Text>
-                Este es pou!
+
+        </View>
+        <View style={styles.caja_descripcion}>
+            <Text style={styles.text_descripcion}>
+            Si buscas un compañero fiel, amistoso y que te reciba siempre con mucha felicidad, ese SOY YO!
+            Mi felicidad depende siempre de la tuya y no puedo esperar a estar EN CASA con mi nuevo amo.
             </Text>
         </View>
         <View style={styles.container_boton}>
         <TouchableOpacity style={styles.boton} onPress={continuar1}>
-            <Text style={{color: 'white', fontWeight: '500'}}>CONTINUAR</Text>
+            <Text style={{color: 'white', fontWeight: '500',letterSpacing: 1}}>CONTINUAR</Text>
         </TouchableOpacity>
     </View>
-        </View>
       </View>
       <View style={styles.itemContainer}>
-
       <View style={styles.containerText}>
         <View style={{ alignItems: 'center', justifyContent: 'center'}}>
             <Image source={imagen2 }
-            style={{width:278, height: 330 }}
+            style={{width:264, height: 320 }}
             />
         </View>
-        <View style={{width: 283, height: 118, backgroundColor: '#D9D9D9', padding: 10}}>
-            <Text>
-                Este es gaturro!
+        </View>
+        <View style={styles.caja_descripcion}>
+            <Text style={styles.text_descripcion}>
+            No me gusta bañarme, amo las hamburguesas y jugar, me gustan los espacios luminosos y busco un dueño amable que juegue conmigo todos los días.  Espero un nombre y amo pronto!
             </Text>
         </View>
         <View style={styles.container_boton}>
     <TouchableOpacity style={styles.boton} onPress={continuar2}>
-            <Text style={{color: 'white', fontWeight: '500'}}>CONTINUAR</Text>
+            <Text style={{color: 'white', fontWeight: '500', letterSpacing: 1}}>CONTINUAR</Text>
         </TouchableOpacity>
     </View>
-        </View>
       </View>
     </ScrollView>
 
@@ -107,9 +108,6 @@ const styles= StyleSheet.create({
 
 
     containerPrincipal: {
-       
-        backgroundColor: '#fff',
-        padding: 20,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative'
@@ -123,32 +121,69 @@ const styles= StyleSheet.create({
     containerPrincipal: {
         flex: 1,
         backgroundColor: '#fff',
-        padding: 20
+        padding: 20,
     },
     boton: {
-        backgroundColor: '#A8A8A8',
-        width: 283,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 4
+      backgroundColor: '#EF7F79',
+      width: 328,
+      height: 40,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 100,
     },
     textPrincipal: {
-        fontWeight: '500',
-         fontSize: 20, 
-         alignItems:'flex-start'
-
+      fontWeight: '700', 
+      fontSize: 22, textAlign: 'center',
+       fontFamily: 'Roboto', 
+       fontStyle: 'normal', 
+       lineHeight: 28, 
+       color: '#1B223C',
+       marginLeft: 20
     },
     containertextp: {
-        marginHorizontal: '10%'
+        width: 328,
+        height: 28,
+
     },
     container_boton: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 20
     },
     flecha_der: {
-        left: 340,
-        top: 225,
+      top: 220,
+      left: 240
+    },
+    caja_descripcion: {
+      width: 328, 
+      height: 160, 
+      backgroundColor: '#FFFFFF', 
+      paddingHorizontal: 10 ,
+      paddingTop: 3, 
+      borderWidth: 3,
+      borderColor: '#F5AFB4',
+      borderRadius: 16,
+      shadowColor: '#EF7F79',
+      shadowOffset: { width: 0, height: 3 },
+      shadowOpacity: 0.5,
+      shadowRadius: 5,
+      elevation: 3,
+    },
+    itemContainer: {
+      marginLeft: 10,
+      marginRight: 10
+    },
+    text_descripcion: {
+      fontFamily: 'Roboto',
+      fontStyle: 'normal',
+      fontWeight: '400',
+      fontSize: 16,
+      lineHeight: 24,
+      letterSpacing: 0.5,
+      color: '#1B223C',
+      display: 'flex',
+      alignItems: 'center',
+      flexGrow: 1,
     }
 })
 
