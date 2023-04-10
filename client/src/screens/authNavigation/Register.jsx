@@ -11,20 +11,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../redux/actions/authActions";
 import { useNavigation } from "@react-navigation/native";
-import {
-  error,
-  focus,
-  fondo,
-  fondo2,
-  primario,
-  secundario,
-  terciario,
-  texto1,
-} from "../../config/constants";
+import { error, fondo, primario, texto1 } from "../../config/constants";
 import CheckBox from "expo-checkbox";
-import x from "../assets/x.png";
 
-const Register = ({setModalRegisterVisible}) => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -62,6 +52,7 @@ const Register = ({setModalRegisterVisible}) => {
     );
     navigation.navigate("Onboarding1");
 
+
     // AGREGAR COMPROBACIÓN DE REGISTER EXITOSO
     // if ((await auth.userData) !== null) {
     //   navigation.navigate("Onboarding1");
@@ -70,14 +61,8 @@ const Register = ({setModalRegisterVisible}) => {
     // }
   };
   return (
-    <View style={styles.capo}>
+    <View style={styles.transparent}>
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={() => setModalRegisterVisible(false)}
-          style={{ alignSelf: "flex-end" }}
-        >
-          <Image source={x} />
-        </TouchableOpacity>
         <Text style={styles.title}>Registro</Text>
         <View style={styles.inputView}>
           <Text style={styles.placeholder}>Email</Text>
@@ -85,8 +70,8 @@ const Register = ({setModalRegisterVisible}) => {
           <TextInput
             style={[
               styles.inputText,
-              { backgroundColor: isFocused ? focus : fondo },
-              { color: isFocused ? texto1 : texto1 },
+              { backgroundColor: isFocused ? primario : fondo },
+              { color: isFocused ? fondo : texto1 },
             ]}
             value={username}
             onChangeText={(text) => setUsername(text)}
@@ -104,7 +89,7 @@ const Register = ({setModalRegisterVisible}) => {
             secureTextEntry
             style={[
               styles.inputText,
-              { backgroundColor: isFocused2 ? focus : fondo },
+              { backgroundColor: isFocused2 ? primario : fondo },
               { color: isFocused2 ? fondo : texto1 },
             ]}
             value={password}
