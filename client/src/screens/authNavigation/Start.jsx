@@ -1,15 +1,25 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Modal, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Modal,
+  ImageBackground,
+  Image,
+} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import LogIn from "./LogIn";
 import Register from "./Register";
-
+import fondoinicio from "../assets/fondoinicio.png";
+import arbder from "../assets/arbustoder.png";
+import arbizq from "../assets/arbustoizq.png";
 const Start = () => {
   const [modalLoginVisible, setModalLoginVisible] = useState(false);
   const [modalRegisterVisible, setModalRegisterVisible] = useState(false);
 
   return (
     <View style={styles.container}>
+      <Image source={fondoinicio} style={styles.fondoinicio} />
       <Modal
         animationType="slide"
         transparent={true}
@@ -18,9 +28,8 @@ const Start = () => {
           setModalLoginVisible(!modalLoginVisible);
         }}
       >
-        <LogIn setModalLoginVisible={setModalLoginVisible}/>
+        <LogIn setModalLoginVisible={setModalLoginVisible} />
       </Modal>
-
       <Modal
         animationType="slide"
         transparent={true}
@@ -29,10 +38,11 @@ const Start = () => {
           setModalRegisterVisible(!modalRegisterVisible);
         }}
       >
-        <Register setModalRegisterVisible={setModalRegisterVisible}/>
+        <Register setModalRegisterVisible={setModalRegisterVisible} />
       </Modal>
-      <View>
-        <View style={styles.whitebox}></View>
+      <View style={styles.arbustos}>
+        <Image source={arbder} style={styles.arbder} />
+        <Image source={arbizq} style={styles.arbizq} />
       </View>
       <View style={styles.btncontainer}>
         <PrimaryButton
@@ -53,26 +63,36 @@ export default Start;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
     alignItems: "center",
     height: "100%",
+    justifyContent: "flex-end",
+  },
+  fondoinicio: {
+    position: "absolute",
+    height: "100%",
+    width: "100%",
+  },
+  arbustos: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    height: "90%",
+  },
+  arbder: {
+    position: "absolute",
+    right: 0,
+    bottom: 180,
+  },
+  arbizq: {
+    position: "absolute",
+    left: 0,
+    bottom: 180,
   },
 
-  whitebox: {
-    backgroundColor: "white",
-    height: 260,
-    width: 260,
-    marginBottom: 50,
-    marginTop: -40,
-  },
   btncontainer: {
     width: "90%",
-  },
-  buttonClose: {
-    width: 140,
-    backgroundColor: "#A8A8A8",
+    bottom: 60,
   },
 });
