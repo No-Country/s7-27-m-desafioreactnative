@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   Modal,
+  ScrollView,
 } from "react-native";
 import Constants from "expo-constants";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -29,7 +30,7 @@ const Home = () => {
       </View>
 
       <View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", zIndex: 10 }}>
           {/* Menu Level - Coins */}
           <View style={{ alignItems: "flex-start", margin: 13 }}>
             <View style={styles.level}>
@@ -82,12 +83,24 @@ const Home = () => {
           </View>
         </View>
         {/* Personaje */}
-        <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <Image
-            source={require("../authNavigation/pou.png")}
-            style={{ width: 255, height: 313, top: 80 }}
-          />
+        <View style={styles.containerscroll}>
+        <ScrollView
+        horizontal={true}
+        pagingEnabled={true}
+        maximumZoomScale={2}
+        minimumZoomScale={1}
+      >
+      <Image
+          style={styles.image}
+          source={require('./fondo1.png')}
+      />
+        </ScrollView>
+
         </View>
+        <Image
+            source={require("../authNavigation/gato.png")}
+            style={{ width: 250, height: 305, bottom: '-18%', left: '18%'}}
+          />
       </View>
 
       {/* Menu Acciones */}
@@ -128,9 +141,17 @@ const Home = () => {
 };
 
 const styles = StyleSheet.create({
+  //cambio hecho por ray
+  containerscroll:{
+    position: 'absolute',
+  },
+  image: {
+    width: 1500,
+    height: 560,
+  },
   // Inicio
   containerPrincipal: {
-    marginTop: Constants.statusBarHeight,
+    // marginTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: "#fff",
     height: 800,
@@ -234,9 +255,12 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   containerEnd: {
-    top: 180,
     backgroundColor: "#D9D9D9",
-    height: 58,
+    height: 60,
+    width: 400,
+    position: 'absolute',
+    top: '91%',
+    right: '0%'
   },
   containerActions: {
     bottom: 25,
