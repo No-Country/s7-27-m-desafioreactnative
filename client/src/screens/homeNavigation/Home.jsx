@@ -10,10 +10,12 @@ import Constants from "expo-constants";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import Settings from "../components/Settings";
+import Mood from "./Mood";
+
 
 const Home = () => {
   const route = useRoute();
-  const { nombre } = route.params;
+  const { nombre, imagenSeleccionada1, imagenSeleccionada2} = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
 
   const navigation = useNavigation();
@@ -83,17 +85,25 @@ const Home = () => {
         </View>
         {/* Personaje */}
         <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <Image
+          <Image source={imagenSeleccionada1}
+            style={{width:280, height: 240, position: 'absolute', }}
+            />
+            <Image source={imagenSeleccionada2}
+            style={{width:280, height: 240, position: 'absolute',  top: 80  }}
+            />
+          {/* <Image
             source={require("../authNavigation/pou.png")}
             style={{ width: 255, height: 313, top: 80 }}
-          />
+          /> */}
         </View>
       </View>
 
       {/* Menu Acciones */}
       <View style={styles.containerEnd}>
         <View style={styles.containerActions}>
-          <TouchableOpacity style={styles.buttonAction}>
+          <Mood/>
+
+          {/* <TouchableOpacity style={styles.buttonAction}>
             <View>
               <Image source={require("./comer.png")} />
             </View>
@@ -120,7 +130,7 @@ const Home = () => {
             <View>
               <Image source={require("./jugar.png")} />
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>
@@ -234,12 +244,13 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   containerEnd: {
-    top: 180,
+    marginBottom: Constants.statusBarHeight,
+    top: 492,
     backgroundColor: "#D9D9D9",
     height: 58,
   },
   containerActions: {
-    bottom: 25,
+    bottom: 23,
     gap: 12,
     flexDirection: "row",
     justifyContent: "center",
