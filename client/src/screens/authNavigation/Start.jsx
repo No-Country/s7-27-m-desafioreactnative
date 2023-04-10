@@ -7,24 +7,18 @@ import Register from "./Register";
 const Start = () => {
   const [modalLoginVisible, setModalLoginVisible] = useState(false);
   const [modalRegisterVisible, setModalRegisterVisible] = useState(false);
-  // const image = {uri: "../components/assets/bg.png"}
+
   return (
     <View style={styles.container}>
-      {/* <ImageBackground
-        source={image}
-        resizeMode="cover"
-        style={styles.image}
-      ></ImageBackground> */}
       <Modal
         animationType="slide"
         transparent={true}
         visible={modalLoginVisible}
         onRequestClose={() => {
-          // Alert.alert("Login Modal has been closed.");
           setModalLoginVisible(!modalLoginVisible);
         }}
       >
-        <LogIn />
+        <LogIn setModalLoginVisible={setModalLoginVisible}/>
       </Modal>
 
       <Modal
@@ -32,11 +26,10 @@ const Start = () => {
         transparent={true}
         visible={modalRegisterVisible}
         onRequestClose={() => {
-          // Alert.alert("Register Modal has been closed.");
           setModalRegisterVisible(!modalRegisterVisible);
         }}
       >
-        <Register />
+        <Register setModalRegisterVisible={setModalRegisterVisible}/>
       </Modal>
       <View>
         <View style={styles.whitebox}></View>
@@ -67,7 +60,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: "100%",
   },
-  
+
   whitebox: {
     backgroundColor: "white",
     height: 260,

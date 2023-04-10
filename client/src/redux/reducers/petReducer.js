@@ -14,6 +14,9 @@ import {
   CLEAN_PET_REQUEST,
   CLEAN_PET_SUCCESS,
   CLEAN_PET_FAILURE,
+  POST_PET_DATA_PENDING,
+  POST_PET_DATA_SUCCESS,
+  POST_PET_DATA_REJECTED,
 } from "../types/petTypes";
 
 const initialState = {
@@ -22,7 +25,7 @@ const initialState = {
   pet: null,
 };
 
-const petReducer = (state = initialState, { type, payload }) => {
+export const petReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case POST_PET_DATA_PENDING:
       return {

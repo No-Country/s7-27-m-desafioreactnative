@@ -33,6 +33,17 @@ export function getPet(id) {
     }
   };
 }
+export function postPetData(payload) {
+  return async function (dispatch) {
+    dispatch({ type: POST_PET_DATA_PENDING });
+    try {
+      const { data } = await axios.post(`${URL_BACK}/mascota`, payload);
+      return dispatch({ type: POST_PET_DATA_SUCCESS, payload: { data } });
+    } catch (error) {
+      return dispatch({ type: POST_PET_DATA_REJECTED, payload: error });
+    }
+  };
+};
 
 export function feedPetAction(id, payload) {
   return async (dispatch) => {
@@ -83,17 +94,7 @@ export function cleanPetAction(id, payload) {
   };
 }
 
-const postPetData = (id, payload) => {
-  return async function (dispatch) {
-    dispatch({ type: POST_PET_DATA_PENDING });
-    try {
-      const { data } = await axios.post(`${URL_BACK}/mascota`, payload);
-      return dispatch({ type: POST_PET_DATA_SUCCESS, payload: { data } });
-    } catch (error) {
-      return dispatch({ type: POST_PET_DATA_REJECTED, payload: error.message });
-    }
-  };
-};
+
 
 // data:
 // {
