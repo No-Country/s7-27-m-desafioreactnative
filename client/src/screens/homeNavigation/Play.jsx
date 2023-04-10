@@ -2,9 +2,13 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { MaterialCommunityIcons, FontAwesome } from "react-native-vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import exitdoor from "../../../assets/exitdoor.png";
+import patitasplay from "../assets/patitasplay.png";
 import money from "../../../assets/money.png";
 import Memorama from "../components/Memorama/Memorama";
 import { useState } from "react";
+import { primario, terciario } from "../../config/constants";
+import coin from "../assets/coin.png";
+import arrowleft from "../assets/arrowleft.png";
 
 const Play = ({ coins = 100 }) => {
   const navigation = useNavigation();
@@ -13,6 +17,9 @@ const Play = ({ coins = 100 }) => {
   return (
     <View style={styles.container}>
       <View style={styles.topbar}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={arrowleft} />
+        </TouchableOpacity>
         <View style={styles.circlesleft}>
           <View style={styles.circles}>
             {score > 0 && <FontAwesome name="circle" size={20} />}
@@ -26,11 +33,11 @@ const Play = ({ coins = 100 }) => {
           <View style={styles.circles}>
             {score > 3 && <FontAwesome name="circle" size={20} />}
           </View>
-          <Image source={money} />
+          <Image source={coin} />
         </View>
         <View style={styles.topbarleft}>
           <View style={styles.pigcircle}>
-            <MaterialCommunityIcons name="piggy-bank-outline" size={24} />
+            <Image source={coin} style={styles.coin} />
           </View>
           <Text style={styles.coins}>{coins}</Text>
         </View>
@@ -42,12 +49,9 @@ const Play = ({ coins = 100 }) => {
         </View>
       </View>
 
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        style={styles.footer}
-      >
-        <Image source={exitdoor} style={styles.exit} />
-      </TouchableOpacity>
+      <View style={styles.patitas}>
+        <Image source={patitasplay} style={{ width: "100%" }} />
+      </View>
     </View>
   );
 };
@@ -69,17 +73,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     top: 30,
-    backgroundColor: "#EAEAEA",
+    backgroundColor: primario,
     height: "8%",
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
   },
   circlesleft: {
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  topbarleft: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    alignItems: "center",
+    marginRight: -45,
   },
   circles: {
     display: "flex",
@@ -89,8 +91,8 @@ const styles = StyleSheet.create({
     height: 23.6,
     borderRadius: 100,
     borderStyle: "solid",
-    borderWidth: 1.7,
-    borderColor: "#50555C",
+    borderWidth: 2.5,
+    borderColor: "white",
     marginHorizontal: 1.5,
   },
   topbarleft: {
@@ -104,37 +106,37 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     height: 35,
     width: 120,
+    backgroundColor: "white",
   },
   pigcircle: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    borderStyle: "solid",
-    borderWidth: 2,
-    borderColor: "black",
+    alignItems: "flex-start",
     borderRadius: 100,
-    width: 35,
-    height: 35,
+    width: 30,
+    height: 30,
     marginLeft: -2,
-    backgroundColor: "#D2D2D2",
+  },
+  coin: {
+    height: 35,
+    width: 35,
   },
   coins: {
     marginRight: 10,
   },
   body: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: terciario,
     height: "100%",
     width: "100%",
     zIndex: -10,
     display: "flex",
-    // justifyContent: "center",
     alignItems: "center",
   },
   gamecontainer: {
     height: "75%",
-    width: "90%",
+    width: "93%",
     backgroundColor: "white",
-    marginTop: 60,
+    marginTop: 40,
   },
   footer: {
     height: 60,
@@ -145,8 +147,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "flex-end",
   },
-  exit: {
-    marginTop: 0,
-    marginRight: 40,
+  patitas: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
   },
 });
