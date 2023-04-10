@@ -2,9 +2,6 @@ import {
   GET_PET_FAILURE,
   GET_PET_REQUEST,
   GET_PET_SUCCESS,
-  GET_PET_REQUEST,
-  GET_PET_SUCCESS,
-  GET_PET_FAILURE,
   FEED_PET_REQUEST,
   FEED_PET_SUCCESS,
   FEED_PET_FAILURE,
@@ -57,23 +54,26 @@ export const petReducer = (state = initialState, { type, payload }) => {
         isLoading: true,
         error: payload,
         pet: null,
+        id: null
       };
-    case GET_PET_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        error: false,
-        pet: payload,
-      };
-    case GET_PET_FAILURE:
-      return {
-        ...state,
-        isLoading,
-        error: payload,
-        pet: null,
-      };
-    case FEED_PET_REQUEST:
-      return {
+      case GET_PET_FAILURE:
+        return {
+          ...state,
+          isLoading,
+          error: payload,
+          pet: null,
+          id: null
+        };
+      case GET_PET_SUCCESS:
+        return {
+          ...state,
+          isLoading: false,
+          error: false,
+          pet: payload,
+          id: payload.id
+        };
+      case FEED_PET_REQUEST:
+        return {
         ...state,
         isLoading: true,
         error: payload,
