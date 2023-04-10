@@ -93,7 +93,7 @@ const Mood = () => {
           <View style={[styles.bar, { backgroundColor: getBarColor(sueno) }]}>
             <TouchableOpacity style={styles.buttonAction} onPress={dormir}>
               <View>
-                <Image source={require("./dormir.png")} />
+                <Image source={require("../../../assets/dormir.png")} />
               </View>
             </TouchableOpacity>
           </View>
@@ -104,7 +104,7 @@ const Mood = () => {
           <View style={[styles.bar, { backgroundColor: getBarColor(energia) }]}>
             <TouchableOpacity style={styles.buttonAction} onPress={alimentar}>
               <View>
-                <Image source={require("./comer.png")} />
+                <Image source={require("../../../assets/comer.png")} />
               </View>
             </TouchableOpacity>
           </View>
@@ -117,7 +117,7 @@ const Mood = () => {
           >
             <TouchableOpacity style={styles.buttonAction} onPress={jugar}>
               <View>
-                <Image source={require("./jugar.png")} />
+                <Image source={require("../../../assets/jugar.png")} />
               </View>
             </TouchableOpacity>
           </View>
@@ -128,7 +128,7 @@ const Mood = () => {
           <View style={[styles.bar, { backgroundColor: getBarColor(higiene) }]}>
             <TouchableOpacity style={styles.buttonAction} onPress={lavar}>
               <View>
-                <Image source={require("./bañar.png")} />
+                <Image source={require("../../../assets/bañar.png")} />
               </View>
             </TouchableOpacity>
           </View>
@@ -139,7 +139,7 @@ const Mood = () => {
           <View style={[styles.bar, { backgroundColor: getBarColor(salud) }]}>
             <TouchableOpacity style={styles.buttonAction} onPress={curar}>
               <View>
-                <Image source={require("./curar.png")} />
+                <Image source={require("../../../assets/curar.png")} />
               </View>
             </TouchableOpacity>
           </View>
