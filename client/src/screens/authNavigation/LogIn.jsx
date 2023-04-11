@@ -21,6 +21,7 @@ import {
   texto1,
 } from "../../config/constants";
 import x from "../assets/x.png";
+import { loginUser } from "../../redux/actions/authActions";
 
 const Login = ({ setModalLoginVisible }) => {
   const [username, setUsername] = useState("");
@@ -32,7 +33,6 @@ const Login = ({ setModalLoginVisible }) => {
     username: "",
     password: "",
   });
-  const auth = useSelector((state) => state.auth);
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -46,8 +46,9 @@ const Login = ({ setModalLoginVisible }) => {
     if (!toggleCheckBox) {
       setErrorMessage.checkbox = "Debe aceptar los términos y condiciones";
     }
-
-    navigation.navigate("Onboarding1");
+    const success = await dispatch(loginUser({ username, password }));
+    if (success.type === "LOGIN_USER_SUCCESS")
+      navigation.navigate("Onboarding1");
   };
   return (
     <View style={styles.capo}>
