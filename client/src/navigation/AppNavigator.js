@@ -12,8 +12,6 @@ const AppNavigator = () => {
   const [sessionActive, setSessionActive] = useState(false);
   useEffect(() => {
     AsyncStorage.getItem("userData").then((user) => {
-      console.log("user es:");
-      console.log(user);
       if (user && user.userData) {
         const userData = JSON.parse(cookie.userData);
         if (userData && userData.usuario) {
