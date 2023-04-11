@@ -3,26 +3,28 @@ import AuthNavigation from "./authNavigation/AuthNavigation";
 import React from "react";
 import HomeNavigation from "./homeNavigation/HomeNavigation";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 import { useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getUserData } from "../redux/actions/authActions";
+import { useState } from "react";
 
 const AppNavigator = () => {
   const [sessionActive, setSessionActive] = useState(false);
-
   useEffect(() => {
-    CookieManager.get("userData").then((cookie) => {
-      if (cookie && cookie.userData) {
+    AsyncStorage.getItem("userData").then((user) => {
+      console.log("user es:");
+      console.log(user);
+      if (user && user.userData) {
         const userData = JSON.parse(cookie.userData);
-        if (userData && userData.sessionActive) {
+        if (userData && userData.usuario) {
           setSessionActive(true);
         }
       }
     });
   }, []);
-
   return (
     <NavigationContainer>
-      sessionActive ? <HomeNavigation /> : <AuthNavigation />
+      {sessionActive ? <HomeNavigation /> : <AuthNavigation />}
     </NavigationContainer>
   );
 };
