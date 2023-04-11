@@ -65,7 +65,7 @@ const Onboarding3 = () => {
         <View style={styles.containerText}>
         <Text style={{fontWeight: '400', fontSize: 18, textAlign: 'center'}}>Ahora Elegi un nombre:</Text>
         <View style={{ alignItems: 'center', justifyContent: 'center', position: 'relative',width:280, height: 240}}>
-            <Image source={require('./tagnombre.png')}
+            <Image source={require('../assets/tagnombre.png')}
             style={{width:328, height: 244, position: 'absolute'}}
             />
             <Text style={{fontWeight: '800', fontSize: 50, textAlign: 'center',color:'#ffffff', position: 'absolute'}}>{'\n'}{'\n'}{nombreMostrado}</Text>

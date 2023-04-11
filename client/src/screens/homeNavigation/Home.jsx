@@ -21,33 +21,37 @@ const Home = () => {
 
   const navigation = useNavigation();
 
+  let imagenSeleccionada = null;
+if (imagenSeleccionada1) {
+  imagenSeleccionada = require('../assets/gato_normal.png');
+} else if (imagenSeleccionada2) {
+  imagenSeleccionada = require('../assets/perro.png');
+}
+
+
   return (
     <View style={styles.containerPrincipal}>
       {/* Inicio */}
       <View style={styles.containerStart}>
         <Text style={styles.textName}> {nombre} </Text>
-        <TouchableOpacity style={styles.buttonPersonaje} onPress={()=>navigation.navigate("SwapPet")}>
+      </View>
+      <TouchableOpacity style={styles.buttonPersonaje} onPress={()=>navigation.navigate("SwapPet")}>
           <Image source={require("../../../assets/personajes.png")} />
         </TouchableOpacity>
-      </View>
 
       <View>
         <View style={{ flexDirection: "row", justifyContent: "space-between", zIndex: 10 }}>
           {/* Menu Level - Coins */}
-          <View style={{ alignItems: "flex-start", margin: 13 }}>
+          <View style={{ alignItems: "flex-start", marginTop:13  }}>
             <View style={styles.level}>
               <Text style={styles.textLevel}>10</Text>
               <Image source={require("../../../assets/level.png")} style={{ zIndex: 100 }} />
               <View style={styles.carga}></View>
               <View style={styles.carga2}></View>
             </View>
-            <View style={styles.level}>
+            <View style={styles.level1}>
               <Image
-                source={require("../../../assets/cerdo.png")}
-                style={{ zIndex: 130, top: 11, left: 26 }}
-              />
-              <Image
-                source={require("../../../assets/coins.png")}
+                source={require("../../../assets/coin.png")}
                 style={{ zIndex: 100, top: 7 }}
               />
               <Text style={styles.textCoins}>100</Text>
@@ -99,11 +103,8 @@ const Home = () => {
         </ScrollView>
 
         </View>
-        <Image source={imagenSeleccionada1}
-            style={{width:280, height: 240, position: 'absolute', top: 80 }}
-            />
-            <Image source={imagenSeleccionada2}
-            style={{width:280, height: 240, position: 'absolute',  top: 80  }}
+        <Image source={imagenSeleccionada}
+            style={{ width: 250, height: 305, bottom: '-15%', left: '18%'}}
             />
       </View>
 
@@ -164,20 +165,26 @@ const styles = StyleSheet.create({
     width: "auto",
   },
   containerStart: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#EF7F79",
     height: 58,
     paddingVertical: 10,
     paddingEnd: 16,
     gap: 120,
-    flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "center",
+    
   },
   textName: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: 500,
-    fontSize: 14,
-    paddingVertical: 10,
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: 16,
+    lineHeight: 24,
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    letterSpacing: 0.15,
+    marginTop: 4,
+    color: "#FFFFFF"
   },
   buttonPersonaje: {
     backgroundColor: "#FFFFFF",
@@ -186,10 +193,17 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
+    position: 'absolute',
+    top: '1.5%',
+    right: '3.5%'
   },
   //Level - Coins
   level: {
     flexDirection: "row",
+  },
+  level1: {
+    flexDirection: "row",
+    marginLeft: 20
   },
   textLevel: {
     zIndex: 150,
@@ -211,7 +225,7 @@ const styles = StyleSheet.create({
     right: 13,
   },
   carga2: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#F5AFB4",
     width: 110,
     height: 24.5,
     top: 7,
@@ -245,23 +259,27 @@ const styles = StyleSheet.create({
   },
   buttonMenu: {
     marginVertical: 5,
-    backgroundColor: "#DADADA",
+    backgroundColor: "#FFFFFF",
     borderRadius: 12,
     width: 40,
     height: 40,
     justifyContent: "center",
     alignItems: "center",
-    shadowColor: "#000",
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 4
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    marginTop: 1,
+    marginBottom: 2,
+    marginLeft: 0,
+    marginRight: 0
   },
   containerEnd: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#F5AFB4",
     height: 60,
     width: 400,
     position: 'absolute',
