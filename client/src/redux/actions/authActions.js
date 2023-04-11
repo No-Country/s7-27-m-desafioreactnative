@@ -8,6 +8,7 @@ import {
   REGISTER_USER_SUCCESS,
 } from "../types/authTypes";
 import axios from "axios";
+import CookieManager from "@react-native-cookies/cookies";
 
 export const loginUser = (payload) => {
   return async function (dispatch) {
@@ -17,6 +18,17 @@ export const loginUser = (payload) => {
         `${URL_BACK}/auth/iniciarsesion`,
         payload
       );
+      CookieManager.set("userData", {
+        name: "userData",
+        value: JSON.stringify({
+          sessionActive: true,
+          userData: data,
+        }),
+        version: "1",
+        expires: "2025-05-30T12:30:00.00-05:00",
+      }).then((done) => {
+        console.log("CookieManager.set =>", done);
+      });
       return dispatch({ type: LOGIN_USER_SUCCESS, payload: data.usuario });
     } catch (error) {
       return dispatch({ type: LOGIN_USER_REJECTED, payload: error });
