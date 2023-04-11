@@ -59,7 +59,7 @@ const Mood = () => {
     setSueno((sueno) => Math.min(sueno + 10, 100))
     setIsSleeping(() => !isSleeping)
     
-    navigation.navigate("Home", { imagenSeleccionada1: isSleeping ? require("../../screens/authNavigation/gatodurmiendo.png"): require("../../screens/authNavigation/gato.png") })
+    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png") })
   };
   const lavar = () => setHigiene((higiene) => Math.min(higiene + 10, 100));
   const curar = () => setSalud((saludenergia) => Math.min(salud + 10, 100));

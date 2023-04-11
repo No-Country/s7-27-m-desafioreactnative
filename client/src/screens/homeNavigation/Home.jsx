@@ -16,7 +16,7 @@ import Mood from "./Mood";
 
 const Home = () => {
   const route = useRoute();
-  const { nombre, imagenSeleccionada1, imagenSeleccionada2} = route.params;
+  const { nombre, imagenSeleccionada1, imagenSeleccionada2, imagenOpcional} = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
 
   const navigation = useNavigation();
@@ -26,6 +26,8 @@ if (imagenSeleccionada1) {
   imagenSeleccionada = require('../assets/gato_normal.png');
 } else if (imagenSeleccionada2) {
   imagenSeleccionada = require('../assets/perro.png');
+} else {
+  imagenSeleccionada = imagenOpcional
 }
 
 
