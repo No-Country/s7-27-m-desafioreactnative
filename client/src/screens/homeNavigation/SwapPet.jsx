@@ -35,7 +35,7 @@ export default function SwapPet() {
         onPress: () => console.log("Cancel Pressed"),
         style: "cancel",
       },
-      { text: "OK", onPress: () => navigation.navigate("Home", { nombre: currentName, imagenMascota: currentImage }) },
+      { text: "OK", onPress: () => navigation.navigate("Home", { nombre: currentName, imagenSeleccionada1: currentImage }) },
     ]);
 
   const renderItem = ({ item, index }) => {
