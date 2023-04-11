@@ -32,7 +32,13 @@ const Start = () => {
   return (
     <View style={styles.container}>
       <Image source={fondoinicio} style={styles.fondoinicio} />
-      <Image source={pawsitive} style={styles.pawsitive} />
+      <Image
+        source={pawsitive}
+        style={[
+          styles.pawsitive,
+          modalLoginVisible ? { bottom: 500 } : { bottom: 430 },
+        ]}
+      />
       <Modal
         animationType="slide"
         transparent={true}
@@ -67,7 +73,7 @@ const Start = () => {
         <Animatable.Image
           animation="shake"
           iterationCount="infinite"
-          duration={60000}
+          duration={50000}
           delay={2000}
           source={nube5}
           style={styles.n5}
@@ -82,7 +88,7 @@ const Start = () => {
         <Animatable.Image
           animation="shake"
           iterationCount="infinite"
-          duration={60000}
+          duration={50000}
           source={nube7}
           style={styles.n7}
         />
@@ -133,7 +139,6 @@ const styles = StyleSheet.create({
   },
   pawsitive: {
     position: "absolute",
-    bottom: 430,
     zIndex: 2,
   },
   casacont: {
