@@ -47,26 +47,7 @@ const Mood = () => {
         })
         .catch(error =>error.message);
 
-      // setEnergia(energia => {
-      //   if (energia === 0) clearInterval(interval);
-      //   else return energia - 5;
-      // });
-      // setSueno(sueno => {
-      //   if (sueno === 0) clearInterval(interval);
-      //   else return sueno - 1;
-      // });
-      // setFelicidad(felicidad => {
-      //   if (felicidad === 0) clearInterval(interval);
-      //   else return felicidad - 1;
-      // })
-      // setHigiene(higiene => {
-      //   if (higiene === 0) clearInterval(interval);
-      //   else return higiene - 1;
-      // })
-      // setSalud(salud => {
-      //   if (salud === 0) clearInterval(interval);
-      //   else return salud - 1;
-      // })
+
     }, 2000);
     return () => clearInterval(interval);
   }, []);
