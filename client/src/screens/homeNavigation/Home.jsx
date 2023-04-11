@@ -27,7 +27,7 @@ const Home = () => {
       <View style={styles.containerStart}>
         <Text style={styles.textName}> {nombre} </Text>
         <TouchableOpacity style={styles.buttonPersonaje} onPress={()=>navigation.navigate("SwapPet")}>
-          <Image source={require("./personajes.png")} />
+          <Image source={require("../../../assets/personajes.png")} />
         </TouchableOpacity>
       </View>
 
@@ -37,17 +37,17 @@ const Home = () => {
           <View style={{ alignItems: "flex-start", margin: 13 }}>
             <View style={styles.level}>
               <Text style={styles.textLevel}>10</Text>
-              <Image source={require("./level.png")} style={{ zIndex: 100 }} />
+              <Image source={require("../../../assets/level.png")} style={{ zIndex: 100 }} />
               <View style={styles.carga}></View>
               <View style={styles.carga2}></View>
             </View>
             <View style={styles.level}>
               <Image
-                source={require("./cerdo.png")}
+                source={require("../../../assets/cerdo.png")}
                 style={{ zIndex: 130, top: 11, left: 26 }}
               />
               <Image
-                source={require("./coins.png")}
+                source={require("../../../assets/coins.png")}
                 style={{ zIndex: 100, top: 7 }}
               />
               <Text style={styles.textCoins}>100</Text>
@@ -61,7 +61,7 @@ const Home = () => {
               onPress={() => navigation.navigate("TiendaInventario")}
             >
               <Image
-                source={require("./shopping-bag.png")}
+                source={require("../../../assets/shopping-bag.png")}
                 style={{ justifyContent: "center", alignItems: "center" }}
               />
             </TouchableOpacity>
@@ -70,7 +70,7 @@ const Home = () => {
               onPress={() => setModalSetActive(true)}
             >
               <Image
-                source={require("./settings.png")}
+                source={require("../../../assets/settings.png")}
                 style={{ justifyContent: "center", alignItems: "center" }}
               />
             </TouchableOpacity>
