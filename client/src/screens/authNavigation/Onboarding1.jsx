@@ -14,7 +14,7 @@ const Onboarding1 = () => {
         <View style={styles.containerText}>
         <Text style={{fontWeight: '700', fontSize: 22, textAlign: 'center', fontFamily: 'Roboto', fontStyle: 'normal', lineHeight: 28, color: '#1B223C'}}>Hola! Que bueno que decidiste adoptar una mascota! Estamos orgullosos de vos.</Text>
         <View style={{ alignItems: 'center', justifyContent: 'center'}}>
-            <Image source={require('./Capa_1.png')}
+            <Image source={require('../assets/Capa_1.png')}
             style={{width:328, height: 350 }}
             />
         </View>
