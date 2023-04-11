@@ -1,5 +1,6 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import {
   feedPet,
@@ -70,12 +71,14 @@ const Mood = () => {
     return () => clearInterval(interval);
   }, []);
 
- 
+  const navigation = useNavigation();
   const alimentar = () => setEnergia((energia) => Math.min(energia + 10, 100));
   const jugar = () => setFelicidad((felicidad) => Math.min(felicidad + 10, 100));
   const dormir = () => {
     setSueno((sueno) => Math.min(sueno + 10, 100))
     setIsSleeping(() => !isSleeping)
+    
+    navigation.navigate("Home", { imagenSeleccionada1: isSleeping ? require("../../screens/authNavigation/gatodurmiendo.png"): require("../../screens/authNavigation/gato.png") })
   };
   const lavar = () => setHigiene((higiene) => Math.min(higiene + 10, 100));
   const curar = () => setSalud((saludenergia) => Math.min(salud + 10, 100));
