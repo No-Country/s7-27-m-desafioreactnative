@@ -10,7 +10,7 @@ const Onboarding4 = () => {
 
   let imagenSeleccionada = null;
 if (imagenSeleccionada1) {
-  imagenSeleccionada = require('./choosen1.png');
+  imagenSeleccionada = require('../assets/choosen1.png');
 } else if (imagenSeleccionada2) {
   imagenSeleccionada = imagenSeleccionada2;
 }

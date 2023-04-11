@@ -4,8 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const Onboarding2 = () => {
     
-    const imagen1 = require('./gato.png');
-    const imagen2 = require('./perro.png');
+    const imagen1 = require('../assets/gato_normal.png');
+    const imagen2 = require('../assets/perro.png');
 
     const [imagenSeleccionada1, setImagenSeleccionada1] = useState(imagen1);
     const [imagenSeleccionada2, setImagenSeleccionada2] = useState(imagen2);
@@ -43,10 +43,10 @@ const Onboarding2 = () => {
           zIndex: 1
         }}>
         <TouchableOpacity onPress={() => handleScroll(0)} style={{top: 215, right: 20}}>
-          <Image source={require('./izquierda.png')} />
+          <Image source={require('../assets/izquierda.png')} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleScroll(500)} style={styles.flecha_der}>
-        <Image source={require('./derecha.png')} />
+        <Image source={require('../assets/derecha.png')} />
         </TouchableOpacity>
       </View>
     <ScrollView
