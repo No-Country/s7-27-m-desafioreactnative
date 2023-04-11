@@ -7,6 +7,7 @@ import {
   ImageBackground,
   Image,
 } from "react-native";
+import * as Animatable from "react-native-animatable";
 import PrimaryButton from "../components/PrimaryButton";
 import LogIn from "./LogIn";
 import Register from "./Register";
@@ -56,11 +57,42 @@ const Start = () => {
         <Image source={nube1} style={styles.n1} />
         <Image source={nube2} style={styles.n2} />
         <Image source={nube3} style={styles.n3} />
-        <Image source={nube4} style={styles.n4} />
-        <Image source={nube5} style={styles.n5} />
-        <Image source={nube6} style={styles.n6} />
-        <Image source={nube7} style={styles.n7} />
-        <Image source={nube8} style={styles.n8} />
+        <Animatable.Image
+          animation="shake"
+          iterationCount="infinite"
+          duration={50000}
+          source={nube4}
+          style={styles.n4}
+        />
+        <Animatable.Image
+          animation="shake"
+          iterationCount="infinite"
+          duration={60000}
+          delay={2000}
+          source={nube5}
+          style={styles.n5}
+        />
+        <Animatable.Image
+          animation="shake"
+          iterationCount="infinite"
+          duration={50000}
+          source={nube6}
+          style={styles.n6}
+        />
+        <Animatable.Image
+          animation="shake"
+          iterationCount="infinite"
+          duration={60000}
+          source={nube7}
+          style={styles.n7}
+        />
+        <Animatable.Image
+          animation="shake"
+          iterationCount="infinite"
+          duration={50000}
+          source={nube8}
+          style={styles.n8}
+        />
       </View>
       <View style={styles.casacont}>
         <Image source={casa} style={styles.casa} />
