@@ -19,8 +19,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import data from "../../data/characters";
 
 export default function SwapPet() {
-  // const route = useRoute();
-  // const { nombre, imagenSeleccionada1, imagenSeleccionada2 } = route.params;
+  
   const navigation = useNavigation();
 
   
