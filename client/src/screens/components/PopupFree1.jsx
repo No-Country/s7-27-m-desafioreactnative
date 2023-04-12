@@ -28,10 +28,11 @@ const PopupFree1 = ({ setIsModalActive }) => {
           <PrimaryButton
             text="NO, VOLVER AL JUEGO"
             handler={() => setIsModalActive(false)}
+            secondary={true}
+
           />
           <PrimaryButton
             text="SI, QUIERO LIBERAR A MI MASCOTA"
-            secondary={true}
           />
         </View>
       </View>
@@ -44,7 +45,7 @@ export default PopupFree1;
 const styles = StyleSheet.create({
   capo: { backgroundColor: "#4C4C4EC4", height: "100%" },
   container: {
-    width: "70%",
+    width: "80%",
     height: "45%",
     display: "flex",
     flexDirection: "column",
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 30,
     marginHorizontal: 40,
+    fontWeight: "700",
   },
   msg1: {
     textAlign: "center",
@@ -74,6 +76,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   buttons: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
+    marginHorizontal: 10,
   },
 });

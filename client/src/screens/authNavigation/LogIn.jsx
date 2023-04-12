@@ -46,7 +46,6 @@ const Login = ({ setModalLoginVisible }) => {
     if (!toggleCheckBox) {
       setErrorMessage.checkbox = "Debe aceptar los términos y condiciones";
     }
-    username = username.trim();
     const success = await dispatch(loginUser({ username, password }));
     if (success.type === "LOGIN_USER_SUCCESS")
       navigation.navigate("Onboarding1");
