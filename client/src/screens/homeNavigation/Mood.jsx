@@ -13,7 +13,7 @@ import axios from "axios";
 import Circulo from "./Circulo";
 
 
-const Mood = ({nombre, imaagenSeleccionada}) => {
+const Mood = ({nombre}) => {
   const [edad, setEdad] = useState(1); // nivel de edad inicial
   const [sueno, setSueno] = useState(50); // nivel de sueño inicial
   const [energia, setEnergia] = useState(50); // nivel de hambre inicial
