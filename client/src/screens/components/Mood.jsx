@@ -2,7 +2,9 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import ProgressCircle from "../components/ProgressCircle";
+import ProgressCircle from "./ProgressCircle";
+import { PetAction } from "../../redux/actions/petActions";
+
 
 
 const Mood = () => {
@@ -16,40 +18,52 @@ const Mood = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      
+      setSueno((sueno) => {
+        if (sueno < 0) clearInterval(interval);
+        if (sueno === 0) return sueno;
+        else return sueno - Math.random();
+      });
       setEnergia((energia) => {
         if (energia < 0) clearInterval(interval);
         if (energia === 0) return energia;
         else return energia - Math.random();
       });
-      setSueno((sueno) => {
-        if (sueno < 0) clearInterval(interval);
-        if (sueno === 0) return sueno;
-        else return sueno - 5;
-      });
       setFelicidad((felicidad) => {
         if (felicidad < 0) clearInterval(interval);
         if (felicidad === 0) return felicidad;
-        else return felicidad - 5;
+        else return felicidad - Math.random();
       });
       setHigiene((higiene) => {
         if (higiene < 0) clearInterval(interval);
         if (higiene === 0) return higiene;
-        else return higiene - 5;
+        else return higiene - Math.random();
       });
       setSalud((salud) => {
         if (salud < 0) clearInterval(interval);
         if (salud === 0) return salud;
-        else return salud - 5;
+        else return salud - Math.random();
       });
     }, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  
+      /* *** Acciones *** */
+
   //state= estado inicial (de redux)
   const pet = useSelector((state) => state.pet.pet);
+
   const dispatch = useDispatch();
+
   const navigation = useNavigation();
+
+  const dormir = () => {
+    setIsSleeping(() => !isSleeping);
+    setSueno((sueno) => Math.min(sueno + 10, 100));
+    dispatch(PetAction(pet?._id, { sueno }));
+    
+    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png") })
+  };
 
   const alimentar = () => {
     setEnergia((energia) => Math.min(energia + 10, 100));
@@ -61,141 +75,58 @@ const Mood = () => {
     dispatch(PetAction(pet?._id, { felicidad }));
   };
 
-  const dormir = () => {
-    setSueno((sueno) => Math.min(sueno + 10, 100));
-    dispatch(PetAction(pet?._id, { sueno }));
-    setIsSleeping(() => !isSleeping);
-    
-    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png") })
-  };
   const lavar = () => {
     setHigiene((higiene) => Math.min(higiene + 10, 100));
     dispatch(PetAction(pet?._id, { higiene }));
   };
+
   const curar = () => {
     setSalud((salud) => Math.min(salud + 10, 100));
     dispatch(PetAction(pet?._id, { salud }));
   };
 
 
+  //  isSleeping ? require("../../../assets/dormir.png"): require("../../../assets/despertar.png") 
+  let imgDormir = require("../../../assets/dormir.png");
+  let imgComer = require("../../../assets/comer.png");
+  let imgJugar = require("../../../assets/jugar.png");
+  let imgLavar = require("../../../assets/bañar.png");
+  let imgCurar = require("../../../assets/curar.png");
 
   return (
-    <View style={styles.container}>
       <View style={styles.levels}>
-        <View style={styles.containerBar}>
-          <ProgressCircle progress={sueno} />
-          {/* <Text style={styles.level}>{sueno}</Text> */}
-        </View>
-{/* 
-        <View style={styles.containerBar}>
-          <View style={[styles.bar]}>
-          <Circulo porcentaje={energia}/>
-            <TouchableOpacity style={styles.buttonAction} onPress={alimentar}>
-              <View>
-                <Image source={require("../../../assets/comer.png")} />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.level}>{energia}</Text>
-        </View>
+        <TouchableOpacity onPress={dormir}>
+          <ProgressCircle progress={sueno} img={imgDormir} />
+        </TouchableOpacity>
 
-        <View style={styles.containerBar}>
-          <View style={[styles.bar]}>
-          <Circulo porcentaje={felicidad}/>
-            <TouchableOpacity style={styles.buttonAction} onPress={jugar}>
-              <View>
-                <Image source={require("../../../assets/jugar.png")} />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.level}>{felicidad}</Text>
-        </View>
+        <TouchableOpacity  onPress={alimentar}>     
+          <ProgressCircle progress={energia} img={imgComer} />
+        </TouchableOpacity>  
 
-        <View style={styles.containerBar}>
-          <View style={[styles.bar]}>
-          <Circulo porcentaje={higiene}/>
-            <TouchableOpacity style={styles.buttonAction} onPress={lavar}>
-              <View>
-                <Image source={require("../../../assets/bañar.png")} />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.level}>{higiene}</Text>
-        </View>
+        <TouchableOpacity  onPress={jugar}>
+          <ProgressCircle progress={felicidad} img={imgJugar} />
+        </TouchableOpacity>
 
-        <View style={styles.containerBar}>
-          <View style={[styles.bar]}>
-          <Circulo porcentaje={salud}/>
-            <TouchableOpacity style={styles.buttonAction} onPress={curar}>
-              <View>
-                <Image source={require("../../../assets/curar.png")} />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.level}>{salud}</Text>
-        </View> */}
+        <TouchableOpacity  onPress={lavar}>
+          <ProgressCircle progress={higiene} img={imgLavar} />
+        </TouchableOpacity>
 
+        <TouchableOpacity  onPress={curar}>
+          <ProgressCircle progress={salud} img={imgCurar} />
+        </TouchableOpacity>
       </View>
-    </View>
+    
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  
   levels: {
     flexDirection: "row",
-    marginBottom: 20,
-  },
-  containerBar: {
-    display: "flex",
-    textAlign: "center",
-    alignItems: "center",
-  },
-  bar: {
-    width: 65,
-    height: 65,
-   marginHorizontal: 5,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 3,
-    // },
-    // shadowOpacity: 0.29,
-    // shadowRadius: 4.65,
-    // elevation: 7,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  level: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  buttonAction: {
-    backgroundColor: "#FFFFFF",
-    width: 53,
-    height: 53,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
-  },
+    position: "relative",
+    left: 74,
+    gap:-25
+  }
 });
 
 export default Mood;
