@@ -10,6 +10,7 @@ import {
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import Settings from "../components/Settings";
+
 import Mood from "../components/Mood";
 
 const Home = () => {
@@ -102,14 +103,18 @@ const Home = () => {
         </View>
         {/* Personaje */}
         <View style={styles.containerscroll}>
-          <ScrollView
-            horizontal={true}
-            pagingEnabled={true}
-            maximumZoomScale={2}
-            minimumZoomScale={1}
-          >
-            <Image style={styles.image} source={require("./fondo1.png")} />
-          </ScrollView>
+        <ScrollView
+        horizontal={true}
+        pagingEnabled={true}
+        maximumZoomScale={2}
+        minimumZoomScale={1}
+      >
+      <Image
+          style={styles.image}
+          source={require('./fondo1.png')}
+      />
+        </ScrollView>
+
         </View>
         <Image
           source={imagenSeleccionada}
@@ -120,7 +125,7 @@ const Home = () => {
       {/* Menu Acciones */}
       <View style={styles.containerEnd}>
         <View style={styles.containerActions}>
-          <Mood />
+          <Mood/>
 
           {/* <TouchableOpacity style={styles.buttonAction}>
             <View>
@@ -152,6 +157,7 @@ const Home = () => {
           </TouchableOpacity> */}
         </View>
       </View>
+
     </View>
   );
 };
@@ -300,6 +306,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     zIndex: 999,
+    position: 'relative'
   },
   buttonAction: {
     backgroundColor: "#FFFFFF",
