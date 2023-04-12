@@ -13,7 +13,7 @@ import axios from "axios";
 import Circulo from "./Circulo";
 
 
-const Mood = () => {
+const Mood = ({nombre, imaagenSeleccionada}) => {
   const [edad, setEdad] = useState(1); // nivel de edad inicial
   const [sueno, setSueno] = useState(50); // nivel de sueño inicial
   const [energia, setEnergia] = useState(50); // nivel de hambre inicial
@@ -60,7 +60,7 @@ const Mood = () => {
     setSueno((sueno) => Math.min(sueno + 10, 100))
     setIsSleeping(() => !isSleeping)
     
-    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png") })
+    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png"), nombre: nombre })
   };
   const lavar = () => setHigiene((higiene) => Math.min(higiene + 10, 100));
   const curar = () => setSalud((saludenergia) => Math.min(salud + 10, 100));
