@@ -286,14 +286,13 @@ const styles = StyleSheet.create({
   },
   containerEnd: {
     backgroundColor: "#F5AFB4",
-    height: 60,
-    width: 400,
+    height: 65,
+    width: '100%',
     position: 'absolute',
-    top: '91%',
-    right: '0%'
+    top: '91%'
   },
   containerActions: {
-    bottom: 23,
+    bottom: '5%',
     gap: 12,
     flexDirection: "row",
     justifyContent: "center",

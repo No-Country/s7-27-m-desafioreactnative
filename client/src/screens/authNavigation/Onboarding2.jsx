@@ -42,7 +42,7 @@ const Onboarding2 = () => {
           position: 'absolute',
           zIndex: 1
         }}>
-        <TouchableOpacity onPress={() => handleScroll(0)} style={{top: 215, right: 20}}>
+        <TouchableOpacity onPress={() => handleScroll(0)} style={{top: '160%', right: '8%'}}>
           <Image source={require('../assets/izquierda.png')} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleScroll(500)} style={styles.flecha_der}>
@@ -151,8 +151,8 @@ const styles= StyleSheet.create({
     marginTop: 20
     },
     flecha_der: {
-      top: 220,
-      left: 240
+      top: '160%',
+      left: '123%'
     },
     caja_descripcion: {
       width: 328, 
