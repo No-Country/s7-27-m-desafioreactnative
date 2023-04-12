@@ -11,13 +11,13 @@ import { useState } from "react";
 
 const Loading = ({ destino = "Start" }) => {
   const navigation = useNavigation();
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     navigation.navigate(`${destino}`);
-  //   }, 3000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate(`${destino}`);
+    }, 3000);
 
-  //   return () => clearTimeout(timer);
-  // }, []);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.patas}>
