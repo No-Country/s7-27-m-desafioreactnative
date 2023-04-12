@@ -1,5 +1,6 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import {
   feedPet,
@@ -46,36 +47,19 @@ const Mood = () => {
         })
         .catch(error =>error.message);
 
-      // setEnergia(energia => {
-      //   if (energia === 0) clearInterval(interval);
-      //   else return energia - 5;
-      // });
-      // setSueno(sueno => {
-      //   if (sueno === 0) clearInterval(interval);
-      //   else return sueno - 1;
-      // });
-      // setFelicidad(felicidad => {
-      //   if (felicidad === 0) clearInterval(interval);
-      //   else return felicidad - 1;
-      // })
-      // setHigiene(higiene => {
-      //   if (higiene === 0) clearInterval(interval);
-      //   else return higiene - 1;
-      // })
-      // setSalud(salud => {
-      //   if (salud === 0) clearInterval(interval);
-      //   else return salud - 1;
-      // })
+
     }, 2000);
     return () => clearInterval(interval);
   }, []);
 
- 
+  const navigation = useNavigation();
   const alimentar = () => setEnergia((energia) => Math.min(energia + 10, 100));
   const jugar = () => setFelicidad((felicidad) => Math.min(felicidad + 10, 100));
   const dormir = () => {
     setSueno((sueno) => Math.min(sueno + 10, 100))
     setIsSleeping(() => !isSleeping)
+    
+    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png") })
   };
   const lavar = () => setHigiene((higiene) => Math.min(higiene + 10, 100));
   const curar = () => setSalud((saludenergia) => Math.min(salud + 10, 100));
