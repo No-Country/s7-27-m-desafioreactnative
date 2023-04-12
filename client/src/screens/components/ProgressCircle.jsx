@@ -1,8 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { View, Animated, Easing, StyleSheet } from "react-native";
-import { Svg, Circle, Text } from "react-native-svg";
+import { View, Image, Animated, Easing, StyleSheet } from "react-native";
+import { Svg, Circle } from "react-native-svg";
 
-const ProgressCircle = ({ progress }) => {
+
+
+const ProgressCircle = ({ progress, img }) => {
+
+      /* Barra de Progreso */
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -14,55 +18,42 @@ const ProgressCircle = ({ progress }) => {
     }).start();
   }, [progress]);
 
-  const radius = 28;
+  const radius = 27;
   const circumference = 2 * Math.PI * radius;
 
   const progressOffset = animatedValue.interpolate({
     inputRange: [0, 100],
-    outputRange: [352, 0],
+    outputRange: [340, 0],
   });
-
-  const completionStatus = progress === 100 ? "Completed" : "Not completed";
-
+  //const completionStatus = progress === 100 ? "Completed" : "Not completed";
+  
   return (
     <View style={styles.container}>
       <Svg height="100" width="100" style={styles.svg}>
         <Circle
           cx="40"
-          cy="40"
+          cy="41"
           r={radius}
-          stroke="#FFFFFF"
+          stroke="#798BB2"
           strokeWidth="9"
-          fill="none"
+          fill="#798BB2"
         />
         <AnimatedCircle
           cx="39"
           cy="40"
           r={radius}
-          stroke="#798BB2"
-          strokeWidth="7"
-          fill="#798BB2"
+          stroke="#FFFFFF"
+          strokeWidth="5"
+          fill="none"
           strokeDasharray={`${circumference} `}
           strokeDashoffset={progressOffset}
           transform={`rotate(-90, 40, 40)`}
         />
-        <View style={styles.bar}>
-          <TouchableOpacity  style={styles.buttonAction} onPress={dormir}>
-            <View>
-              <Image source={isSleeping ? require("../../../assets/dormir.png"): require("../../../assets/despertar.png") } />
-            </View>
-          </TouchableOpacity>
-        </View>
-        {/* <Text
-          fill="#000"
-          fontSize="15"
-          fontWeight="bold"
-          textAnchor="middle"
-          x="40"
-          y="46"
-        >
-          {`${progress}%`}
-        </Text> */}
+      
+               
+          <Image style={styles.bar} source={img} />
+       
+
       </Svg>
     </View>
   );
@@ -72,13 +63,27 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 const styles = StyleSheet.create({
   container: {
+    
     position:"relative",
-    left: -140,
+    left: -60,
+    top:-20
       },
   svg: {
     position:"relative",
-  
-      },
+    
+  },
+  bar: {
+    width:46,
+    height: 46,
+    position:"relative",
+    borderColor:"#798BB2",
+    top: 17.8,
+    left: 11.7,
+    marginHorizontal: 5,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  }
 });
 
 export default ProgressCircle;
