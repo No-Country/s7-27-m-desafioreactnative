@@ -19,8 +19,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import data from "../../data/characters";
 
 export default function SwapPet() {
-  // const route = useRoute();
-  // const { nombre, imagenSeleccionada1, imagenSeleccionada2 } = route.params;
+  
   const navigation = useNavigation();
 
   
@@ -35,7 +34,7 @@ export default function SwapPet() {
         onPress: () => console.log("Cancel Pressed"),
         style: "cancel",
       },
-      { text: "OK", onPress: () => navigation.navigate("Home", { nombre: currentName, imagenSeleccionada1: currentImage }) },
+      { text: "OK", onPress: () => navigation.navigate("Home", { nombre: currentName, imagenOpcional: currentImage }) },
     ]);
 
   const renderItem = ({ item, index }) => {
