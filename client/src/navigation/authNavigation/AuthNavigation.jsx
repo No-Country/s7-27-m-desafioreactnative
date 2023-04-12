@@ -11,7 +11,6 @@ import Home from "../../screens/homeNavigation/Home";
 import TiendaInventario from "../../screens/homeNavigation/TiendaInventario/TiendaInventario";
 import SwapPet from "../../screens/homeNavigation/SwapPet";
 import Play from "../../screens/homeNavigation/Play";
-import Mood from "../../screens/homeNavigation/Mood";
 import Loading from "../../screens/components/Loading";
 
 const AuthNavigation = ({ navigation }) => {
@@ -35,7 +34,7 @@ const AuthNavigation = ({ navigation }) => {
       <Stack.Screen name="TiendaInventario" component={TiendaInventario} />
       <Stack.Screen name="SwapPet" component={SwapPet} />
       <Stack.Screen name="Play" component={Play} />
-      <Stack.Screen name="Mood" component={Mood} />
+      
     </Stack.Navigator>
   );
 };
