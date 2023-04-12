@@ -10,7 +10,6 @@ import {
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import Settings from "../components/Settings";
-
 import Mood from "../components/Mood";
 
 const Home = () => {
@@ -126,38 +125,9 @@ const Home = () => {
       <View style={styles.containerEnd}>
         <View style={styles.containerActions}>
           <Mood/>
-
-          {/* <TouchableOpacity style={styles.buttonAction}>
-            <View>
-              <Image source={require("./comer.png")} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonAction}>
-            <View>
-              <Image source={require("./bañar.png")} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonAction}>
-            <View>
-              <Image source={require("./curar.png")} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonAction}>
-            <View>
-              <Image source={require("./dormir.png")} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonAction}
-            onPress={() => navigation.navigate("Play")}
-          >
-            <View>
-              <Image source={require("./jugar.png")} />
-            </View>
-          </TouchableOpacity> */}
         </View>
       </View>
-
+      
     </View>
   );
 };
@@ -297,33 +267,15 @@ const styles = StyleSheet.create({
     height: 60,
     width: 400,
     position: "absolute",
-    top: "91%",
+    top: "92%",
     right: "0%",
   },
   containerActions: {
     bottom: 23,
-    gap: 12,
     flexDirection: "row",
     justifyContent: "center",
     zIndex: 999,
-    position: 'relative'
-  },
-  buttonAction: {
-    backgroundColor: "#FFFFFF",
-    width: 55,
-    height: 55,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-
-    elevation: 7,
+    position: "relative"
   },
 });
 export default Home;
