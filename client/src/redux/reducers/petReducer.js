@@ -2,21 +2,12 @@ import {
   GET_PET_FAILURE,
   GET_PET_REQUEST,
   GET_PET_SUCCESS,
-  FEED_PET_REQUEST,
-  FEED_PET_SUCCESS,
-  FEED_PET_FAILURE,
-  PLAY_PET_REQUEST,
-  PLAY_PET_SUCCESS,
-  PLAY_PET_FAILURE,
-  SLEEP_PET_REQUEST,
-  SLEEP_PET_SUCCESS,
-  SLEEP_PET_FAILURE,
-  CLEAN_PET_REQUEST,
-  CLEAN_PET_SUCCESS,
-  CLEAN_PET_FAILURE,
   POST_PET_DATA_PENDING,
   POST_PET_DATA_SUCCESS,
   POST_PET_DATA_REJECTED,
+  ACTION_PET_FAILURE,
+  ACTION_PET_REQUEST,
+  ACTION_PET_SUCCESS,
 } from "../types/petTypes";
 
 const initialState = {
@@ -72,84 +63,21 @@ export const petReducer = (state = initialState, { type, payload }) => {
           pet: payload,
           id: payload.id
         };
-      case FEED_PET_REQUEST:
+      case ACTION_PET_REQUEST:
         return {
         ...state,
         isLoading: true,
         error: payload,
         pet: null,
       };
-    case FEED_PET_SUCCESS:
+    case ACTION_PET_SUCCESS:
       return {
         ...state,
         isLoading: false,
         error: false,
         pet: payload,
       };
-    case FEED_PET_FAILURE:
-      return {
-        ...state,
-        isLoading,
-        error: payload,
-        pet: null,
-      };
-    case PLAY_PET_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-        error: payload,
-        pet: null,
-      };
-    case PLAY_PET_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        error: false,
-        pet: payload,
-      };
-    case PLAY_PET_FAILURE:
-      return {
-        ...state,
-        isLoading,
-        error: payload,
-        pet: null,
-      };
-    case SLEEP_PET_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-        error: payload,
-        pet: null,
-      };
-    case SLEEP_PET_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        error: false,
-        pet: payload,
-      };
-    case SLEEP_PET_FAILURE:
-      return {
-        ...state,
-        isLoading,
-        error: payload,
-        pet: null,
-      };
-    case CLEAN_PET_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-        error: payload,
-        pet: null,
-      };
-    case CLEAN_PET_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        error: false,
-        pet: payload,
-      };
-    case CLEAN_PET_FAILURE:
+    case ACTION_PET_FAILURE:
       return {
         ...state,
         isLoading,
@@ -180,3 +108,4 @@ export const petReducer = (state = initialState, { type, payload }) => {
 //       "_id": "642b29043fd10d97610e396a"
 //     }
 //   }
+
