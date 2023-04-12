@@ -12,16 +12,18 @@ import TiendaInventario from "../../screens/homeNavigation/TiendaInventario/Tien
 import SwapPet from "../../screens/homeNavigation/SwapPet";
 import Play from "../../screens/homeNavigation/Play";
 import Mood from "../../screens/homeNavigation/Mood";
+import Loading from "../../screens/components/Loading";
 
 const AuthNavigation = ({ navigation }) => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator
-      initialRouteName="Start"
+      initialRouteName="Loading"
       screenOptions={{
         headerShown: false,
       }}
     >
+      <Stack.Screen name="Loading" component={Loading} />
       <Stack.Screen name="Start" component={Start} />
       <Stack.Screen name="LogIn" component={LogIn} />
       <Stack.Screen name="Register" component={Register} />
@@ -33,7 +35,7 @@ const AuthNavigation = ({ navigation }) => {
       <Stack.Screen name="TiendaInventario" component={TiendaInventario} />
       <Stack.Screen name="SwapPet" component={SwapPet} />
       <Stack.Screen name="Play" component={Play} />
-      <Stack.Screen name="Mood" component={Mood} />
+      <Stack.Screen name="Mood" component={Mood} />
     </Stack.Navigator>
   );
 };

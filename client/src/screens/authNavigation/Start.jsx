@@ -32,8 +32,11 @@ const Start = () => {
   return (
     <View style={styles.container}>
       <Image source={fondoinicio} style={styles.fondoinicio} />
-      <Image
+      <Animatable.Image
         source={pawsitive}
+        animation="slideInUp"
+        duration={1300}
+        delay={1000}
         style={[
           styles.pawsitive,
           modalLoginVisible ? { bottom: 500 } : { bottom: 430 },
@@ -59,21 +62,30 @@ const Start = () => {
       >
         <Register setModalRegisterVisible={setModalRegisterVisible} />
       </Modal>
+
+      {/* -------------- NUBES ------------------ */}
+
       <View style={styles.nubes}>
-        <Image source={nube1} style={styles.n1} />
+        <Image
+          source={nube1}
+          animation="shake"
+          iterationCount="infinite"
+          duration={40000}
+          style={styles.n1}
+        />
         <Image source={nube2} style={styles.n2} />
         <Image source={nube3} style={styles.n3} />
         <Animatable.Image
           animation="shake"
           iterationCount="infinite"
-          duration={50000}
+          duration={40000}
           source={nube4}
           style={styles.n4}
         />
         <Animatable.Image
           animation="shake"
           iterationCount="infinite"
-          duration={50000}
+          duration={40000}
           delay={2000}
           source={nube5}
           style={styles.n5}
@@ -81,33 +93,48 @@ const Start = () => {
         <Animatable.Image
           animation="shake"
           iterationCount="infinite"
-          duration={50000}
+          duration={40000}
           source={nube6}
           style={styles.n6}
         />
         <Animatable.Image
           animation="shake"
           iterationCount="infinite"
-          duration={50000}
+          duration={40000}
           source={nube7}
           style={styles.n7}
         />
         <Animatable.Image
           animation="shake"
           iterationCount="infinite"
-          duration={50000}
+          duration={40000}
           source={nube8}
           style={styles.n8}
         />
       </View>
+
+      {/* -------------- CASA ------------------ */}
       <View style={styles.casacont}>
-        <Image source={casa} style={styles.casa} />
+        <Animatable.Image
+          animation="slideInUp"
+          duration={2000}
+          delay={1000}
+          source={casa}
+          style={styles.casa}
+        />
       </View>
+      {/* -------------- ARBUSTOS ------------------ */}
+
       <View style={styles.arbustos}>
         <Image source={arbder} style={styles.arbder} />
         <Image source={arbizq} style={styles.arbizq} />
       </View>
-      <View style={styles.btncontainer}>
+      <Animatable.View
+        animation="fadeIn"
+        duration={2000}
+        delay={2000}
+        style={styles.btncontainer}
+      >
         <PrimaryButton
           handler={() => setModalRegisterVisible(true)}
           text="REGISTRARSE"
@@ -117,7 +144,7 @@ const Start = () => {
           secondary={true}
           text="INGRESAR"
         ></PrimaryButton>
-      </View>
+      </Animatable.View>
     </View>
   );
 };
