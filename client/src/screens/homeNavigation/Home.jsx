@@ -115,7 +115,7 @@ if (imagenSeleccionada1) {
       {/* Menu Acciones */}
       <View style={styles.containerEnd}>
         <View style={styles.containerActions}>
-          <Mood/>
+          <Mood nombre={nombre} imagenSeleccionada={imagenSeleccionada} />
 
          
           {/* <TouchableOpacity style={styles.buttonAction}>
