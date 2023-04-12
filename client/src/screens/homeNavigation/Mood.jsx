@@ -19,60 +19,65 @@ const Mood = () => {
   const [salud, setSalud] = useState(50); // nivel de salud inicial
   const [felicidad, setFelicidad] = useState(50); // nivel de felicidad inicial
   const [higiene, setHigiene] = useState(50); // nivel de higiene inicial
-  const [isSleeping, setIsSleeping] = useState(false); // esta durmiendo
 
- 
-  
   useEffect(() => {
-    const interval = setInterval(async () => {
-      const pets = (await axios.get(`${URL_BACK}`)).data;
-      
-      console.log(pets);
-    
-      await axios.get(`${URL_BACK}/mascota/`)
-        .then((response) => {
-         ( sueno !== 0) && setSueno(response.caracteristicas.sueno - 2);
-        })
-        .then((response) => {
-         ( energia !== 0) && setEnergia(response.data.caracteristicas.energia - 2);
-        })
-        .then((response) => {
-          ( salud !== 0) && setSalud(response.data.caracteristicas.salud - 2);
-        })
-        .then((response) => {
-          ( felicidad !== 0) && setFelicidad(response.data.caracteristicas.felicidad - 2);
-        })
-        .then((response) => {
-          ( higiene !== 0) && setHigiene(response.data.caracteristicas.higiene - 2);
-        })
-        .catch(error =>error.message);
-
-
+    const interval = setInterval(() => {
+      setEnergia((energia) => {
+        if (energia < 0) clearInterval(interval);
+        if (energia === 0) return energia;
+        else return energia - Math.random();
+      });
+      setSueno((sueno) => {
+        if (sueno < 0) clearInterval(interval);
+        if (sueno === 0) return sueno;
+        else return sueno - 5;
+      });
+      setFelicidad((felicidad) => {
+        if (felicidad < 0) clearInterval(interval);
+        if (felicidad === 0) return felicidad;
+        else return felicidad - 5;
+      });
+      setHigiene((higiene) => {
+        if (higiene < 0) clearInterval(interval);
+        if (higiene === 0) return higiene;
+        else return higiene - 5;
+      });
+      setSalud((salud) => {
+        if (salud < 0) clearInterval(interval);
+        if (salud === 0) return salud;
+        else return salud - 5;
+      });
     }, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  const navigation = useNavigation();
-  const alimentar = () => setEnergia((energia) => Math.min(energia + 10, 100));
-  const jugar = () => setFelicidad((felicidad) => Math.min(felicidad + 10, 100));
-  const dormir = () => {
-    setSueno((sueno) => Math.min(sueno + 10, 100))
-    setIsSleeping(() => !isSleeping)
-    
-    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png") })
-  };
-  const lavar = () => setHigiene((higiene) => Math.min(higiene + 10, 100));
-  const curar = () => setSalud((saludenergia) => Math.min(salud + 10, 100));
+  //state= estado inicial (de redux)
+  const pet = useSelector((state) => state.pet.pet);
 
-  const getBarColor = (level) => {
-    if (level >= 75) {
-      return "blue";
-    } else if (level >= 35) {
-      return "yellow";
-    } else {
-      return "red";
-    }
+  const dispatch = useDispatch();
+
+  const alimentar = () => {
+    setEnergia((energia) => Math.min(energia + 10, 100));
+    dispatch(PetAction(pet?._id, { energia }));
   };
+
+  const jugar = () => {
+    setFelicidad((felicidad) => Math.min(felicidad + 10, 100));
+    dispatch(PetAction(pet?._id, { felicidad }));
+  };
+  const dormir = () => {
+    setSueno((sueno) => Math.min(sueno + 10, 100));
+    dispatch(PetAction(pet?._id, { sueno }));
+  };
+  const lavar = () => {
+    setHigiene((higiene) => Math.min(higiene + 10, 100));
+    dispatch(PetAction(pet?._id, { higiene }));
+  };
+  const curar = () => {
+    setSalud((salud) => Math.min(salud + 10, 100));
+    dispatch(PetAction(pet?._id, { salud }));
+  };
+
 
   return (
     <View style={styles.container}>
