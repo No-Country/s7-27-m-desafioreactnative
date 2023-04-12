@@ -12,6 +12,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import Settings from "../components/Settings";
 import Mood from "./Mood";
+import { Circle } from "react-native-svg";
+import Circulo from "./Circulo";
 
 
 const Home = () => {
@@ -115,6 +117,7 @@ if (imagenSeleccionada1) {
         <View style={styles.containerActions}>
           <Mood/>
 
+         
           {/* <TouchableOpacity style={styles.buttonAction}>
             <View>
               <Image source={require("./comer.png")} />
@@ -145,6 +148,7 @@ if (imagenSeleccionada1) {
           </TouchableOpacity> */}
         </View>
       </View>
+
     </View>
   );
 };
@@ -294,6 +298,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     zIndex: 999,
+    position: 'relative'
   },
   buttonAction: {
     backgroundColor: "#FFFFFF",

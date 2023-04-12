@@ -10,6 +10,7 @@ import {
 } from "../../redux/actions/petActions";
 import { URL_BACK } from "../../config";
 import axios from "axios";
+import Circulo from "./Circulo";
 
 
 const Mood = () => {
@@ -78,60 +79,63 @@ const Mood = () => {
     <View style={styles.container}>
       <View style={styles.levels}>
         <View style={styles.containerBar}>
-          <View style={[styles.bar, { backgroundColor: getBarColor(sueno) }]}>
+          <View style={[styles.bar]}>
+            <Circulo porcentaje={sueno}/>
             <TouchableOpacity  style={styles.buttonAction} onPress={dormir}>
               <View>
                 <Image source={isSleeping ? require("../../../assets/dormir.png"): require("../../../assets/despertar.png") } />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{sueno}</Text>
+          {/* <Text style={styles.level}>{sueno}</Text> */}
         </View>
 
         <View style={styles.containerBar}>
-          <View style={[styles.bar, { backgroundColor: getBarColor(energia) }]}>
+          <View style={[styles.bar]}>
+          <Circulo porcentaje={energia}/>
             <TouchableOpacity style={styles.buttonAction} onPress={alimentar}>
               <View>
                 <Image source={require("../../../assets/comer.png")} />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{energia}</Text>
+          {/* <Text style={styles.level}>{energia}</Text> */}
         </View>
 
         <View style={styles.containerBar}>
-          <View
-            style={[styles.bar, { backgroundColor: getBarColor(felicidad) }]}
-          >
+          <View style={[styles.bar]}>
+          <Circulo porcentaje={felicidad}/>
             <TouchableOpacity style={styles.buttonAction} onPress={jugar}>
               <View>
                 <Image source={require("../../../assets/jugar.png")} />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{felicidad}</Text>
+          {/* <Text style={styles.level}>{felicidad}</Text> */}
         </View>
 
         <View style={styles.containerBar}>
-          <View style={[styles.bar, { backgroundColor: getBarColor(higiene) }]}>
+          <View style={[styles.bar]}>
+          <Circulo porcentaje={higiene}/>
             <TouchableOpacity style={styles.buttonAction} onPress={lavar}>
               <View>
                 <Image source={require("../../../assets/bañar.png")} />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{higiene}</Text>
+          {/* <Text style={styles.level}>{higiene}</Text> */}
         </View>
 
         <View style={styles.containerBar}>
-          <View style={[styles.bar, { backgroundColor: getBarColor(salud) }]}>
+          <View style={[styles.bar]}>
+          <Circulo porcentaje={salud}/>
             <TouchableOpacity style={styles.buttonAction} onPress={curar}>
               <View>
                 <Image source={require("../../../assets/curar.png")} />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{salud}</Text>
+          {/* <Text style={styles.level}>{salud}</Text> */}
         </View>
       </View>
     </View>
@@ -156,18 +160,18 @@ const styles = StyleSheet.create({
   bar: {
     width: 65,
     height: 65,
-    marginRight: 20,
+   marginHorizontal: 5,
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 3,
+    // },
+    // shadowOpacity: 0.29,
+    // shadowRadius: 4.65,
+    // elevation: 7,
   },
   label: {
     fontSize: 16,
@@ -180,8 +184,8 @@ const styles = StyleSheet.create({
   },
   buttonAction: {
     backgroundColor: "#FFFFFF",
-    width: 50,
-    height: 50,
+    width: 53,
+    height: 53,
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
