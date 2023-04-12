@@ -1,15 +1,6 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  feedPet,
-  getPet,
-  setPetHunger,
-  updatePet,
-} from "../../redux/actions/petActions";
-import { URL_BACK } from "../../config";
-import axios from "axios";
 
 
 const Mood = () => {
