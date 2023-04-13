@@ -7,13 +7,11 @@ import {
   Modal,
   ScrollView,
 } from "react-native";
-import Constants from "expo-constants";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import Settings from "../components/Settings";
 import Mood from "./Mood";
-import { Circle } from "react-native-svg";
-import Circulo from "./Circulo";
+
 
 
 const Home = () => {
