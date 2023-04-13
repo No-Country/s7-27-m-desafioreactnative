@@ -10,9 +10,10 @@ import {
 } from "../../redux/actions/petActions";
 import { URL_BACK } from "../../config";
 import axios from "axios";
+import Circulo from "./Circulo";
 
 
-const Mood = () => {
+const Mood = ({nombre}) => {
   const [edad, setEdad] = useState(1); // nivel de edad inicial
   const [sueno, setSueno] = useState(50); // nivel de sueño inicial
   const [energia, setEnergia] = useState(50); // nivel de hambre inicial
@@ -20,7 +21,8 @@ const Mood = () => {
   const [felicidad, setFelicidad] = useState(50); // nivel de felicidad inicial
   const [higiene, setHigiene] = useState(50); // nivel de higiene inicial
   const [isSleeping, setIsSleeping] = useState(false); // esta durmiendo
-
+  const [isEating, setisEating] = useState(false); // esta comiendo
+  const [isBathing, setisBathing] = useState(false); // esta banandose
  
   
   useEffect(() => {
@@ -53,15 +55,25 @@ const Mood = () => {
   }, []);
 
   const navigation = useNavigation();
-  const alimentar = () => setEnergia((energia) => Math.min(energia + 10, 100));
+  const alimentar = () => {
+    setEnergia((energia) => Math.min(energia + 10, 100));
+    setisEating(() => !isEating)
+
+    navigation.navigate("Home", { imagenOpcional: isEating ? require("../assets/gato_hamburguesa.png"): require("../assets/gato_normal.png"), nombre: nombre })
+  } 
   const jugar = () => setFelicidad((felicidad) => Math.min(felicidad + 10, 100));
   const dormir = () => {
     setSueno((sueno) => Math.min(sueno + 10, 100))
     setIsSleeping(() => !isSleeping)
     
-    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png") })
+    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png"), nombre: nombre })
   };
-  const lavar = () => setHigiene((higiene) => Math.min(higiene + 10, 100));
+  const lavar = () => {
+    setHigiene((higiene) => Math.min(higiene + 10, 100));
+    setisBathing(() => !isBathing)
+
+    navigation.navigate("Home", { imagenOpcional: isBathing ? require("../assets/gato_bano.png"): require("../assets/gato_normal.png"), nombre: nombre })
+  } 
   const curar = () => setSalud((saludenergia) => Math.min(salud + 10, 100));
 
   const getBarColor = (level) => {
@@ -78,60 +90,63 @@ const Mood = () => {
     <View style={styles.container}>
       <View style={styles.levels}>
         <View style={styles.containerBar}>
-          <View style={[styles.bar, { backgroundColor: getBarColor(sueno) }]}>
+          <View style={[styles.bar]}>
+            <Circulo porcentaje={sueno}/>
             <TouchableOpacity  style={styles.buttonAction} onPress={dormir}>
               <View>
                 <Image source={isSleeping ? require("../../../assets/dormir.png"): require("../../../assets/despertar.png") } />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{sueno}</Text>
+          {/* <Text style={styles.level}>{sueno}</Text> */}
         </View>
 
         <View style={styles.containerBar}>
-          <View style={[styles.bar, { backgroundColor: getBarColor(energia) }]}>
+          <View style={[styles.bar]}>
+          <Circulo porcentaje={energia}/>
             <TouchableOpacity style={styles.buttonAction} onPress={alimentar}>
               <View>
-                <Image source={require("../../../assets/comer.png")} />
+                <Image source={isEating ? require("../../../assets/comer.png"): require("../../../assets/comer.png")} />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{energia}</Text>
+          {/* <Text style={styles.level}>{energia}</Text> */}
         </View>
 
         <View style={styles.containerBar}>
-          <View
-            style={[styles.bar, { backgroundColor: getBarColor(felicidad) }]}
-          >
+          <View style={[styles.bar]}>
+          <Circulo porcentaje={felicidad}/>
             <TouchableOpacity style={styles.buttonAction} onPress={jugar}>
               <View>
                 <Image source={require("../../../assets/jugar.png")} />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{felicidad}</Text>
+          {/* <Text style={styles.level}>{felicidad}</Text> */}
         </View>
 
         <View style={styles.containerBar}>
-          <View style={[styles.bar, { backgroundColor: getBarColor(higiene) }]}>
+          <View style={[styles.bar]}>
+          <Circulo porcentaje={higiene}/>
             <TouchableOpacity style={styles.buttonAction} onPress={lavar}>
               <View>
-                <Image source={require("../../../assets/bañar.png")} />
+                <Image source={isBathing ?  require("../../../assets/bañar.png") : require("../../../assets/bañar.png")} />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{higiene}</Text>
+          {/* <Text style={styles.level}>{higiene}</Text> */}
         </View>
 
         <View style={styles.containerBar}>
-          <View style={[styles.bar, { backgroundColor: getBarColor(salud) }]}>
+          <View style={[styles.bar]}>
+          <Circulo porcentaje={salud}/>
             <TouchableOpacity style={styles.buttonAction} onPress={curar}>
               <View>
                 <Image source={require("../../../assets/curar.png")} />
               </View>
             </TouchableOpacity>
           </View>
-          <Text style={styles.level}>{salud}</Text>
+          {/* <Text style={styles.level}>{salud}</Text> */}
         </View>
       </View>
     </View>
@@ -156,18 +171,18 @@ const styles = StyleSheet.create({
   bar: {
     width: 65,
     height: 65,
-    marginRight: 20,
+   marginHorizontal: 5,
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 3,
+    // },
+    // shadowOpacity: 0.29,
+    // shadowRadius: 4.65,
+    // elevation: 7,
   },
   label: {
     fontSize: 16,
@@ -180,8 +195,8 @@ const styles = StyleSheet.create({
   },
   buttonAction: {
     backgroundColor: "#FFFFFF",
-    width: 50,
-    height: 50,
+    width: 53,
+    height: 53,
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
