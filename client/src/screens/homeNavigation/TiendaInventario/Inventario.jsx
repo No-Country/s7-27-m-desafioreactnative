@@ -9,27 +9,27 @@ import {
 const DATA = [
     {
         id: '1',
-        title: 'utilizar',
+        title: 'USAR',
         imageUrl: 'https://via.placeholder.com/150',
     },
     {
         id: '2',
-        title: 'utilizar',
+        title: 'USAR',
         imageUrl: 'https://via.placeholder.com/150',
     },
     {
         id: '3',
-        title: 'utilizar',
+        title: 'USAR',
         imageUrl: 'https://via.placeholder.com/150',
     },
     {
         id: '4',
-        title: 'utilizar',
+        title: 'USAR',
         imageUrl: 'https://via.placeholder.com/150',
     },
     {
         id: '5',
-        title: 'utilizar',
+        title: 'USAR',
         imageUrl: 'https://via.placeholder.com/150',
     },
 ];
@@ -37,7 +37,7 @@ const DATA = [
 const renderItem = ({ item }) => (
     <View style={styles.item}>
         <Image source={{ uri: item.imageUrl }} style={styles.image} />
-        <Text style={styles.title}>{item.title}</Text>
+        <View style={{width:"100%", backgroundColor:"#798BB2", alignItems:"center"}}><Text style={styles.title}>{item.title}</Text></View>
     </View>
 );
 
@@ -45,11 +45,11 @@ function Inventario() {
     return (
 
         <>
-            <View style={{  width: 150, marginTop: 15, marginBottom: 30 }}>
-                    <Text>Objetos guardados</Text>
+            <View style={{  minWidth:100, marginBottom: 15, marginTop:30 }}>
+                    <Text style={{fontWeight:600, fontSize:22}}>Objetos guardados</Text>
             </View>
             <View>
-                <Text style={{ backgroundColor: '#ddd', paddingVertical: 5 }}>Mascotas</Text>
+                <Text style={styles.textoListas}>Mascotas</Text>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -58,7 +58,7 @@ function Inventario() {
                     showsHorizontalScrollIndicator={false}
                 />
 
-                <Text style={{ backgroundColor: '#ddd', paddingVertical: 5 }}>Items personalizacion de fondo</Text>
+                <Text style={styles.textoListas}>Items personalizacion de fondo</Text>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -67,7 +67,7 @@ function Inventario() {
                     showsHorizontalScrollIndicator={false}
                 />
 
-                <Text style={{ backgroundColor: '#ddd', paddingVertical: 5 }}>Fondos de habitacion</Text>
+                <Text style={styles.textoListas}>Fondos de habitacion</Text>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -86,32 +86,38 @@ function Inventario() {
 
 const styles = StyleSheet.create({
     item: {
-        backgroundColor: '#fff',
+        
         marginHorizontal: 4,
         marginVertical: 20,
         alignItems: 'center',
-        borderWidth:1
-    },
-    image: {
+        borderWidth:2,
+        borderColor:"#798BB2",
+        borderRadius:4,
         width: 91,
         height: 107,
-        borderRadius: 0,
-        marginBottom: 10,
+    },
+    image: {
+        width: "100%",
+        height:83
+        
+        
+        
     },
     title: {
         fontSize: 16,
+        color:"#FFF",
+        
     },
-    
-    boton: {
-        backgroundColor: '#A8A8A8',
-        width: 283,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 4,
-        marginHorizontal: 20,
-        marginVertical:20
+    textoListas: {
+        backgroundColor: '#F5AFB4',
+        color:"#FFFFFF", 
+        paddingVertical: 5,
+        paddingHorizontal:5,
+        fontWeight:500,
+        fontSize:16,
+        
     }
+
 });
 
 export default Inventario
