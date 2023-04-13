@@ -5,6 +5,8 @@ import {
     Feather,
     MaterialIcons,
 } from "react-native-vector-icons";
+import PigCoin from '../../assets/coin.png';
+import PinkPigCoin from '../../assets/pinkcoin.png';
 
 const DATA = [
     {
@@ -37,7 +39,7 @@ const DATA = [
 const renderItem = ({ item }) => (
     <View style={styles.item}>
         <Image source={{ uri: item.imageUrl }} style={styles.image} />
-        <Text style={styles.title}>{item.title}</Text>
+        <View style={{width:"100%", backgroundColor:"#798BB2",flexDirection:"row", alignItems:"center",justifyContent:"space-around"}}><Image source={PigCoin} style={{width:14, height:14}}/><Text style={styles.title}>{item.title}</Text></View>
     </View>
 );
 
@@ -45,11 +47,12 @@ function Tienda() {
     return (
 
         <>
-            <View style={{ borderColor: '#333', borderWidth: 1, borderRadius: 25, width: 70, marginTop: 15, marginBottom: 30, display:'flex',alignItems:'center' }}>
-                    <Text>600</Text>
+            <View style={{ borderColor: '#1B223C', borderWidth: 1, borderRadius: 50, width: 110,height:30, marginBottom: 15, marginTop:30, flexDirection:"row", alignItems:"center",justifyContent:"space-between" }}>
+                    <Image source={PinkPigCoin} style={{ height:"100%", width:30,borderColor: '#1B223C', borderWidth: 1, borderRadius: 50}}/>
+                    <Text style={{fontWeight:500, fontSize:16, marginHorizontal:5, color:"#EB5757"}}>600</Text>
             </View>
             <View>
-                <Text style={{ backgroundColor: '#ddd', paddingVertical: 5 }}>Mascotas</Text>
+                <Text style={styles.textoListas}>Mascotas</Text>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -58,7 +61,7 @@ function Tienda() {
                     showsHorizontalScrollIndicator={false}
                 />
 
-                <Text style={{ backgroundColor: '#ddd', paddingVertical: 5 }}>Items personalizacion de fondo</Text>
+                <Text style={styles.textoListas}>Items personalizacion de fondo</Text>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -67,7 +70,7 @@ function Tienda() {
                     showsHorizontalScrollIndicator={false}
                 />
 
-                <Text style={{ backgroundColor: '#ddd', paddingVertical: 5 }}>Fondos de habitacion</Text>
+                <Text style={styles.textoListas}>Fondos de habitacion</Text>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -86,31 +89,36 @@ function Tienda() {
 
 const styles = StyleSheet.create({
     item: {
-        backgroundColor: '#fff',
+        
         marginHorizontal: 4,
         marginVertical: 20,
         alignItems: 'center',
-        borderWidth:1
-    },
-    image: {
+        borderWidth:2,
+        borderColor:"#798BB2",
+        borderRadius:4,
         width: 91,
         height: 107,
-        borderRadius: 0,
-        marginBottom: 10,
+    },
+    image: {
+        width: "100%",
+        height:83
+        
+        
+        
     },
     title: {
         fontSize: 16,
+        color:"#FFF",
+        
     },
-    
-    boton: {
-        backgroundColor: '#A8A8A8',
-        width: 283,
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 4,
-        marginHorizontal: 20,
-        marginVertical:20
+    textoListas: {
+        backgroundColor: '#F5AFB4',
+        color:"#FFFFFF", 
+        paddingVertical: 5,
+        paddingHorizontal:5,
+        fontWeight:500,
+        fontSize:16,
+        
     }
 });
 

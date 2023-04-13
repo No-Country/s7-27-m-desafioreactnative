@@ -29,6 +29,11 @@ const Home = () => {
     imagenSeleccionada = imagenOpcional;
   }
 
+  const handleOpacity = () => {
+    console.log(imagenOpcional)
+    return imagenOpcional == 65 &&  ( {opacity: .5, backgroundColor:'black'})
+  }
+
   return (
     <View style={styles.containerPrincipal}>
       {/* Inicio */}
@@ -101,33 +106,30 @@ const Home = () => {
           </View>
         </View>
         {/* Personaje */}
-        <View style={styles.containerscroll}>
-        <ScrollView
-        horizontal={true}
-        pagingEnabled={true}
-        maximumZoomScale={2}
-        minimumZoomScale={1}
-      >
-      <Image
-          style={styles.image}
-          source={require('./fondo1.png')}
-      />
-        </ScrollView>
-
+        <View style={handleOpacity()}>
+          <View style={styles.containerscroll}>
+            <ScrollView
+              horizontal={true}
+              pagingEnabled={true}
+              maximumZoomScale={2}
+              minimumZoomScale={1}
+            >
+              <Image style={styles.image} source={require("./fondo1.png")} />
+            </ScrollView>
+          </View>
+          <Image
+            source={imagenSeleccionada}
+            style={{ width: 250, height: 305, bottom: "-15%", left: "18%" }}
+          />
         </View>
-        <Image
-          source={imagenSeleccionada}
-          style={{ width: 250, height: 305, bottom: "-15%", left: "18%" }}
-        />
       </View>
 
       {/* Menu Acciones */}
       <View style={styles.containerEnd}>
         <View style={styles.containerActions}>
-          <Mood/>
+          <Mood nombre={nombre} />
         </View>
       </View>
-      
     </View>
   );
 };
@@ -264,14 +266,14 @@ const styles = StyleSheet.create({
   },
   containerEnd: {
     backgroundColor: "#F5AFB4",
-    height: 60,
-    width: 400,
+    height: 65,
+    width: "100%",
     position: "absolute",
-    top: "92%",
-    right: "0%",
+    top: "91%",
   },
   containerActions: {
-    bottom: 23,
+    bottom: "5%",
+    gap: 12,
     flexDirection: "row",
     justifyContent: "center",
     zIndex: 999,
