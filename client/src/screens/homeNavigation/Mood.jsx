@@ -2,15 +2,9 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  feedPet,
-  getPet,
-  setPetHunger,
-  updatePet,
-} from "../../redux/actions/petActions";
-import { URL_BACK } from "../../config";
-import axios from "axios";
+
 import Circulo from "./Circulo";
+import { PetAction, petPlay } from "../../redux/actions/petActions";
 
 
 const Mood = ({nombre}) => {
@@ -23,67 +17,104 @@ const Mood = ({nombre}) => {
   const [isSleeping, setIsSleeping] = useState(false); // esta durmiendo
   const [isEating, setisEating] = useState(false); // esta comiendo
   const [isBathing, setisBathing] = useState(false); // esta banandose
- 
+  const [coins, setCoins] = useState(1000);
+
   
   useEffect(() => {
-    const interval = setInterval(async () => {
-      const pets = (await axios.get(`${URL_BACK}`)).data;
-      
-      console.log(pets);
-    
-      await axios.get(`${URL_BACK}/mascota/`)
-        .then((response) => {
-         ( sueno !== 0) && setSueno(response.caracteristicas.sueno - 2);
-        })
-        .then((response) => {
-         ( energia !== 0) && setEnergia(response.data.caracteristicas.energia - 2);
-        })
-        .then((response) => {
-          ( salud !== 0) && setSalud(response.data.caracteristicas.salud - 2);
-        })
-        .then((response) => {
-          ( felicidad !== 0) && setFelicidad(response.data.caracteristicas.felicidad - 2);
-        })
-        .then((response) => {
-          ( higiene !== 0) && setHigiene(response.data.caracteristicas.higiene - 2);
-        })
-        .catch(error =>error.message);
-
-
+    const interval = setInterval(() => {
+      setSueno((sueno) => {
+        if (sueno < 0) clearInterval(interval);
+        if (sueno === 0) return sueno;
+        else return sueno - Math.random();
+      });
+      setEnergia((energia) => {
+        if (energia < 0) clearInterval(interval);
+        if (energia === 0) return energia;
+        else return energia - Math.random();
+      });
+      setFelicidad((felicidad) => {
+        if (felicidad < 0) clearInterval(interval);
+        if (felicidad === 0) return felicidad;
+        else return felicidad - Math.random();
+      });
+      setHigiene((higiene) => {
+        if (higiene < 0) clearInterval(interval);
+        if (higiene === 0) return higiene;
+        else return higiene - Math.random();
+      });
+      setSalud((salud) => {
+        if (salud < 0) clearInterval(interval);
+        if (salud === 0) return salud;
+        else return salud - Math.random();
+      });
     }, 2000);
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCoins((coins) => {
+        coins + 1;
+      });
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  /* * Acciones * */
+
+  //state= estado inicial (de redux)
+  const pet = useSelector((state) => state.pet.pet);
+
+  const dispatch = useDispatch();
+
   const navigation = useNavigation();
-  const alimentar = () => {
-    setEnergia((energia) => Math.min(energia + 10, 100));
-    setisEating(() => !isEating)
+ 
 
-    navigation.navigate("Home", { imagenOpcional: isEating ? require("../assets/gato_hamburguesa.png"): require("../assets/gato_rest.gif"), nombre: nombre })
-  } 
-  const jugar = () => setFelicidad((felicidad) => Math.min(felicidad + 10, 100));
   const dormir = () => {
-    setSueno((sueno) => Math.min(sueno + 10, 100))
-    setIsSleeping(() => !isSleeping)
-    
-    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_rest.gif"), nombre: nombre })
+    setIsSleeping(() => !isSleeping);
+    setSueno(() => Math.min(sueno + 10, 100));
+    dispatch(PetAction(pet?._id, { sueno }));
+
+    navigation.navigate("Home", {
+      imagenOpcional: isSleeping
+        ? require("../assets/gatodurmiendo.png")
+        : require("../assets/gato_rest.gif"),nombre: nombre
+    });
   };
+
+  const alimentar = () => {
+    setEnergia(() => Math.min(energia + 10, 100));
+    dispatch(PetAction(pet?._id, { energia }));
+    setisEating(() => !isEating)
+    navigation.navigate("Home", {
+      imagenOpcional: isEating
+        ? require("../assets/gato_hamburguesa.png")
+        : require("../assets/gato_rest.gif"), nombre: nombre
+    });
+  };
+
+  const jugar = () => {
+    setFelicidad(() => Math.min(felicidad + 10, 100));
+    dispatch(PetAction(pet?._id, { felicidad }));
+    setCoins(coins + 300);
+    dispatch(petPlay(pet?._id, { coins }));
+    // navigation.navigate('Home', { coin: coins });
+  };
+
   const lavar = () => {
-    setHigiene((higiene) => Math.min(higiene + 10, 100));
+    setHigiene(() => Math.min(higiene + 10, 100));
+    dispatch(PetAction(pet?._id, { higiene }));
     setisBathing(() => !isBathing)
+    navigation.navigate("Home", {
+      imagenOpcional: isBathing
+        ? require("../assets/gato_bano.png")
+        : require("../assets/gato_rest.gif"),nombre: nombre
+    });
+  };
 
-    navigation.navigate("Home", { imagenOpcional: isBathing ? require("../assets/gato_bano.png"): require("../assets/gato_rest.gif"), nombre: nombre })
-  } 
-  const curar = () => setSalud((saludenergia) => Math.min(salud + 10, 100));
-
-  const getBarColor = (level) => {
-    if (level >= 75) {
-      return "blue";
-    } else if (level >= 35) {
-      return "yellow";
-    } else {
-      return "red";
-    }
+  const curar = () => {
+    setSalud(() => Math.min(salud + 10, 100));
+    dispatch(PetAction(pet?._id, { salud }));
   };
 
   return (
@@ -94,7 +125,7 @@ const Mood = ({nombre}) => {
             <Circulo porcentaje={sueno}/>
             <TouchableOpacity  style={styles.buttonAction} onPress={dormir}>
               <View>
-                <Image source={isSleeping ? require("../../../assets/dormir.png"): require("../../../assets/despertar.png") } />
+                <Image  source={isSleeping ? require("../../../assets/dormir.png"): require("../../../assets/despertar.png") } />
               </View>
             </TouchableOpacity>
           </View>
@@ -106,7 +137,7 @@ const Mood = ({nombre}) => {
           <Circulo porcentaje={energia}/>
             <TouchableOpacity style={styles.buttonAction} onPress={alimentar}>
               <View>
-                <Image source={isEating ? require("../../../assets/comer.png"): require("../../../assets/comer.png")} />
+                <Image style={{width: 30, height: 25}} source={isEating ? require("../../../assets/eat.png"): require("../../../assets/eat.png")} />
               </View>
             </TouchableOpacity>
           </View>
@@ -118,7 +149,7 @@ const Mood = ({nombre}) => {
           <Circulo porcentaje={felicidad}/>
             <TouchableOpacity style={styles.buttonAction} onPress={jugar}>
               <View>
-                <Image source={require("../../../assets/jugar.png")} />
+                <Image style={{width: 30, height: 28}}  source={require("../../../assets/joystick.png")} />
               </View>
             </TouchableOpacity>
           </View>
@@ -130,7 +161,7 @@ const Mood = ({nombre}) => {
           <Circulo porcentaje={higiene}/>
             <TouchableOpacity style={styles.buttonAction} onPress={lavar}>
               <View>
-                <Image source={isBathing ?  require("../../../assets/bañar.png") : require("../../../assets/bañar.png")} />
+                <Image  style={{width: 30, height: 28}}  source={isBathing ?  require("../../../assets/soap.png") : require("../../../assets/soap.png")} />
               </View>
             </TouchableOpacity>
           </View>
@@ -142,7 +173,7 @@ const Mood = ({nombre}) => {
           <Circulo porcentaje={salud}/>
             <TouchableOpacity style={styles.buttonAction} onPress={curar}>
               <View>
-                <Image source={require("../../../assets/curar.png")} />
+                <Image style={{width: 30, height: 28}}  source={require("../../../assets/heal.png")} />
               </View>
             </TouchableOpacity>
           </View>
