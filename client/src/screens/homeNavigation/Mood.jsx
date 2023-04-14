@@ -59,20 +59,20 @@ const Mood = ({nombre}) => {
     setEnergia((energia) => Math.min(energia + 10, 100));
     setisEating(() => !isEating)
 
-    navigation.navigate("Home", { imagenOpcional: isEating ? require("../assets/gato_hamburguesa.png"): require("../assets/gato_normal.png"), nombre: nombre })
+    navigation.navigate("Home", { imagenOpcional: isEating ? require("../assets/gato_hamburguesa.png"): require("../assets/gato_rest.gif"), nombre: nombre })
   } 
   const jugar = () => setFelicidad((felicidad) => Math.min(felicidad + 10, 100));
   const dormir = () => {
     setSueno((sueno) => Math.min(sueno + 10, 100))
     setIsSleeping(() => !isSleeping)
     
-    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_normal.png"), nombre: nombre })
+    navigation.navigate("Home", { imagenOpcional: isSleeping ? require("../assets/gatodurmiendo.png"): require("../assets/gato_rest.gif"), nombre: nombre })
   };
   const lavar = () => {
     setHigiene((higiene) => Math.min(higiene + 10, 100));
     setisBathing(() => !isBathing)
 
-    navigation.navigate("Home", { imagenOpcional: isBathing ? require("../assets/gato_bano.png"): require("../assets/gato_normal.png"), nombre: nombre })
+    navigation.navigate("Home", { imagenOpcional: isBathing ? require("../assets/gato_bano.png"): require("../assets/gato_rest.gif"), nombre: nombre })
   } 
   const curar = () => setSalud((saludenergia) => Math.min(salud + 10, 100));
 

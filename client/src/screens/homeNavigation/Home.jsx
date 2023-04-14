@@ -106,7 +106,7 @@ if (imagenSeleccionada1) {
 
         </View>
         <Image source={imagenSeleccionada}
-            style={{ width: 250, height: 305, bottom: '-15%', left: '18%'}}
+            style={{ width: 250, height: 305, bottom: '-30%', left: '18%'}}
             />
       </View>
 
