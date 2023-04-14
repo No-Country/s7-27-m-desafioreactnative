@@ -23,7 +23,7 @@ export interface InterfaceUser extends Document, PassportLocalDocument {
   verificado: boolean;
   registradoEn: TypeRegistradoEn;
   registradoEnId?: string;
-  dinero: string;
+  dinero: number;
   mascotas: Schema.Types.ObjectId[];
   accesoriosGanados: TypeAccesoriosGanados;
   extraerPerfil: () => Object;
@@ -66,7 +66,7 @@ const userSchema = new Schema<InterfaceUser, Model<InterfaceUser>>(
       fondos: [{ type: String }],
       accesorios: [{ type: String }],
     },
-    dinero: { type: String },
+    dinero: { type: Number },
 
     mascotas: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
   },
