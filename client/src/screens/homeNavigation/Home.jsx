@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Settings from "../components/Settings";
 import Mood from "./Mood";
 
@@ -18,8 +18,20 @@ const Home = () => {
   const route = useRoute();
   const { nombre, imagenSeleccionada1, imagenSeleccionada2, imagenOpcional} = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
+  // const navigation = useNavigation();
 
-  const navigation = useNavigation();
+  // const [datoActualizado, setDatoActualizado] = useState(coin);
+
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      // Aquí puedes actualizar el dato como desees
+      setDatoActualizado(datoActualizado + 1);
+    }, 1000);
+
+    return () => clearInterval(intervalo);
+  }, [datoActualizado]);
+
+
 
   let imagenSeleccionada = null;
 if (imagenSeleccionada1) {
@@ -56,7 +68,7 @@ if (imagenSeleccionada1) {
                 source={require("../../../assets/coin.png")}
                 style={{ zIndex: 100, top: 7 }}
               />
-              <Text style={styles.textCoins}>100</Text>
+              <Text style={styles.textCoins}>{coin}</Text>
               <View style={styles.carga3}></View>
             </View>
           </View>
