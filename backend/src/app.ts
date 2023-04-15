@@ -6,6 +6,7 @@ import { iniciarExpress, manejoErroresExpress } from "./config/express.config";
 import authRoutes from "./routes/authRoutes";
 import petRoutes from "./routes/petRoutes";
 import accesoriesRouter from "./routes/accesoriesRoutes";
+import userRoutes from "./routes/userRoutes";
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get("/", (_, res: Response) => {
 app.use("/auth", authRoutes);
 app.use("/accesorio", accesoriesRouter);
 app.use("/mascota", petRoutes);
+app.use("/usuario", userRoutes);
 
 manejoErroresExpress(app);
 
