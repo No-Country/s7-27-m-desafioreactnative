@@ -11,19 +11,22 @@ import Home from "../../screens/homeNavigation/Home";
 import TiendaInventario from "../../screens/homeNavigation/TiendaInventario/TiendaInventario";
 import SwapPet from "../../screens/homeNavigation/SwapPet";
 import Play from "../../screens/homeNavigation/Play";
+import Mood from "../../screens/homeNavigation/Mood";
+import Loading from "../../screens/components/Loading";
 
 const AuthNavigation = ({ navigation }) => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator
-      initialRouteName="Start"
+      // initialRouteName="Loading"
       screenOptions={{
         headerShown: false,
       }}
     >
+      {/* <Stack.Screen name="Loading" component={Loading} />
       <Stack.Screen name="Start" component={Start} />
       <Stack.Screen name="LogIn" component={LogIn} />
-      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="Register" component={Register} /> */}
       <Stack.Screen name="Onboarding1" component={Onboarding1} />
       <Stack.Screen name="Onboarding2" component={Onboarding2} />
       <Stack.Screen name="Onboarding3" component={Onboarding3} />
@@ -32,6 +35,7 @@ const AuthNavigation = ({ navigation }) => {
       <Stack.Screen name="TiendaInventario" component={TiendaInventario} />
       <Stack.Screen name="SwapPet" component={SwapPet} />
       <Stack.Screen name="Play" component={Play} />
+      <Stack.Screen name="Mood" component={Mood} />
     </Stack.Navigator>
   );
 };

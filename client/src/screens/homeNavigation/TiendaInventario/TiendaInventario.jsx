@@ -23,11 +23,15 @@ const TiendaInventario = () => {
 
     return (
         <>
-        <ScrollView contentContainerStyle={styles.scrollView}>
-            <View style={styles.containerPrincipal}>
+            <View style={{backgroundColor:"#EF7F79", marginHorizontal:0, height:60, flexDirection:"row", alignItems:"center"}}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <AntDesign name="arrowleft" size={24} />
+                    <AntDesign name="arrowleft" size={24} style={{color:"#FFFFFF", marginHorizontal:15}}/>
                 </TouchableOpacity>
+            </View>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+
+            <View style={styles.containerPrincipal}>
+                
 
                 <View style={styles.navTiendaInventario}>
                 <TouchableOpacity onPress={() => handleTabChange("tienda")}>
@@ -39,17 +43,29 @@ const TiendaInventario = () => {
                                     gap: 10,
                                 }}
                             >
-                                <Feather name="shopping-bag" size={24} />
-                                <Text style={{ color: currentTab === "tienda" ? "#333" : "#999" }}>
+                                <Feather name="shopping-bag" size={24} style={{ color: currentTab === "tienda" ? "#000000" : "#999" }}/>
+                                <Text style={ currentTab === "tienda" ? styles.tiendaActive : null }>
                                     Tienda
                                 </Text>
                             </View>
                         </TouchableOpacity>
+
                         <TouchableOpacity onPress={() => handleTabChange("inventario")}>
-                            <Text style={{ color: currentTab === "inventario" ? "#333" : "#999" }}>
-                                Inventario
-                            </Text>
+                            <View
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        alignItems: "center",
+                                        gap: 10,
+                                    }}
+                                >
+                                    <Feather name="box" size={24} style={{ color: currentTab === "inventario" ? "#000000" : "#999" }}/>
+                                <Text style={{fontSize:16, fontWeight:500, color: currentTab === "inventario" ? "#000000" : "#999" }}>
+                                    Inventario
+                                </Text>
+                            </View>
                         </TouchableOpacity>
+                        
                 </View>
 
 
@@ -57,7 +73,7 @@ const TiendaInventario = () => {
                 
 
                 <TouchableOpacity style={styles.boton} onPress={() => navigation.goBack()}>
-                    <Text style={{color: 'white', fontWeight: '500'}}>VOLVER</Text>
+                    <Text style={{color: '#EF7F79', fontWeight: '500'}}>VOLVER</Text>
                 </TouchableOpacity>
 
             </View>
@@ -87,6 +103,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 16,
     },
+
+    scrollView: {
+        backgroundColor:"#FFF"
+    },
     containerPrincipal: {
         marginVertical: 30,
         marginHorizontal: 20,
@@ -100,15 +120,37 @@ const styles = StyleSheet.create({
 
     },
     boton: {
-        backgroundColor: '#A8A8A8',
-        width: 283,
+        backgroundColor: '#FFFFFF',
+        borderWidth:1,
+        borderColor:'#EF7F79',
+        borderRadius: 25,
+        width: 328,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 4,
-        marginHorizontal: 20,
-        marginVertical:20
-    }
+        
+        
+        marginVertical: 20
+        
+    },
+
+    tiendaActive: {
+    
+        
+        fontSize:16, 
+        fontWeight:500,
+        color: "#000000"
+    },
+
+    navTienda: {
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 10
+        }
+    
+
+    
 });
 
 export default TiendaInventario;

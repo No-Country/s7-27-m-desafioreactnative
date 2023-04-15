@@ -6,14 +6,16 @@ const PrimaryButton = ({ text, handler, secondary = false }) => {
     <TouchableOpacity
       style={[
         styles.boton,
-        secondary ? { backgroundColor: fondo } : { backgroundColor: primario },
+        secondary
+          ? { backgroundColor: fondo, borderColor: primario, borderWidth: 1 }
+          : { backgroundColor: primario },
       ]}
       onPress={handler}
     >
       <Text
         style={[
           styles.text,
-          secondary ? { color: "#A8A8A8" } : { color: "white" },
+          secondary ? { color: primario } : { color: "white" },
         ]}
       >
         {text}

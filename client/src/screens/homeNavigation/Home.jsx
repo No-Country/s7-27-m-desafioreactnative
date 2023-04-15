@@ -5,46 +5,67 @@ import {
   Image,
   TouchableOpacity,
   Modal,
+  ScrollView,
 } from "react-native";
-import Constants from "expo-constants";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { useState } from "react";
+import { useRoute } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 import Settings from "../components/Settings";
+import Mood from "./Mood";
+
+
 
 const Home = () => {
   const route = useRoute();
-  const { nombre } = route.params;
+  const { nombre, imagenSeleccionada1, imagenSeleccionada2, imagenOpcional} = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
+  // const navigation = useNavigation();
 
-  const navigation = useNavigation();
+  // const [datoActualizado, setDatoActualizado] = useState(coin);
+
+  // useEffect(() => {
+  //   const intervalo = setInterval(() => {
+  //     // Aquí puedes actualizar el dato como desees
+  //     setDatoActualizado(datoActualizado + 1);
+  //   }, 1000);
+
+  //   return () => clearInterval(intervalo);
+  // }, [datoActualizado]);
+
+
+
+  let imagenSeleccionada = null;
+if (imagenSeleccionada1) {
+  imagenSeleccionada = require('../assets/gato_normal.png');
+} else if (imagenSeleccionada2) {
+  imagenSeleccionada = require('../assets/perro.png');
+} else {
+  imagenSeleccionada = imagenOpcional
+}
+
 
   return (
     <View style={styles.containerPrincipal}>
       {/* Inicio */}
       <View style={styles.containerStart}>
         <Text style={styles.textName}> {nombre} </Text>
-        <TouchableOpacity style={styles.buttonPersonaje} onPress={()=>navigation.navigate("SwapPet")}>
-          <Image source={require("./personajes.png")} />
-        </TouchableOpacity>
       </View>
+      <TouchableOpacity style={styles.buttonPersonaje} onPress={()=>navigation.navigate("SwapPet")}>
+          <Image source={require("../../../assets/personajes.png")} />
+        </TouchableOpacity>
 
       <View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", zIndex: 10 }}>
           {/* Menu Level - Coins */}
-          <View style={{ alignItems: "flex-start", margin: 13 }}>
+          <View style={{ alignItems: "flex-start", marginTop:13  }}>
             <View style={styles.level}>
               <Text style={styles.textLevel}>10</Text>
-              <Image source={require("./level.png")} style={{ zIndex: 100 }} />
+              <Image source={require("../../../assets/level.png")} style={{ zIndex: 100 }} />
               <View style={styles.carga}></View>
               <View style={styles.carga2}></View>
             </View>
-            <View style={styles.level}>
+            <View style={styles.level1}>
               <Image
-                source={require("./cerdo.png")}
-                style={{ zIndex: 130, top: 11, left: 26 }}
-              />
-              <Image
-                source={require("./coins.png")}
+                source={require("../../../assets/coin.png")}
                 style={{ zIndex: 100, top: 7 }}
               />
               <Text style={styles.textCoins}>100</Text>
@@ -58,7 +79,7 @@ const Home = () => {
               onPress={() => navigation.navigate("TiendaInventario")}
             >
               <Image
-                source={require("./shopping-bag.png")}
+                source={require("../../../assets/shopping-bag.png")}
                 style={{ justifyContent: "center", alignItems: "center" }}
               />
             </TouchableOpacity>
@@ -67,7 +88,7 @@ const Home = () => {
               onPress={() => setModalSetActive(true)}
             >
               <Image
-                source={require("./settings.png")}
+                source={require("../../../assets/settings.png")}
                 style={{ justifyContent: "center", alignItems: "center" }}
               />
             </TouchableOpacity>
@@ -82,18 +103,32 @@ const Home = () => {
           </View>
         </View>
         {/* Personaje */}
-        <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <Image
-            source={require("../authNavigation/pou.png")}
-            style={{ width: 255, height: 313, top: 80 }}
-          />
+        <View style={styles.containerscroll}>
+        <ScrollView
+        horizontal={true}
+        pagingEnabled={true}
+        maximumZoomScale={2}
+        minimumZoomScale={1}
+      >
+      <Image
+          style={styles.image}
+          source={require('./fondo1.png')}
+      />
+        </ScrollView>
+
         </View>
+        <Image source={imagenSeleccionada}
+            style={{ width: 250, height: 305, bottom: '-30%', left: '18%'}}
+            />
       </View>
 
       {/* Menu Acciones */}
       <View style={styles.containerEnd}>
         <View style={styles.containerActions}>
-          <TouchableOpacity style={styles.buttonAction}>
+          <Mood nombre={nombre} imagenSeleccionada={imagenSeleccionada} />
+
+         
+          {/* <TouchableOpacity style={styles.buttonAction}>
             <View>
               <Image source={require("./comer.png")} />
             </View>
@@ -120,37 +155,52 @@ const Home = () => {
             <View>
               <Image source={require("./jugar.png")} />
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
+
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  //cambio hecho por ray
+  containerscroll:{
+    position: 'absolute',
+  },
+  image: {
+    width: 1500,
+    height: 650,
+  },
   // Inicio
   containerPrincipal: {
-    marginTop: Constants.statusBarHeight,
+    // marginTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: "#fff",
     height: 800,
     width: "auto",
   },
   containerStart: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#EF7F79",
     height: 58,
     paddingVertical: 10,
     paddingEnd: 16,
     gap: 120,
-    flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "center",
+    
   },
   textName: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: 500,
-    fontSize: 14,
-    paddingVertical: 10,
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: 16,
+    lineHeight: 24,
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    letterSpacing: 0.15,
+    marginTop: 4,
+    color: "#FFFFFF"
   },
   buttonPersonaje: {
     backgroundColor: "#FFFFFF",
@@ -159,10 +209,17 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
+    position: 'absolute',
+    top: '1.5%',
+    right: '3.5%'
   },
   //Level - Coins
   level: {
     flexDirection: "row",
+  },
+  level1: {
+    flexDirection: "row",
+    marginLeft: 20
   },
   textLevel: {
     zIndex: 150,
@@ -184,7 +241,7 @@ const styles = StyleSheet.create({
     right: 13,
   },
   carga2: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#F5AFB4",
     width: 110,
     height: 24.5,
     top: 7,
@@ -218,32 +275,39 @@ const styles = StyleSheet.create({
   },
   buttonMenu: {
     marginVertical: 5,
-    backgroundColor: "#DADADA",
+    backgroundColor: "#FFFFFF",
     borderRadius: 12,
     width: 40,
     height: 40,
     justifyContent: "center",
     alignItems: "center",
-    shadowColor: "#000",
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 4
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    marginTop: 1,
+    marginBottom: 2,
+    marginLeft: 0,
+    marginRight: 0
   },
   containerEnd: {
-    top: 180,
-    backgroundColor: "#D9D9D9",
-    height: 58,
+    backgroundColor: "#F5AFB4",
+    height: 70,
+    width: '100%',
+    position: 'absolute',
+    top: '91%'
   },
   containerActions: {
-    bottom: 25,
+    bottom: '5%',
     gap: 12,
     flexDirection: "row",
     justifyContent: "center",
     zIndex: 999,
+    position: 'relative'
   },
   buttonAction: {
     backgroundColor: "#FFFFFF",

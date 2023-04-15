@@ -4,6 +4,7 @@ import { Feather, AntDesign } from "react-native-vector-icons";
 import PrimaryButton from "./PrimaryButton";
 import { useState } from "react";
 import PopupFree1 from "./PopupFree1";
+import { primario } from "../../config/constants";
 const Settings = ({ setModalSetActive }) => {
   const [isModalActive, setIsModalActive] = useState(false);
   return (
@@ -28,18 +29,18 @@ const Settings = ({ setModalSetActive }) => {
                 style={{ width: 200, height: 40 }}
                 minimumValue={0}
                 maximumValue={100}
-                minimumTrackTintColor="#898A8D"
+                minimumTrackTintColor={primario}
                 maximumTrackTintColor="#898A8D"
-                thumbTintColor="#898A8D"
+                thumbTintColor={primario}
               />
               <Text>Musica</Text>
               <Slider
                 style={{ width: 200, height: 40 }}
                 minimumValue={0}
                 maximumValue={100}
-                minimumTrackTintColor="#898A8D"
+                minimumTrackTintColor={primario}
                 maximumTrackTintColor="#898A8D"
-                thumbTintColor="#898A8D"
+                thumbTintColor={primario}
               />
             </View>
           </View>
@@ -62,7 +63,6 @@ const Settings = ({ setModalSetActive }) => {
 
 export default Settings;
 const styles = StyleSheet.create({
-  capo: { backgroundColor: "#4C4C4EC4" },
   container: {
     display: "flex",
     // alignItems: "center",
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingBottom: 0,
-    top: 50,
+    top: 90,
     borderWidth: 1.3,
     borderColor: "black",
     height: "100%",
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginBottom: 40,
     alignItems: "center",
+    fontWeight: "900",
   },
   title: {
     fontSize: 20,
@@ -103,6 +104,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    // marginBottom: 20,
+    marginBottom: 50,
   },
 });

@@ -1,126 +1,197 @@
-import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import PrimaryButton from "../components/PrimaryButton";
 import {
   Text,
   TextInput,
   View,
   StyleSheet,
   TouchableOpacity,
-  Modal,
+  Image,
 } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import {
+  error,
+  focus,
+  fondo,
+  fondo2,
+  primario,
+  secundario,
+  terciario,
+  texto1,
+} from "../../config/constants";
+import x from "../assets/x.png";
 import { loginUser } from "../../redux/actions/authActions";
 
-const LogIn = () => {
-  const navigation = useNavigation();
+const Login = ({ setModalLoginVisible }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [modalRecoverPassVisible, setModalRecoverPassVisible] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused2, setIsFocused2] = useState(false);
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({
+    username: "",
+    password: "",
+  });
 
+  const navigation = useNavigation();
   const dispatch = useDispatch();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loginUser({ username, password }));
-    // AGREGAR COMPROBACIÓN DE LOGIN EXITOSO
-    navigation.navigate("Onboarding1");
+  const handleSubmit = async (e) => {
+    if (username === "") {
+      setErrorMessage.username("Por favor ingrese su email");
+    }
+    if (password === "") {
+      setErrorMessage.password("Por favor ingrese una contraseña");
+    }
+    if (!toggleCheckBox) {
+      setErrorMessage.checkbox = "Debe aceptar los términos y condiciones";
+    }
+    const success = await dispatch(loginUser({ username, password }));
+    if (success.type === "LOGIN_USER_SUCCESS")
+      navigation.navigate("Onboarding1");
   };
   return (
-    <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalRecoverPassVisible}
-        onRequestClose={() => {
-          // Alert.alert("Login Modal has been closed.");
-          setModalRecoverPassVisible(!modalRecoverPassVisible);
-        }}
-      >
-        <View style={styles.container}>
-          <Text style={styles.Text}>Recupera tu contraseña</Text>
+    <View style={styles.capo}>
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => setModalLoginVisible(false)}
+          style={{ alignSelf: "flex-end" }}
+        >
+          <Image source={x} />
+        </TouchableOpacity>
+        <Text style={styles.title}>Bienvenido!</Text>
+        <View style={styles.inputView}>
+          <Text style={styles.placeholder}>Email</Text>
 
-          <Text style={styles.Text}>
-            Para continuar necesitamos que ingreses el e-mail con el que te
-            registraste. Al finalizar, te enviaremos un mail para que puedas
-            crear una nueva contraseña.
-          </Text>
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.inputText}
-              placeholder="Email..."
-              placeholderTextColor="#003f5c"
-              onChangeText={(text) => setUsername({ username: text })}
-            />
-          </View>
-
-          <PrimaryButton text="CONTINUAR" />
-
-          <PrimaryButton
-            text="VOLVER"
-            handler={() => {
-              // navigation.navigate("LogIn");
-            }}
+          <TextInput
+            style={[
+              styles.inputText,
+              { backgroundColor: isFocused ? focus : fondo },
+              { color: isFocused ? texto1 : texto1 },
+            ]}
+            value={username}
+            onChangeText={(text) => setUsername(text)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
+          {errorMessage.username && (
+            <Text style={styles.error}>{errorMessage.username}</Text>
+          )}
         </View>
-      </Modal>
 
-      <Text style={{ alignSelf: "flex-start", marginLeft: "10%", padding: 10 }}>
-        Bienvenido
-      </Text>
+        <View style={styles.inputView}>
+          <Text style={styles.placeholder}>Password</Text>
+          <TextInput
+            secureTextEntry
+            style={[
+              styles.inputText,
+              { backgroundColor: isFocused2 ? focus : fondo },
+              { color: isFocused2 ? fondo : texto1 },
+            ]}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            onFocus={() => setIsFocused2(true)}
+            onBlur={() => setIsFocused2(false)}
+          />
 
-      <Text style={styles.logo}>Care U Pet</Text>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Email..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setUsername(text)}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          secureTextEntry
-          style={styles.inputText}
-          placeholder="Password..."
-          placeholderTextColor="#003f5c"
-          onChangeText={(text) => setPassword(text)}
-        />
-      </View>
-      <PrimaryButton text="INGRESAR" handler={(e) => handleSubmit(e)} />
-      <TouchableOpacity onPress={() => setModalRecoverPassVisible(true)}>
-        <Text style={styles.loginText}>Olvidé mi contraseña</Text>
-      </TouchableOpacity>
-      <View
-        style={{ flexDirection: "row", alignItems: "center", width: "90%" }}
-      >
-        <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
-        <View>
-          <Text style={{ width: 50, textAlign: "center" }}>o</Text>
+          {errorMessage.password && (
+            <Text style={styles.error}>{errorMessage.password}</Text>
+          )}
         </View>
-        <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
+
+        <TouchableOpacity style={styles.terms}>
+          <View style={{ flexDirection: "row", gap: 6 }}>
+            <Text style={{ color: "#2C74F6" }}>Olvidé mi contraseña</Text>
+          </View>
+        </TouchableOpacity>
+        <PrimaryButton text="INGRESAR" handler={(e) => handleSubmit(e)} />
+
+        <View
+          style={{ flexDirection: "row", alignItems: "center", width: "80%" }}
+        >
+          <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
+          <View>
+            <Text style={{ width: 50, textAlign: "center" }}>o</Text>
+          </View>
+          <View style={{ flex: 1, height: 1, backgroundColor: "black" }} />
+        </View>
+        <TouchableOpacity style={styles.btn3}>
+          <Image
+            source={require("../components/assets/google.png")}
+            style={styles.img}
+          />
+          <View style={styles.txtbtn}>
+            <Text>Continuar con Google</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btn3}>
+          <Image
+            source={require("../components/assets/facebook.png")}
+            style={styles.img}
+          />
+          <View style={styles.txtbtn}>
+            <Text>Continuar con Facebook</Text>
+          </View>
+        </TouchableOpacity>
       </View>
-      <PrimaryButton
-        text="Continuar con Google"
-        handler={() => {
-          // navigation.navigate("LogIn");
-        }}
-      />
-      <PrimaryButton
-        text="Continuar con Facebook"
-        handler={() => {
-          // navigation.navigate("LogIn");
-        }}
-      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  capo: { backgroundColor: "transparent" },
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "white",
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    paddingBottom: 0,
+    top: 200,
+    borderWidth: 1.3,
+    borderColor: "black",
+    height: "100%",
+    padding: 20,
+  },
+  title: {
+    alignSelf: "flex-start",
+    padding: 10,
+    fontWeight: "600",
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  inputContainer: {
+    width: "100%",
+  },
+  inputView: {
+    width: "100%",
+    height: 50,
+    marginBottom: 20,
+  },
+  inputText: {
+    height: 50,
+    paddingLeft: 10,
+    borderColor: texto1,
+    borderWidth: 1,
+    fontWeight: "600",
+  },
+  placeholder: {
+    backgroundColor: fondo,
+    position: "absolute",
+    top: -10,
+    left: 10,
+    paddingHorizontal: 4,
+    textAlign: "center",
+    fontSize: 12,
+    fontWeight: "400",
+    zIndex: 10,
+    borderRadius: 5,
+  },
+  error: {
+    width: "100%",
+    color: error,
+    textAlign: "right",
+    top: -20,
   },
   logo: {
     fontWeight: "bold",
@@ -128,23 +199,16 @@ const styles = StyleSheet.create({
     color: "#fb5b5a",
     marginBottom: 40,
   },
-  inputView: {
-    width: "80%",
-    backgroundColor: "#a8a",
-    borderRadius: 25,
-    height: 50,
-    marginBottom: 20,
-    justifyContent: "center",
-    padding: 20,
+  terms: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 15,
+    paddingBottom: 4,
   },
-  inputText: {
-    height: 50,
-    color: "white",
-  },
+
   loginBtn: {
     width: "90%",
     backgroundColor: "#fb5b5a",
-    // borderRadius: 25,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
@@ -154,17 +218,25 @@ const styles = StyleSheet.create({
   loginText: {
     color: "black",
   },
-  button: {
-    // display: "flex",
-
-    backgroundColor: "#A8A8A8",
-    width: 283,
+  btn3: {
+    display: "flex",
+    flexDirection: "row",
+    width: "95%",
     height: 40,
     alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 4,
+    borderRadius: 60,
     margin: 10,
+    borderWidth: 1,
+  },
+  img: {
+    marginHorizontal: 15,
+  },
+  txtbtn: {
+    display: "flex",
+    alignItems: "center",
+    width: "72%",
+    textAlign: "center",
   },
 });
 
-export default LogIn;
+export default Login;
