@@ -35,7 +35,7 @@ const Home = () => {
 
   let imagenSeleccionada = null;
 if (imagenSeleccionada1) {
-  imagenSeleccionada = require('../assets/gato_normal.png');
+  imagenSeleccionada = require('../assets/cat_rest.gif');
 } else if (imagenSeleccionada2) {
   imagenSeleccionada = require('../assets/perro.png');
 } else {

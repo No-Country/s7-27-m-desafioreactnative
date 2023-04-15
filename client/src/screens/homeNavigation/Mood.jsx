@@ -78,7 +78,7 @@ const Mood = ({nombre}) => {
     navigation.navigate("Home", {
       imagenOpcional: isSleeping
         ? require("../assets/gatodurmiendo.png")
-        : require("../assets/gato_rest.gif"),nombre: nombre
+        : require("../assets/cat_rest.gif"),nombre: nombre
     });
   };
 
@@ -89,7 +89,7 @@ const Mood = ({nombre}) => {
     navigation.navigate("Home", {
       imagenOpcional: isEating
         ? require("../assets/gato_hamburguesa.png")
-        : require("../assets/gato_rest.gif"), nombre: nombre
+        : require("../assets/cat_rest.gif"), nombre: nombre
     });
   };
 
@@ -108,7 +108,7 @@ const Mood = ({nombre}) => {
     navigation.navigate("Home", {
       imagenOpcional: isBathing
         ? require("../assets/gato_bano.png")
-        : require("../assets/gato_rest.gif"),nombre: nombre
+        : require("../assets/cat_rest.gif"),nombre: nombre
     });
   };
 
