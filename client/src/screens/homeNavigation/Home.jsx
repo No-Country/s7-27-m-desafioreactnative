@@ -17,7 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 const Home = () => {
   const navigation=useNavigation();
   const route = useRoute();
-  const { nombre, imagenSeleccionada1, imagenSeleccionada2, imagenOpcional, isNight, salud} = route.params;
+  const { nombre, imagenSeleccionada1, imagenSeleccionada2, imagenOpcional, isNight, fondo} = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
   let imagenSeleccionada = null;
 if (imagenSeleccionada1) {
@@ -29,7 +29,7 @@ if (imagenSeleccionada1) {
 }
 const handleOpacity = () => {
   console.log(isNight);
-  return isNight && { opacity: 0.5, backgroundColor: 'blue' };
+  return isNight && { opacity: 0.48, backgroundColor: 'mediumblue' };
 };
 const cantidad = 100;
 const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tiene que dividir para que se muestre bien la barra
@@ -114,7 +114,7 @@ const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tie
 
         </View>
         <Image source={imagenSeleccionada}
-            style={{ width: 250, height: 305, bottom: '-30%', left: '18%', aspectRatio: 0.8 }}
+            style={{ width: 260, height: 305, bottom: '-30%', left: '18%', aspectRatio: 0.84 }}
             />
       </View>
 
