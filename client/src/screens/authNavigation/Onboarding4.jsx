@@ -10,9 +10,9 @@ const Onboarding4 = () => {
 
   let imagenSeleccionada = null;
 if (imagenSeleccionada1) {
-  imagenSeleccionada = require('../assets/choosen1.png');
+  imagenSeleccionada = require('../assets/choosen1.gif');
 } else if (imagenSeleccionada2) {
-  imagenSeleccionada = imagenSeleccionada2;
+  imagenSeleccionada = require('../assets/choosen2.gif');
 }
 const handlePress = () => navigation.navigate("Home", { nombre,imagenSeleccionada1,imagenSeleccionada2 });
   return (
@@ -23,7 +23,7 @@ const handlePress = () => navigation.navigate("Home", { nombre,imagenSeleccionad
         </Text>
         <View style={{ alignItems: 'center', justifyContent: 'center', position: 'relative',width:360, height: 360}}>
             <Image source={imagenSeleccionada}
-            style={{width:360, height: 360, position: 'absolute'}}
+            style={{width:360, height: 380, position: 'absolute'}}
             />
         </View>
         <View style={styles.caja_descripcion}>
