@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Circulo from "./Circulo";
 import { PetAction, petPlay } from "../../redux/actions/petActions";
 
-const Mood = ({ nombre, fondo_mascota }) => {
+const Mood = ({ nombre, }) => {
   const [edad, setEdad] = useState(1); // nivel de edad inicial
   const [sueno, setSueno] = useState(50); // nivel de sueño inicial
   const [energia, setEnergia] = useState(50); // nivel de hambre inicial
@@ -16,6 +16,7 @@ const Mood = ({ nombre, fondo_mascota }) => {
   const [isSleeping, setIsSleeping] = useState(true); // esta durmiendo
   const [isEating, setisEating] = useState(true); // esta comiendo
   const [isBathing, setisBathing] = useState(true); // esta banandose
+  const [isHealing, setisHealing] = useState(true); // esta curandose
   const [coins, setCoins] = useState(1000);
  
   useEffect(() => {
@@ -107,7 +108,7 @@ const Mood = ({ nombre, fondo_mascota }) => {
         imagenOpcional: require("../assets/cat_rest.gif"),
         nombre: nombre,
       });
-    }, 2000);
+    }, 1500);
   };
 
   const jugar = () => {
@@ -140,13 +141,26 @@ const Mood = ({ nombre, fondo_mascota }) => {
   const curar = () => {
     setSalud(() => Math.min(salud + 10, 100));
     dispatch(PetAction(pet?._id, { salud }));
+
+    setisHealing(() => !isHealing);
+    navigation.navigate("Home", {
+      imagenOpcional: isHealing
+        ? require("../assets/cat_sick2.gif")
+        : require("../assets/cat_rest.gif"),
+      nombre: nombre,
+    });
+    setTimeout(() => {
+      setisHealing(() => true);
+      navigation.navigate("Home", {
+        imagenOpcional: require("../assets/cat_rest.gif"),
+        nombre: nombre,
+      });
+    }, 2000);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.levels}>
-
-
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
             <Circulo porcentaje={energia} />
@@ -226,7 +240,6 @@ const Mood = ({ nombre, fondo_mascota }) => {
               </View>
             </TouchableOpacity>
           </View>
-          {/* <Text style={styles.level}>{felicidad}</Text> */}
         </View>
 
 
