@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Circulo from "./Circulo";
 import { PetAction, petPlay } from "../../redux/actions/petActions";
 
-
-const Mood = ({nombre}) => {
+const Mood = ({ nombre }) => {
   const [edad, setEdad] = useState(1); // nivel de edad inicial
   const [sueno, setSueno] = useState(50); // nivel de sueño inicial
   const [energia, setEnergia] = useState(50); // nivel de hambre inicial
@@ -18,7 +17,6 @@ const Mood = ({nombre}) => {
   const [isEating, setisEating] = useState(true); // esta comiendo
   const [isBathing, setisBathing] = useState(true); // esta banandose
   const [coins, setCoins] = useState(1000);
-  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,7 +66,6 @@ const Mood = ({nombre}) => {
   const dispatch = useDispatch();
 
   const navigation = useNavigation();
- 
 
   const dormir = () => {
     setIsSleeping((prevIsSleeping) => !prevIsSleeping);
@@ -78,60 +75,62 @@ const Mood = ({nombre}) => {
     navigation.navigate("Home", {
       imagenOpcional: isSleeping
         ? require("../assets/cat_sleep.gif")
-        : require("../assets/cat_rest.gif"), nombre: nombre
+        : require("../assets/cat_rest.gif"),
+      nombre: nombre,
     });
 
-      // establecer un temporizador de 2 segundos antes de realizar la segunda navegación
-  setTimeout(() => {
-    setIsSleeping(() => true);
-    navigation.navigate("Home", {
-      imagenOpcional: require("../assets/cat_rest.gif"),
-      nombre: nombre
-    });
-  }, 2000);
-
+    // establecer un temporizador de 2 segundos antes de realizar la segunda navegación
+    setTimeout(() => {
+      setIsSleeping(() => true);
+      navigation.navigate("Home", {
+        imagenOpcional: require("../assets/cat_rest.gif"),
+        nombre: nombre,
+      });
+    }, 2000);
   };
 
   const alimentar = () => {
     setEnergia(() => Math.min(energia + 10, 100));
     dispatch(PetAction(pet?._id, { energia }));
-    setisEating(() => !isEating)
+    setisEating(() => !isEating);
     navigation.navigate("Home", {
       imagenOpcional: isEating
         ? require("../assets/cat_eat.gif")
-        : require("../assets/cat_rest.gif"), nombre: nombre
+        : require("../assets/cat_rest.gif"),
+      nombre: nombre,
     });
     setTimeout(() => {
       setisEating(() => true);
       navigation.navigate("Home", {
         imagenOpcional: require("../assets/cat_rest.gif"),
-        nombre: nombre
+        nombre: nombre,
       });
     }, 2000);
   };
 
   const jugar = () => {
     setFelicidad(() => Math.min(felicidad + 10, 100));
-    dispatch(PetAction(pet?._id, { felicidad }));
+    // dispatch(PetAction(pet?._id, { felicidad }));
     setCoins(coins + 300);
-    dispatch(petPlay(pet?._id, { coins }));
-    // navigation.navigate('Home', { coin: coins });
+    // dispatch(petPlay(pet?._id, { coins }));
+    navigation.navigate("Play",  coins= coins, setCoins= setCoins );
   };
 
   const lavar = () => {
     setHigiene(() => Math.min(higiene + 10, 100));
     dispatch(PetAction(pet?._id, { higiene }));
-    setisBathing(() => !isBathing)
+    setisBathing(() => !isBathing);
     navigation.navigate("Home", {
       imagenOpcional: isBathing
         ? require("../assets/cat_bath.gif")
-        : require("../assets/cat_rest.gif"),nombre: nombre
+        : require("../assets/cat_rest.gif"),
+      nombre: nombre,
     });
     setTimeout(() => {
       setisBathing(() => true);
       navigation.navigate("Home", {
         imagenOpcional: require("../assets/cat_rest.gif"),
-        nombre: nombre
+        nombre: nombre,
       });
     }, 2000);
   };
@@ -146,10 +145,16 @@ const Mood = ({nombre}) => {
       <View style={styles.levels}>
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
-            <Circulo porcentaje={sueno}/>
-            <TouchableOpacity  style={styles.buttonAction} onPress={dormir}>
+            <Circulo porcentaje={sueno} />
+            <TouchableOpacity style={styles.buttonAction} onPress={dormir}>
               <View>
-                <Image  source={isSleeping ? require("../../../assets/dormir.png"): require("../../../assets/despertar.png") } />
+                <Image
+                  source={
+                    isSleeping
+                      ? require("../../../assets/dormir.png")
+                      : require("../../../assets/despertar.png")
+                  }
+                />
               </View>
             </TouchableOpacity>
           </View>
@@ -158,10 +163,17 @@ const Mood = ({nombre}) => {
 
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
-          <Circulo porcentaje={energia}/>
+            <Circulo porcentaje={energia} />
             <TouchableOpacity style={styles.buttonAction} onPress={alimentar}>
               <View>
-                <Image style={{width: 30, height: 25}} source={isEating ? require("../../../assets/eat.png"): require("../../../assets/eat.png")} />
+                <Image
+                  style={{ width: 30, height: 25 }}
+                  source={
+                    isEating
+                      ? require("../../../assets/eat.png")
+                      : require("../../../assets/eat.png")
+                  }
+                />
               </View>
             </TouchableOpacity>
           </View>
@@ -170,10 +182,13 @@ const Mood = ({nombre}) => {
 
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
-          <Circulo porcentaje={felicidad}/>
+            <Circulo porcentaje={felicidad} />
             <TouchableOpacity style={styles.buttonAction} onPress={jugar}>
               <View>
-                <Image style={{width: 30, height: 28}}  source={require("../../../assets/joystick.png")} />
+                <Image
+                  style={{ width: 30, height: 28 }}
+                  source={require("../../../assets/joystick.png")}
+                />
               </View>
             </TouchableOpacity>
           </View>
@@ -182,10 +197,17 @@ const Mood = ({nombre}) => {
 
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
-          <Circulo porcentaje={higiene}/>
+            <Circulo porcentaje={higiene} />
             <TouchableOpacity style={styles.buttonAction} onPress={lavar}>
               <View>
-                <Image  style={{width: 30, height: 28}}  source={isBathing ?  require("../../../assets/soap.png") : require("../../../assets/soap.png")} />
+                <Image
+                  style={{ width: 30, height: 28 }}
+                  source={
+                    isBathing
+                      ? require("../../../assets/soap.png")
+                      : require("../../../assets/soap.png")
+                  }
+                />
               </View>
             </TouchableOpacity>
           </View>
@@ -194,10 +216,13 @@ const Mood = ({nombre}) => {
 
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
-          <Circulo porcentaje={salud}/>
+            <Circulo porcentaje={salud} />
             <TouchableOpacity style={styles.buttonAction} onPress={curar}>
               <View>
-                <Image style={{width: 30, height: 28}}  source={require("../../../assets/heal.png")} />
+                <Image
+                  style={{ width: 30, height: 28 }}
+                  source={require("../../../assets/heal.png")}
+                />
               </View>
             </TouchableOpacity>
           </View>
@@ -226,7 +251,7 @@ const styles = StyleSheet.create({
   bar: {
     width: 65,
     height: 65,
-   marginHorizontal: 5,
+    marginHorizontal: 5,
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
