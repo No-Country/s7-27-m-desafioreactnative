@@ -77,6 +77,7 @@ const Mood = ({ nombre }) => {
         ? require("../assets/cat_sleep.gif")
         : require("../assets/cat_rest.gif"),
       nombre: nombre,
+      isNight: isSleeping
     });
 
     // establecer un temporizador de 2 segundos antes de realizar la segunda navegación
@@ -85,6 +86,7 @@ const Mood = ({ nombre }) => {
       navigation.navigate("Home", {
         imagenOpcional: require("../assets/cat_rest.gif"),
         nombre: nombre,
+        isNight: false
       });
     }, 2000);
   };
