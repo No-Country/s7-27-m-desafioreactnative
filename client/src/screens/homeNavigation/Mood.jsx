@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Circulo from "./Circulo";
 import { PetAction, petPlay } from "../../redux/actions/petActions";
 
-const Mood = ({ nombre }) => {
+const Mood = ({ nombre, fondo_mascota }) => {
   const [edad, setEdad] = useState(1); // nivel de edad inicial
   const [sueno, setSueno] = useState(50); // nivel de sueño inicial
   const [energia, setEnergia] = useState(50); // nivel de hambre inicial
@@ -17,7 +17,7 @@ const Mood = ({ nombre }) => {
   const [isEating, setisEating] = useState(true); // esta comiendo
   const [isBathing, setisBathing] = useState(true); // esta banandose
   const [coins, setCoins] = useState(1000);
-
+ 
   useEffect(() => {
     const interval = setInterval(() => {
       setSueno((sueno) => {
@@ -145,23 +145,7 @@ const Mood = ({ nombre }) => {
   return (
     <View style={styles.container}>
       <View style={styles.levels}>
-        <View style={styles.containerBar}>
-          <View style={[styles.bar]}>
-            <Circulo porcentaje={sueno} />
-            <TouchableOpacity style={styles.buttonAction} onPress={dormir}>
-              <View>
-                <Image
-                  source={
-                    isSleeping
-                      ? require("../../../assets/dormir.png")
-                      : require("../../../assets/despertar.png")
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
-          {/* <Text style={styles.level}>{sueno}</Text> */}
-        </View>
+
 
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
@@ -181,22 +165,6 @@ const Mood = ({ nombre }) => {
           </View>
           {/* <Text style={styles.level}>{energia}</Text> */}
         </View>
-
-        <View style={styles.containerBar}>
-          <View style={[styles.bar]}>
-            <Circulo porcentaje={felicidad} />
-            <TouchableOpacity style={styles.buttonAction} onPress={jugar}>
-              <View>
-                <Image
-                  style={{ width: 30, height: 28 }}
-                  source={require("../../../assets/joystick.png")}
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
-          {/* <Text style={styles.level}>{felicidad}</Text> */}
-        </View>
-
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
             <Circulo porcentaje={higiene} />
@@ -215,7 +183,23 @@ const Mood = ({ nombre }) => {
           </View>
           {/* <Text style={styles.level}>{higiene}</Text> */}
         </View>
-
+        <View style={styles.containerBar}>
+          <View style={[styles.bar]}>
+            <Circulo porcentaje={sueno} />
+            <TouchableOpacity style={styles.buttonAction} onPress={dormir}>
+              <View>
+                <Image
+                  source={
+                    isSleeping
+                      ? require("../../../assets/dormir.png")
+                      : require("../../../assets/despertar.png")
+                  }
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
             <Circulo porcentaje={salud} />
@@ -230,6 +214,23 @@ const Mood = ({ nombre }) => {
           </View>
           {/* <Text style={styles.level}>{salud}</Text> */}
         </View>
+        <View style={styles.containerBar}>
+          <View style={[styles.bar]}>
+            <Circulo porcentaje={felicidad} />
+            <TouchableOpacity style={styles.buttonAction} onPress={jugar}>
+              <View>
+                <Image
+                  style={{ width: 30, height: 28 }}
+                  source={require("../../../assets/joystick.png")}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+          {/* <Text style={styles.level}>{felicidad}</Text> */}
+        </View>
+
+
+
       </View>
     </View>
   );
