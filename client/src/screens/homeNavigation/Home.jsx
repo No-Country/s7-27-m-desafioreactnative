@@ -11,13 +11,13 @@ import { useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import Settings from "../components/Settings";
 import Mood from "./Mood";
-import ProgressBar from "./Barra";
-
+import { useNavigation } from "@react-navigation/native";
 
 
 const Home = () => {
+  const navigation=useNavigation();
   const route = useRoute();
-  const { nombre, imagenSeleccionada1, imagenSeleccionada2, imagenOpcional} = route.params;
+  const { nombre, imagenSeleccionada1, imagenSeleccionada2, imagenOpcional, isNight} = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
   let imagenSeleccionada = null;
 if (imagenSeleccionada1) {
@@ -27,6 +27,10 @@ if (imagenSeleccionada1) {
 } else {
   imagenSeleccionada = imagenOpcional
 }
+const handleOpacity = () => {
+  console.log(isNight);
+  return isNight && { opacity: 0.5, backgroundColor: 'blue' };
+};
 const cantidad = 100;
 const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tiene que dividir para que se muestre bien la barra
 // solo se ve exacto con el 100 con los demas numeros no pero que mas da xd
@@ -90,17 +94,14 @@ const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tie
           </View>
         </View>
         {/* Personaje */}
-        <View style={styles.containerscroll}>
+        <View style={[styles.containerscroll,handleOpacity() ]}>
         <ScrollView
         horizontal={true}
         pagingEnabled={true}
         maximumZoomScale={2}
         minimumZoomScale={1}
       >
-      <Image
-          style={styles.image}
-          source={require('./fondo1.png')}
-      />
+      <Image style={styles.image} source={require("./fondo1.png")}/>
         </ScrollView>
 
         </View>
@@ -113,36 +114,6 @@ const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tie
       <View style={styles.containerEnd}>
         <View style={styles.containerActions}>
           <Mood nombre={nombre} imagenSeleccionada={imagenSeleccionada} />
-
-         
-          {/* <TouchableOpacity style={styles.buttonAction}>
-            <View>
-              <Image source={require("./comer.png")} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonAction}>
-            <View>
-              <Image source={require("./bañar.png")} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonAction}>
-            <View>
-              <Image source={require("./curar.png")} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonAction}>
-            <View>
-              <Image source={require("./dormir.png")} />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonAction}
-            onPress={() => navigation.navigate("Play")}
-          >
-            <View>
-              <Image source={require("./jugar.png")} />
-            </View>
-          </TouchableOpacity> */}
         </View>
       </View>
 
