@@ -6,7 +6,7 @@ import * as Animatable from "react-native-animatable";
 import { terciario } from "../../config/constants";
 import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import kokoro from "../assets/logokokoro.gif";
+import kokoro from "../assets/gif.gif";
 
 const Loading = ({ destino = "Start" }) => {
   const navigation = useNavigation();
