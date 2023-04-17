@@ -19,9 +19,9 @@ const AuthNavigation = ({ navigation }) => {
   return (
     <Stack.Navigator
       // initialRouteName="Loading"
-      // screenOptions={{
-      //   headerShown: false,
-      // }}
+      screenOptions={{
+        headerShown: false,
+      }}
     >
       {/* <Stack.Screen name="Loading" component={Loading} />
       <Stack.Screen name="Start" component={Start} />

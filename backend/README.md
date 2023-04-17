@@ -142,3 +142,22 @@ body:
   "accesorios": ["cuadro1"] // Array con los id's del o de los accesorios ganados
 }
 ```
+
+## /usuario
+
+### METHOD GET
+
+uso: obtiene los datos del usuario logeado
+
+### METHOD POST
+
+uso: modificar el dinero del usuario logeado
+
+body:
+
+```json
+{
+  "cantidad": 10, // numero entero (sino se redondea con math.round())
+  "tipo": "sumar / restar" // sumar o restar segun la intencion
+}
+```
