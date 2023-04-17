@@ -18,7 +18,7 @@ const Mood = ({ nombre, }) => {
   const [isBathing, setisBathing] = useState(true); // esta banandose
   const [isHealing, setisHealing] = useState(true); // esta curandose
   const [coins, setCoins] = useState(1000);
- 
+ const [fondo, setfondo] = useState(require("./fondo1.png"))
   useEffect(() => {
     const interval = setInterval(() => {
       setSueno((sueno) => {
@@ -78,7 +78,11 @@ const Mood = ({ nombre, }) => {
         ? require("../assets/cat_sleep.gif")
         : require("../assets/cat_rest.gif"),
       nombre: nombre,
-      isNight: isSleeping
+      isNight: isSleeping,
+      fondo: isSleeping
+      ? require("./fondo1B.gif")
+      : require("./fondo1.png"),
+
     });
 
     // establecer un temporizador de 2 segundos antes de realizar la segunda navegación
@@ -87,7 +91,8 @@ const Mood = ({ nombre, }) => {
       navigation.navigate("Home", {
         imagenOpcional: require("../assets/cat_rest.gif"),
         nombre: nombre,
-        isNight: false
+        isNight: false,
+        fondo: require("./fondo1.png"),
       });
     }, 2000);
   };
