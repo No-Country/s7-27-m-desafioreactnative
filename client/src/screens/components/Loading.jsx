@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import left from "../assets/negra.png";
 import center from "../assets/naranja.png";
 import right from "../assets/celeste.png";
@@ -6,20 +6,22 @@ import * as Animatable from "react-native-animatable";
 import { terciario } from "../../config/constants";
 import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import ProgressCircle from "../components/ProgressCircle";
-import { useState } from "react";
+import kokoro from "../assets/gif.gif";
 
 const Loading = ({ destino = "Start" }) => {
   const navigation = useNavigation();
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate(`${destino}`);
-    }, 3000);
+    }, 3500);
 
     return () => clearTimeout(timer);
   }, []);
   return (
     <View style={styles.container}>
+      <View style={styles.logocont}>
+        <Image source={kokoro} style={styles.logo} />
+      </View>
       <View style={styles.patas}>
         <Animatable.Image
           animation="slideInLeft"
@@ -56,6 +58,18 @@ const styles = StyleSheet.create({
     backgroundColor: terciario,
     display: "flex",
     justifyContent: "flex-end",
+  },
+  logocont: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logo: {
+    maxWidth: "50%",
+    maxHeight: "50%",
+    position: "absolute",
+    top: -280,
   },
   patas: {
     display: "flex",

@@ -11,6 +11,9 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import Settings from "../components/Settings";
 import Mood from "./Mood";
+import ProgressBar from "./Barra";
+
+
 
 const Home = () => {
   const route = useRoute();
@@ -22,7 +25,7 @@ const Home = () => {
     isNight,
   } = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   // const [datoActualizado, setDatoActualizado] = useState(coin);
 
@@ -35,20 +38,19 @@ const Home = () => {
   //   return () => clearInterval(intervalo);
   // }, [datoActualizado]);
 
+
+
   let imagenSeleccionada = null;
-  if (imagenSeleccionada1) {
-    imagenSeleccionada = require("../assets/gato_normal.png");
-  } else if (imagenSeleccionada2) {
-    imagenSeleccionada = require("../assets/perro.png");
-  } else {
-    imagenSeleccionada = imagenOpcional;
-  }
-
-  const handleOpacity = () => {
-    console.log(isNight);
-    return isNight && { opacity: 0.5, backgroundColor: "black" };
-  };
-
+if (imagenSeleccionada1) {
+  imagenSeleccionada = require('../assets/cat_rest.gif');
+} else if (imagenSeleccionada2) {
+  imagenSeleccionada = require('../assets/perro.png');
+} else {
+  imagenSeleccionada = imagenOpcional
+}
+const cantidad = 100;
+const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tiene que dividir para que se muestre bien la barra
+// solo se ve exacto con el 100 con los demas numeros no pero que mas da xd
   return (
     <View style={styles.containerPrincipal}>
       {/* Inicio */}
@@ -79,7 +81,7 @@ const Home = () => {
                 style={{ zIndex: 100 }}
               />
               <View style={styles.carga}></View>
-              <View style={styles.carga2}></View>
+              <View style={[styles.carga2, { width: `${cargas}%` }]}></View>
             </View>
             <View style={styles.level1}>
               <Image
@@ -132,10 +134,9 @@ const Home = () => {
             <Image style={styles.image} source={require("./fondo1.png")} />
           </ScrollView>
         </View>
-        <Image
-          source={imagenSeleccionada}
-          style={{ width: 250, height: 305, bottom: "-30%", left: "18%" }}
-        />
+        <Image source={imagenSeleccionada}
+            style={{ width: 250, height: 305, bottom: '-30%', left: '18%'}}
+            />
       </View>
       {/* </View> */}
 
@@ -256,10 +257,11 @@ const styles = StyleSheet.create({
   },
   carga2: {
     backgroundColor: "#F5AFB4",
-    width: 110,
     height: 24.5,
     top: 7,
-    right: 150,
+    right: 130,
+    borderTopRightRadius: 50,
+    borderBottomRightRadius: 50,
   },
   carga3: {
     backgroundColor: "#fff",
@@ -311,6 +313,9 @@ const styles = StyleSheet.create({
   containerEnd: {
     backgroundColor: "#F5AFB4",
     height: 70,
+    width: '100%',
+    position: 'absolute',
+    top: '91%',
     width: "100%",
     position: "absolute",
     top: "91%",

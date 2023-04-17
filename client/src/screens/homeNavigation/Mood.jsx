@@ -13,9 +13,9 @@ const Mood = ({ nombre }) => {
   const [salud, setSalud] = useState(50); // nivel de salud inicial
   const [felicidad, setFelicidad] = useState(50); // nivel de felicidad inicial
   const [higiene, setHigiene] = useState(50); // nivel de higiene inicial
-  const [isSleeping, setIsSleeping] = useState(false); // esta durmiendo
-  const [isEating, setisEating] = useState(false); // esta comiendo
-  const [isBathing, setisBathing] = useState(false); // esta banandose
+  const [isSleeping, setIsSleeping] = useState(true); // esta durmiendo
+  const [isEating, setisEating] = useState(true); // esta comiendo
+  const [isBathing, setisBathing] = useState(true); // esta banandose
   const [coins, setCoins] = useState(1000);
 
   useEffect(() => {
@@ -68,17 +68,25 @@ const Mood = ({ nombre }) => {
   const navigation = useNavigation();
 
   const dormir = () => {
-    setIsSleeping(() => !isSleeping);
+    setIsSleeping((prevIsSleeping) => !prevIsSleeping);
     setSueno(() => Math.min(sueno + 10, 100));
     dispatch(PetAction(pet?._id, { sueno }));
-
+    // setIsSleeping(() => !isSleeping)
     navigation.navigate("Home", {
       imagenOpcional: isSleeping
         ? require("../assets/cat_sleep.gif")
-        : require("../assets/gato_rest.gif"),
+        : require("../assets/cat_rest.gif"),
       nombre: nombre,
-      isNight: isSleeping,
     });
+
+    // establecer un temporizador de 2 segundos antes de realizar la segunda navegación
+    setTimeout(() => {
+      setIsSleeping(() => true);
+      navigation.navigate("Home", {
+        imagenOpcional: require("../assets/cat_rest.gif"),
+        nombre: nombre,
+      });
+    }, 2000);
   };
 
   const alimentar = () => {
@@ -87,18 +95,25 @@ const Mood = ({ nombre }) => {
     setisEating(() => !isEating);
     navigation.navigate("Home", {
       imagenOpcional: isEating
-        ? require("../assets/gato_hamburguesa.png")
-        : require("../assets/gato_rest.gif"),
+        ? require("../assets/cat_eat.gif")
+        : require("../assets/cat_rest.gif"),
       nombre: nombre,
     });
+    setTimeout(() => {
+      setisEating(() => true);
+      navigation.navigate("Home", {
+        imagenOpcional: require("../assets/cat_rest.gif"),
+        nombre: nombre,
+      });
+    }, 2000);
   };
 
   const jugar = () => {
     setFelicidad(() => Math.min(felicidad + 10, 100));
-    dispatch(PetAction(pet?._id, { felicidad }));
+    // dispatch(PetAction(pet?._id, { felicidad }));
     setCoins(coins + 300);
-    dispatch(petPlay(pet?._id, { coins }));
-    // navigation.navigate('Home', { coin: coins });
+    // dispatch(petPlay(pet?._id, { coins }));
+    navigation.navigate("Play",  coins= coins, setCoins= setCoins );
   };
 
   const lavar = () => {
@@ -107,10 +122,17 @@ const Mood = ({ nombre }) => {
     setisBathing(() => !isBathing);
     navigation.navigate("Home", {
       imagenOpcional: isBathing
-        ? require("../assets/gato_bano.png")
-        : require("../assets/gato_rest.gif"),
+        ? require("../assets/cat_bath.gif")
+        : require("../assets/cat_rest.gif"),
       nombre: nombre,
     });
+    setTimeout(() => {
+      setisBathing(() => true);
+      navigation.navigate("Home", {
+        imagenOpcional: require("../assets/cat_rest.gif"),
+        nombre: nombre,
+      });
+    }, 2000);
   };
 
   const curar = () => {
