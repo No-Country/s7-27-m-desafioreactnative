@@ -11,3 +11,30 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 
 ¡Descubre la felicidad de cuidar a tu propia mascota virtual con Pawisitive!
 <p>
+
+<h4>Colaboradores</h4>
+<p>Esta aplicacion esta desarrolada por el grupo <span>s7-27-m-desafioreactnative</span> de No Country</p>
+
+<h4>Deployment</h4>
+
+## _Integrantes del equipo:_
+* ##### [Celeste Diaz - Desarrolladora UX/UI](https://www.linkedin.com/in/) #####
+* ##### [Leandro Pereyra - Desarrollador Front End](https://www.linkedin.com/in/leandro-pereyra/) #####
+* ##### [Antonella Bonaglia - Desarrolladora UX/UI](https://www.linkedin.com/in/) #####
+* ##### [Orlando Flores Diaz - Desarrollador Front End](https://www.linkedin.com/in/) #####
+* ##### [Ray Cardenas - Desarrollador Front End](https://www.linkedin.com/in/) #####
+* ##### [Tomás Villagra - Desarrollador Front End](https://www.linkedin.com/in/) #####
+* ##### [Juan Cruz Musso - Desarrollador Back End](https://www.linkedin.com/in/) #####
+
+## Tecnologias:
+### _Front_
+* ##### JavaScript #####
+* ##### React Native #####
+* ##### React Navigation #####
+* ##### Redux #####
+* ##### Expo #####
+
+### Back_
+* ##### Node.js #####
+* ##### Express #####
+* ##### MongoDb #####
