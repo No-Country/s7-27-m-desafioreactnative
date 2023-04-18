@@ -12,12 +12,17 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 ¡Descubre la felicidad de cuidar a tu propia mascota virtual con Pawisitive!
 <p>
 
+
+<p>Esta aplicacion esta desarrollada con las tecnologias React native para su uso en entornos mobile, Express y MongoDB para su servidor implementado</p>
+<h4>Deployment</h4>
+
+- [Android] - [Descargar Apk de la aplicación para Android]()
+
+- [API] - [Api deployada](https://s7-27-m-desafioreactnative-production.up.railway.app)
+
+
 <h4>Colaboradores</h4>
 <p>Esta aplicacion esta desarrolada por el grupo <span>s7-27-m-desafioreactnative</span> de No Country</p>
-
-<h4>Deployment</h4>
-- [Android] - [Descargar Apk de la aplicación para Android]()
-- [API] - [Api deployada](https://s7-27-m-desafioreactnative-production.up.railway.app)
 
 ## _Integrantes del equipo:_
 * ##### [Celeste Diaz - Desarrolladora UX/UI](https://www.linkedin.com/in/) #####
