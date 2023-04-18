@@ -4,44 +4,20 @@ import {
     AntDesign,
     Feather,
     MaterialIcons,
+    Entypo
 } from "react-native-vector-icons";
+import { useNavigation } from '@react-navigation/native';
 
-const DATA = [
-    {
-        id: '1',
-        title: 'USAR',
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: '2',
-        title: 'USAR',
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: '3',
-        title: 'USAR',
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: '4',
-        title: 'USAR',
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: '5',
-        title: 'USAR',
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-];
 
-const renderItem = ({ item }) => (
-    <View style={styles.item}>
-        <Image source={{ uri: item.imageUrl }} style={styles.image} />
-        <View style={{width:"100%", backgroundColor:"#798BB2", alignItems:"center"}}><Text style={styles.title}>{item.title}</Text></View>
-    </View>
-);
 
-function Inventario() {
+
+
+
+function Inventario(props) {
+    const navigation=useNavigation();
+    const { mascotas } = props;
+    const {fondos} = props;
+    const {objetos} = props;
     return (
 
         <>
@@ -49,32 +25,65 @@ function Inventario() {
                     <Text style={{fontWeight:600, fontSize:22}}>Objetos guardados</Text>
             </View>
             <View>
-                <Text style={styles.textoListas}>Mascotas</Text>
-                <FlatList
-                    data={DATA}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                />
-
-                <Text style={styles.textoListas}>Items personalizacion de fondo</Text>
-                <FlatList
-                    data={DATA}
-                    renderItem={renderItem}
+                <View style={styles.botonMascotas}>
+                    <Text style={styles.textoMascotas}>Mascotas</Text>
+                    <TouchableOpacity onPress={()=>navigation.navigate("SwapPet")} style={{flexDirection:"row", alignItems:"center"}}><Text style={{color:"#FFFFFF", fontSize:11,fontWeight:500}}>IR A MIS MASCOTAS</Text><Entypo name="chevron-right" size={11} style={{color:"#FFFFFF"}}/>
+                    </TouchableOpacity>
+                </View>
+                <FlatList style={{minHeight:120}}
+                    data={mascotas}
+                    renderItem ={({ item }) => (
+                        
+                            <View style={styles.item}>
+                                <Image source={item.imageUrl} style={styles.image} />
+                                <View style={{width:"100%", backgroundColor:"#798BB2", alignItems:"center"}}>
+                                    <Text style={styles.title}></Text>
+                                </View>
+                            </View>
+                        
+                    )}
                     keyExtractor={item => item.id}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                 />
 
                 <Text style={styles.textoListas}>Fondos de habitacion</Text>
-                <FlatList
-                    data={DATA}
-                    renderItem={renderItem}
+                <FlatList style={{minHeight:120}}
+                    data={fondos}
+                    renderItem ={({ item }) => (
+                        
+                            <View style={styles.item}>
+                                <Image source={item.imageUrl} style={styles.image} />
+                                <View style={{width:"100%", backgroundColor:"#798BB2", alignItems:"center"}}>
+                                    <Text style={styles.title}>USAR</Text>
+                                </View>
+                            </View>
+                        
+                    )}
                     keyExtractor={item => item.id}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                 />
+
+                
+                <Text style={styles.textoListas}>Items personalizacion de fondo</Text>
+                <FlatList style={{minHeight:120}}
+                    data={objetos}
+                    renderItem ={({ item }) => (
+                        
+                            <View style={styles.item}>
+                                <Image source={item.imageUrl} style={styles.image} />
+                                <View style={{width:"100%", backgroundColor:"#798BB2", alignItems:"center"}}>
+                                    <Text style={styles.title}>USAR</Text>
+                                </View>
+                            </View>
+                        
+                    )}
+                    keyExtractor={item => item.id}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                />
+
 
 
 
@@ -116,6 +125,25 @@ const styles = StyleSheet.create({
         fontWeight:500,
         fontSize:16,
         
+    },
+    textoMascotas: {
+        backgroundColor: '#F5AFB4',
+        color:"#FFFFFF", 
+
+        fontWeight:500,
+        fontSize:16,
+        
+    },
+    botonMascotas: {
+        flexDirection: "row",
+        justifyContent:"space-between",
+        alignItems:"center",
+        backgroundColor: '#F5AFB4',
+        color:"#FFFFFF", 
+        paddingVertical: 5,
+        paddingHorizontal:5,
+        fontWeight:500,
+        fontSize:16,
     }
 
 });
