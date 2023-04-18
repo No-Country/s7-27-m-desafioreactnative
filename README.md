@@ -30,7 +30,7 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 * ##### [Antonella Bonaglia - Desarrolladora UX/UI](https://www.linkedin.com/in/) #####
 * ##### [Orlando Flores Diaz - Desarrollador Front End](https://www.linkedin.com/in/orlando-flores365/) #####
 * ##### [Ray Cardenas - Desarrollador Front End](https://www.linkedin.com/in/) #####
-* ##### [Tomás Villagra - Desarrollador Front End](https://www.linkedin.com/in/) #####
+* ##### [Tomás Villagra - Desarrollador Front End](https://www.linkedin.com/in/tomas-villagra-381a8a24b/) #####
 * ##### [Juan Cruz Musso - Desarrollador Back End](https://www.linkedin.com/in/) #####
 
 ## Tecnologias:
