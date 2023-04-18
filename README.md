@@ -16,6 +16,8 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 <p>Esta aplicacion esta desarrolada por el grupo <span>s7-27-m-desafioreactnative</span> de No Country</p>
 
 <h4>Deployment</h4>
+- [Android] - [Descargar Apk de la aplicación para Android]()
+- [API] - [Api deployada](https://s7-27-m-desafioreactnative-production.up.railway.app)
 
 ## _Integrantes del equipo:_
 * ##### [Celeste Diaz - Desarrolladora UX/UI](https://www.linkedin.com/in/) #####
