@@ -59,9 +59,9 @@ export default function SwapPet() {
   return (
     <SafeAreaView style={styles.container}>
       {/* volver form atrás */}
-      {/* <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <AntDesign name="arrowleft" size={24} />
-      </TouchableOpacity> */}
+      </TouchableOpacity>
 
       {/* Perfil de la mascota */}
       <View style={styles.imageContainer}>

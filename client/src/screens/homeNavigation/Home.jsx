@@ -19,7 +19,6 @@ const Home = () => {
   
   const route = useRoute();
   const { nombre, imagenSeleccionada1, imagenSeleccionada2, imagenOpcional, fondo} = route.params;
-  console.log(fondo)
   const [modalSetActive, setModalSetActive] = useState(false);
   let imagenSeleccionada = null;
 if (imagenSeleccionada1) {
