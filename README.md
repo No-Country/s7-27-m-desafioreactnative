@@ -45,3 +45,8 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 * ##### Node.js #####
 * ##### Express #####
 * ##### MongoDb #####
+
+## _Requerimientos:_
+* Para clonar el proyecto basta con hacer `git clone https://github.com/No-Country/s7-27-m-desafioreactnative.git`
+* Instalar dependencias con `npm install`
+* Para correr la app necesitará tener instalado Expo Go en su móvil
