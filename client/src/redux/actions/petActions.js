@@ -13,13 +13,14 @@ import {
   PLAY_PET_SUCCESS,
   PLAY_PET_FAILURE,
 } from "../types/petTypes";
+import axios from "axios";
 
 export function getPet(id) {
   return async (dispatch) => {
     dispatch({ type: GET_PET_REQUEST });
     try {
       const { data } = await axios.get(`${URL_BACK}/mascota/${id}`);
-      dispatch({ type: GET_PET_SUCCESS, payload: data.nuevaMascota });
+      dispatch({ type: GET_PET_SUCCESS, payload: data.mascota });
     } catch (error) {
       dispatch({ type: GET_PET_FAILURE, payload: error.message });
     }
@@ -37,25 +38,12 @@ export function postPetData(payload) {
   };
 }
 
-export function PetAction(id, payload) {
-  return async (dispatch) => {
-    dispatch({ type: ACTION_PET_REQUEST });
-    try {
-      const { data } = await axios.post(`${URL_BACK}/mascota/${id}`, payload);
-      //console.log(data);
-      dispatch({ type: ACTION_PET_SUCCESS, payload: data.nuevaMascota });
-    } catch (error) {
-      dispatch({ type: ACTION_PET_FAILURE, payload: error.message });
-    }
-  };
-}
-
 export function petPlay(id, payload) {
   return async (dispatch) => {
     dispatch({ type: PLAY_PET_REQUEST });
     try {
-      const { data } = await axios.post(`${URL_BACK}/MASCOTA/${id}`, payload);
-      dispatch({ type: PLAY_PET_SUCCESS, payload: data.nuevaMascota });
+      const { data } = await axios.post(`${URL_BACK}/mascota/${id}`, payload);
+      dispatch({ type: PLAY_PET_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: PLAY_PET_FAILURE, payload: error.message });
     }
@@ -83,8 +71,6 @@ export function petPlay(id, payload) {
 //   CLEAN_PET_SUCCESS,
 //   CLEAN_PET_FAILURE,
 // } from "../types/petTypes";
-
-
 
 // export function getPet(id) {
 //   return async (dispatch) => {
@@ -133,7 +119,6 @@ export function petPlay(id, payload) {
 //   };
 // }
 
-
 // export function sleepPetAction(id, payload) {
 //   return async (dispatch) => {
 //     dispatch({ type: SLEEP_PET_REQUEST });
@@ -157,8 +142,6 @@ export function petPlay(id, payload) {
 //     }
 //   };
 // }
-
-
 
 // data:
 // {
