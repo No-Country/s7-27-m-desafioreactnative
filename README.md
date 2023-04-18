@@ -48,6 +48,6 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 
 ## Requerimientos:
 * Para clonar el proyecto basta con hacer `git clone https://github.com/No-Country/s7-27-m-desafioreactnative.git`
-* Instalar dependencias con `npm install`
+* Instalar dependencias con `npm install` dentro de la carpeta client
 * Para correr la app necesitará tener instalado [Expo Go](https://expo.dev/) en su móvil
 * Desde Expo Go escanear el código QR al hacer `npm start`
