@@ -72,6 +72,8 @@ const Mood = ({ nombre }) => {
     // dispatch(PetAction(pet?._id, { sueno }));
     // setIsSleeping(() => !isSleeping)
     navigation.navigate("Home", {
+      // isNight: isSleeping,
+      fondo: isSleeping ? require("./fondo1B.png") : require("./fondo1.png"),
       imagenOpcional: isSleeping
         ? require("../assets/cat_sleep.gif")
         : require("../assets/cat_rest.gif"),
