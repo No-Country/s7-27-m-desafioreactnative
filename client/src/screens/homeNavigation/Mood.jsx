@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Circulo from "./Circulo";
 import { PetAction, petPlay } from "../../redux/actions/petActions";
 
-const Mood = ({ nombre, }) => {
+const Mood = ({ nombre }) => {
   const [edad, setEdad] = useState(1); // nivel de edad inicial
   const [sueno, setSueno] = useState(50); // nivel de sueño inicial
   const [energia, setEnergia] = useState(50); // nivel de hambre inicial
@@ -18,7 +18,7 @@ const Mood = ({ nombre, }) => {
   const [isBathing, setisBathing] = useState(true); // esta banandose
   const [isHealing, setisHealing] = useState(true); // esta curandose
   const [coins, setCoins] = useState(1000);
- const [fondo, setfondo] = useState(require("./fondo1.png"))
+
   useEffect(() => {
     const interval = setInterval(() => {
       setSueno((sueno) => {
@@ -74,15 +74,12 @@ const Mood = ({ nombre, }) => {
     dispatch(PetAction(pet?._id, { sueno }));
     // setIsSleeping(() => !isSleeping)
     navigation.navigate("Home", {
+      // isNight: isSleeping,
+      fondo: isSleeping ? require("./fondo1B.png") : require("./fondo1.png"),
       imagenOpcional: isSleeping
         ? require("../assets/cat_sleep.gif")
         : require("../assets/cat_rest.gif"),
       nombre: nombre,
-      isNight: isSleeping,
-      fondo: isSleeping
-      ? require("./fondo1B.gif")
-      : require("./fondo1.png"),
-
     });
 
     // establecer un temporizador de 2 segundos antes de realizar la segunda navegación
@@ -121,7 +118,7 @@ const Mood = ({ nombre, }) => {
     // dispatch(PetAction(pet?._id, { felicidad }));
     setCoins(coins + 300);
     // dispatch(petPlay(pet?._id, { coins }));
-    navigation.navigate("Play",  coins= coins, setCoins= setCoins );
+    navigation.navigate("Play", (coins = coins), (setCoins = setCoins));
   };
 
   const lavar = () => {
@@ -218,7 +215,7 @@ const Mood = ({ nombre, }) => {
             </TouchableOpacity>
           </View>
         </View>
-        
+
         <View style={styles.containerBar}>
           <View style={[styles.bar]}>
             <Circulo porcentaje={salud} />
@@ -246,9 +243,6 @@ const Mood = ({ nombre, }) => {
             </TouchableOpacity>
           </View>
         </View>
-
-
-
       </View>
     </View>
   );
