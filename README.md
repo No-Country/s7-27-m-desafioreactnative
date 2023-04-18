@@ -41,7 +41,7 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 * ##### Redux #####
 * ##### Expo #####
 
-### Back_
+### _Back_
 * ##### Node.js #####
 * ##### Express #####
 * ##### MongoDb #####
