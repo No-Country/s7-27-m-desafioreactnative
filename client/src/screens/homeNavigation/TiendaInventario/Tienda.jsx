@@ -61,21 +61,21 @@ const OBJETOS = [
         title: '500',
         imageUrl: require('../../../../assets/objetos/item1-01.png')
     },
-    {
-        id: '2',
-        title: '500',
-        imageUrl: require('../../../../assets/objetos/item2-01.png')
-    },
-    {
-        id: '3',
-        title: '500',
-        imageUrl: require('../../../../assets/objetos/item3-01.png')
-    },
-    {
-        id: '4',
-        title: '500',
-        imageUrl: require('../../../../assets/objetos/item4-01.png')
-    },
+    // {
+    //     id: '2',
+    //     title: '500',
+    //     imageUrl: require('../../../../assets/objetos/item2-01.png')
+    // },
+    // {
+    //     id: '3',
+    //     title: '500',
+    //     imageUrl: require('../../../../assets/objetos/item3-01.png')
+    // },
+    // {
+    //     id: '4',
+    //     title: '500',
+    //     imageUrl: require('../../../../assets/objetos/item4-01.png')
+    // },
     {
         id: '5',
         title: '500',

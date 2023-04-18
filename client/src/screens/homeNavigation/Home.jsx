@@ -111,6 +111,9 @@ const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tie
         minimumZoomScale={1}
       >
       <Image style={styles.image} source={fondo ? fondo : require('./fondo1.png') }/>
+      <Image source={require('./mesa.png')} style={{position: 'absolute', width: 250, height: 200, left: 0, bottom: 170 }}/>
+      <Image source={require('./libros.png')} style={{position: 'absolute', width: 250, height: 200, left: 950, bottom: 500 }}/>
+      <Image source={require('./mochilas.png')} style={{position: 'absolute', width: 250, height: 200, left:450, bottom: 500 }}/>
         </ScrollView>
 
         </View>
