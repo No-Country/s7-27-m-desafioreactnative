@@ -1,4 +1,4 @@
-# s7-27-m-desafioreactnative
+<h1 style="text-align: center;">Pawsitive</h1>
 
 <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1681840624/pawsitive/Pawsitive_ke6vvy.png' alt="pawsitive"/>
  <p align="center">
