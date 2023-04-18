@@ -25,7 +25,7 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 <p>Esta aplicacion esta desarrolada por el grupo <span>s7-27-m-desafioreactnative</span> de No Country</p>
 
 ## _Integrantes del equipo:_
-* ##### [Celeste Diaz - Desarrolladora UX/UI](https://www.linkedin.com/in/) #####
+* ##### [Celeste Diaz - Desarrolladora UX/UI](https://www.behance.net/Bluewesome) #####
 * ##### [Leandro Pereyra - Desarrollador Front End](https://www.linkedin.com/in/leandro-pereyra/) #####
 * ##### [Antonella Bonaglia - Desarrolladora UX/UI](https://www.linkedin.com/in/) #####
 * ##### [Orlando Flores Diaz - Desarrollador Front End](https://www.linkedin.com/in/orlando-flores365/) #####
