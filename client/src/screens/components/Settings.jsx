@@ -5,8 +5,11 @@ import PrimaryButton from "./PrimaryButton";
 import { useState } from "react";
 import PopupFree1 from "./PopupFree1";
 import { primario } from "../../config/constants";
+import { useNavigation } from "@react-navigation/native";
 const Settings = ({ setModalSetActive }) => {
   const [isModalActive, setIsModalActive] = useState(false);
+  const navigator = useNavigation();
+
   return (
     <View style={styles.capo}>
       <View style={styles.container}>
@@ -50,7 +53,11 @@ const Settings = ({ setModalSetActive }) => {
               text="LIBERAR MASCOTA"
               handler={() => setIsModalActive(true)}
             />
-            <PrimaryButton text="SALIR DEL JUEGO" secondary={true} />
+            <PrimaryButton
+              text="SALIR DEL JUEGO"
+              secondary={true}
+              handler={() => navigator.navigate("Loading")}
+            />
           </View>
         </View>
       </View>

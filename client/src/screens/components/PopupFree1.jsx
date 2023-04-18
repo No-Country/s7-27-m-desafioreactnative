@@ -7,8 +7,10 @@ import {
 } from "react-native";
 import PrimaryButton from "./PrimaryButton";
 import { AntDesign } from "react-native-vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const PopupFree1 = ({ setIsModalActive }) => {
+  const navigator = useNavigation();
   return (
     <View style={styles.capo}>
       <View style={styles.container}>
@@ -29,10 +31,10 @@ const PopupFree1 = ({ setIsModalActive }) => {
             text="NO, VOLVER AL JUEGO"
             handler={() => setIsModalActive(false)}
             secondary={true}
-
           />
           <PrimaryButton
             text="SI, QUIERO LIBERAR A MI MASCOTA"
+            handler={() => navigator.navigate("Loading")}
           />
         </View>
       </View>
