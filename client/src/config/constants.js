@@ -1,0 +1,10 @@
+export const primario = "#EF7F79";
+export const texto1 = "#0D1616";
+export const fondo = "#FFFFFF";
+export const error = "#EB5757";
+export const secundario = "#F5AFB4";
+export const texto2 = "#1B3C3B";
+export const fondo2 = "#";
+export const acierto = "#9ECB81";
+export const terciario = "#798BB2";
+export const focus = "rgba(239, 127, 121, 0.08)"
