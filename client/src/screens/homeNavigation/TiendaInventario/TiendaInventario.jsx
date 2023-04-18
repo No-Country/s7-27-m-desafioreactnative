@@ -21,6 +21,11 @@ const TiendaInventario = () => {
 
     const navigation = useNavigation();
 
+    const [monedero, setMonedero] = useState(3500);
+    const handleAlertConfirm = () => {
+        setMonedero(monedero - 500);
+    };
+
     //MASCOTAS
     const [mascotas, setMascotas] = useState([]);
 
@@ -96,7 +101,7 @@ const TiendaInventario = () => {
                         ?
 
 
-                        <Tienda onMascotasClick={handleMascotasPress} onFondosClick={handleFondosPress} onObjetosClick={handleObjetosPress}/>
+                        <Tienda onMascotasClick={handleMascotasPress} onFondosClick={handleFondosPress} onObjetosClick={handleObjetosPress} monedero={monedero} handleAlertConfirm={handleAlertConfirm}/>
 
 
 
