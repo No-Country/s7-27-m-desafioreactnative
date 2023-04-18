@@ -79,7 +79,6 @@ const Mood = ({ nombre }) => {
         : require("../assets/cat_rest.gif"),
       nombre: nombre,
       isNight: isSleeping,
-      fondo: isSleeping ? require("./fondo1B.gif") : require("./fondo1.png"),
     });
 
     // establecer un temporizador de 2 segundos antes de realizar la segunda navegación
