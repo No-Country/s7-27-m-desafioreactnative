@@ -8,6 +8,9 @@ import {
   PLAY_PET_FAILURE,
   PLAY_PET_REQUEST,
   PLAY_PET_SUCCESS,
+  ACTION_PET_FAILURE,
+  ACTION_PET_REQUEST,
+  ACTION_PET_SUCCESS,
 } from "../types/petTypes";
 
 const initialState = {
@@ -45,15 +48,13 @@ export const petReducer = (state = initialState, { type, payload }) => {
         isLoading: true,
         error: payload,
         pet: null,
-        id: null,
       };
     case GET_PET_FAILURE:
       return {
         ...state,
-        isLoading,
+        isLoading: false,
         error: payload,
         pet: null,
-        id: null,
       };
     case GET_PET_SUCCESS:
       return {
@@ -61,7 +62,6 @@ export const petReducer = (state = initialState, { type, payload }) => {
         isLoading: false,
         error: false,
         pet: payload,
-        id: payload.id,
       };
     case PLAY_PET_REQUEST:
       return {
@@ -80,39 +80,35 @@ export const petReducer = (state = initialState, { type, payload }) => {
     case PLAY_PET_FAILURE:
       return {
         ...state,
-        isLoading,
+        isLoading: false,
         error: payload,
         pet: null,
       };
-    case PLAY_PET_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-        error: payload,
-        pet: null,
-      };
-    case PLAY_PET_SUCCESS:
+    case ACTION_PET_FAILURE:
       return {
         ...state,
         isLoading: false,
-        error: false,
-        pet: payload,
-      };
-    case PLAY_PET_FAILURE:
-      return {
-        ...state,
-        isLoading,
         error: payload,
         pet: null,
       };
-
+    case ACTION_PET_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+        pet: null,
+      };
+    case ACTION_PET_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        pet: payload,
+      };
     default:
       return { ...state };
   }
 };
-
-
-
 
 // import {
 //   GET_PET_FAILURE,

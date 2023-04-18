@@ -18,7 +18,7 @@ const Mood = ({ nombre }) => {
   const [isBathing, setisBathing] = useState(true); // esta banandose
   const [isHealing, setisHealing] = useState(true); // esta curandose
   const [coins, setCoins] = useState(1000);
-
+  const [fondo, setfondo] = useState(require("./fondo1.png"));
   useEffect(() => {
     const interval = setInterval(() => {
       setSueno((sueno) => {
@@ -52,9 +52,7 @@ const Mood = ({ nombre }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCoins((coins) => {
-        coins + 1;
-      });
+      setCoins(coins + 1);
     }, 10000);
     return () => clearInterval(interval);
   }, []);
@@ -71,7 +69,7 @@ const Mood = ({ nombre }) => {
   const dormir = () => {
     setIsSleeping((prevIsSleeping) => !prevIsSleeping);
     setSueno(() => Math.min(sueno + 10, 100));
-    dispatch(PetAction(pet?._id, { sueno }));
+    // dispatch(PetAction(pet?._id, { sueno }));
     // setIsSleeping(() => !isSleeping)
     navigation.navigate("Home", {
       // isNight: isSleeping,
@@ -80,6 +78,8 @@ const Mood = ({ nombre }) => {
         ? require("../assets/cat_sleep.gif")
         : require("../assets/cat_rest.gif"),
       nombre: nombre,
+      isNight: isSleeping,
+      fondo: isSleeping ? require("./fondo1B.gif") : require("./fondo1.png"),
     });
 
     // establecer un temporizador de 2 segundos antes de realizar la segunda navegación
@@ -96,7 +96,7 @@ const Mood = ({ nombre }) => {
 
   const alimentar = () => {
     setEnergia(() => Math.min(energia + 10, 100));
-    dispatch(PetAction(pet?._id, { energia }));
+    // dispatch(PetAction(pet?._id, { energia }));
     setisEating(() => !isEating);
     navigation.navigate("Home", {
       imagenOpcional: isEating
@@ -116,14 +116,14 @@ const Mood = ({ nombre }) => {
   const jugar = () => {
     setFelicidad(() => Math.min(felicidad + 10, 100));
     // dispatch(PetAction(pet?._id, { felicidad }));
-    setCoins(coins + 300);
     // dispatch(petPlay(pet?._id, { coins }));
-    navigation.navigate("Play", (coins = coins), (setCoins = setCoins));
+    setCoins(coins + 300);
+    navigation.navigate("Play");
   };
 
   const lavar = () => {
     setHigiene(() => Math.min(higiene + 10, 100));
-    dispatch(PetAction(pet?._id, { higiene }));
+    // dispatch(PetAction(pet?._id, { higiene }));
     setisBathing(() => !isBathing);
     navigation.navigate("Home", {
       imagenOpcional: isBathing
@@ -142,7 +142,7 @@ const Mood = ({ nombre }) => {
 
   const curar = () => {
     setSalud(() => Math.min(salud + 10, 100));
-    dispatch(PetAction(pet?._id, { salud }));
+    // dispatch(PetAction(pet?._id, { salud }));
 
     setisHealing(() => !isHealing);
     navigation.navigate("Home", {
