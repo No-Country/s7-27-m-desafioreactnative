@@ -25,13 +25,13 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 <p>Esta aplicacion esta desarrolada por el grupo <span>s7-27-m-desafioreactnative</span> de No Country</p>
 
 ## _Integrantes del equipo:_
-* ##### [Celeste Diaz - Desarrolladora UX/UI](https://www.behance.net/Bluewesome) #####
-* ##### [Leandro Pereyra - Desarrollador Front End](https://www.linkedin.com/in/leandro-pereyra/) #####
-* ##### [Antonella Bonaglia - Desarrolladora Front End](https://www.linkedin.com/in/) #####
-* ##### [Orlando Flores Diaz - Desarrollador Front End](https://www.linkedin.com/in/orlando-flores365/) #####
-* ##### [Ray Cardenas - Desarrollador Front End](https://www.linkedin.com/in/ray-kevin-cardenas-mayma-a59a341bb) #####
-* ##### [Tomás Villagra - Desarrollador Front End](https://www.linkedin.com/in/tomas-villagra-381a8a24b/) #####
-* ##### [Juan Cruz Musso - Desarrollador Back End](https://www.linkedin.com/in/) #####
+* ##### Celeste Diaz - Desarrolladora UX/UI[Behance](https://www.behance.net/Bluewesome) #####
+* ##### Leandro Pereyra - Desarrollador Front End[LinkedIn](https://www.linkedin.com/in/leandro-pereyra/) #####
+* ##### Antonella Bonaglia - Desarrolladora Front End[LinkedIn](https://www.linkedin.com/in/) #####
+* ##### Orlando Flores Diaz - Desarrollador Front End[LinkedIn](https://www.linkedin.com/in/orlando-flores365/) #####
+* ##### Ray Cardenas - Desarrollador Front End[LinkedIn](https://www.linkedin.com/in/ray-kevin-cardenas-mayma-a59a341bb) #####
+* ##### Tomás Villagra - Desarrollador Front End[LinkedIn](https://www.linkedin.com/in/tomas-villagra-381a8a24b/) #####
+* ##### Juan Cruz Musso - Desarrollador Back End[LinkedIn](https://www.linkedin.com/in/) #####
 
 ## Tecnologias:
 ### _Front_
