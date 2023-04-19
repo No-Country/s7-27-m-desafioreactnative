@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import Settings from "../components/Settings";
 import Mood from "./Mood";
 import { useNavigation } from "@react-navigation/native";
-
+import BgAudio from 'react-native-background-audio'
 
 const Home = () => {
   const navigation=useNavigation();
@@ -28,10 +28,9 @@ if (imagenSeleccionada1) {
 } else {
   imagenSeleccionada = imagenOpcional
 }
-// const handleOpacity = () => {
-//   console.log(isNight);
-//   return isNight && { opacity: 0.48, backgroundColor: 'mediumblue' };
-// };
+const audio_options = {
+  source:{local: require('./music.mp3')}  //ex. require('./music/sample.mp3')
+}
 const cantidad = 100;
 const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tiene que dividir para que se muestre bien la barra
 // solo se ve exacto con el 100 con los demas numeros no pero que mas da xd
@@ -46,6 +45,7 @@ const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tie
   return (
     <View style={styles.containerPrincipal}>
       {/* Inicio */}
+      <BgAudio options={audio_options}></BgAudio>
       <View style={styles.containerStart}>
         <Text style={styles.textName}> {nombre} </Text>
       </View>
