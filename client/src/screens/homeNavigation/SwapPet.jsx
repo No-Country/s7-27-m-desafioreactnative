@@ -23,10 +23,10 @@ import data from "../../data/characters";
 export default function SwapPet() {
   const route = useRoute();
   const navigation = useNavigation();
-  const { nombre } = route.params;
-  const [currentImage, setCurrentImage] = useState(data[0].image);
-  const [currentName, setCurrentName] = useState(data[0].name);
-
+  const { nombre, imagenSeleccionada } = route.params;
+  const [currentImage, setCurrentImage] = useState(imagenSeleccionada);
+  const [currentName, setCurrentName] = useState(nombre);
+  console.log(imagenSeleccionada)
   const createTwoButtonAlert = () =>
     Alert.alert("Alerta!!!", "Cambio de personaje", [
       {
