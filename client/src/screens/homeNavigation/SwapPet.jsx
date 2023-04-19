@@ -24,9 +24,9 @@ export default function SwapPet() {
   const route = useRoute();
   const navigation = useNavigation();
   const { nombre, imagenSeleccionada } = route.params;
-  const [currentImage, setCurrentImage] = useState(imagenSeleccionada);
   const [currentName, setCurrentName] = useState(nombre);
-  console.log(imagenSeleccionada)
+  const [currentImage, setCurrentImage] = useState(imagenSeleccionada);
+  console.log(nombre)
   const createTwoButtonAlert = () =>
     Alert.alert("Alerta!!!", "Cambio de personaje", [
       {
