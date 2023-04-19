@@ -12,11 +12,12 @@ import { useEffect, useState } from "react";
 import Settings from "../components/Settings";
 import Mood from "./Mood";
 import { useNavigation } from "@react-navigation/native";
-import BgAudio from 'react-native-background-audio'
+import Sound from 'react-native-sound';
+
+
 
 const Home = () => {
   const navigation=useNavigation();
-  
   const route = useRoute();
   const { nombre, imagenSeleccionada1, imagenSeleccionada2, imagenOpcional, fondo} = route.params;
   const [modalSetActive, setModalSetActive] = useState(false);
@@ -28,24 +29,26 @@ if (imagenSeleccionada1) {
 } else {
   imagenSeleccionada = imagenOpcional
 }
-const audio_options = {
-  source:{local: require('./music.mp3')}  //ex. require('./music/sample.mp3')
-}
+
 const cantidad = 100;
 const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tiene que dividir para que se muestre bien la barra
 // solo se ve exacto con el 100 con los demas numeros no pero que mas da xd
 
-// enfermo condicional
-// if (salud < 80) {
-//   imagenSeleccionada = require('../assets/cat_sick.gif');
-// } else {
-//   imagenSeleccionada = require('../assets/cat_rest.gif');
-// }
+const sound = new Sound('music.mp3', Sound.MAIN_BUNDLE, (error) => {
+  if (error) {
+    console.log('Error loading sound: ', error);
+  } else {
+    console.log('Sound loaded successfully');
+  }
+});
+sound.setNumberOfLoops(-1);
+sound.play();
+
 
   return (
     <View style={styles.containerPrincipal}>
       {/* Inicio */}
-      <BgAudio options={audio_options}></BgAudio>
+      
       <View style={styles.containerStart}>
         <Text style={styles.textName}> {nombre} </Text>
       </View>
