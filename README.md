@@ -1,7 +1,7 @@
+<img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1681843052/pawsitive/logoparaleNAdro-01_utulfl.png' alt="pawsitive"/>
 
+<!--<img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1681938653/pawsitive/gif_ztazsi.gif' alt="pawsitive"/>-->
 
-<!--<img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1681843052/pawsitive/logoparaleNAdro-01_utulfl.png' alt="pawsitive"/>-->
-<img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1681938653/pawsitive/gif_ztazsi.gif' alt="pawsitive"/>
 
  <p align="center">
 <h1 style="text-align: center;">Pawsitive</h1>
