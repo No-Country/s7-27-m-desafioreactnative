@@ -101,7 +101,8 @@ const TiendaInventario = () => {
                         ?
 
 
-                        <Tienda onMascotasClick={handleMascotasPress} onFondosClick={handleFondosPress} onObjetosClick={handleObjetosPress} monedero={monedero} handleAlertConfirm={handleAlertConfirm}/>
+                        <Tienda onMascotasClick={handleMascotasPress} mascotas={mascotas} onFondosClick={handleFondosPress} fondos={fondos} onObjetosClick={handleObjetosPress} objetos={objetos} monedero={monedero} handleAlertConfirm={handleAlertConfirm}/>
+
 
 
 

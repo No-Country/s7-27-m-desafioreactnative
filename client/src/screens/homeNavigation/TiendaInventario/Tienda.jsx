@@ -95,83 +95,61 @@ const OBJETOS = [
 function Tienda(props) {
 
     const { monedero } = props;
-    const {handleAlertConfirm} = props;
+    const { handleAlertConfirm } = props;
 
 
     //MASCOTAS
-    const { onMascotasClick } = props;
+    const { onMascotasClick, mascotas } = props;
     const handleMascotasPress = (item) => {
-        Alert.alert(
-            "Confirmar acción",
-            "¿Está seguro de que desea realizar esta compra?",
-            [
-                {
-                    text: "Cancelar",
-                    style: "cancel"
-                },
-                {
-                    text: "Aceptar",
-                    onPress: () => {
-                        // Ejecutar la función si el usuario presiona "Aceptar"
-                        onMascotasClick(item);
-                        handleAlertConfirm();
-                    }
-                }
-            ]
-        );
+        if (mascotas.includes(item)) {
+            Alert.alert(
+                "Error",
+                "Ya has comprado este item"
+            );
+        } else {
+
+            onMascotasClick(item);
+            handleAlertConfirm();
+        }
+
+
+
+
     }
 
     //FONDOS
-    const { onFondosClick } = props;
+    const { onFondosClick, fondos } = props;
     const handleFondosPress = (item) => {
-        Alert.alert(
-            "Confirmar acción",
-            "¿Está seguro de que desea realizar esta acción?",
-            [
-                {
-                    text: "Cancelar",
-                    style: "cancel"
-                },
-                {
-                    text: "Aceptar",
-                    onPress: () => {
-                        // Ejecutar la función si el usuario presiona "Aceptar"
-                        onFondosClick(item);
-                        handleAlertConfirm();
-                    }
-                }
-            ]
-        );
+        if (fondos.includes(item)) {
+            Alert.alert(
+                "Error",
+                "Ya has comprado este item"
+            );
+        } else {
+            onFondosClick(item);
+            handleAlertConfirm();
+        }
     }
 
     //OBJETOS / ADORNOS
-    const { onObjetosClick } = props;
+    const { onObjetosClick, objetos } = props;
     const handleObjetosPress = (item) => {
-        Alert.alert(
-            "Confirmar acción",
-            "¿Está seguro de que desea realizar esta acción?",
-            [
-                {
-                    text: "Cancelar",
-                    style: "cancel"
-                },
-                {
-                    text: "Aceptar",
-                    onPress: () => {
-                        // Ejecutar la función si el usuario presiona "Aceptar"
-                        onObjetosClick(item);
-                        handleAlertConfirm();
-                    }
-                }
-            ]
-        );
+        if (objetos.includes(item)) {
+            Alert.alert(
+                "Error",
+                "Ya has comprado este item"
+            );
+        } else {
+            onObjetosClick(item);
+            handleAlertConfirm();
+        }
     }
     return (
 
         <>
             <View style={{ borderColor: '#1B223C', borderWidth: 1, borderRadius: 50, width: 110, height: 30, marginBottom: 15, marginTop: 30, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                 <Image source={monedero <= 500 ? PinkPigCoin : PigCoin} style={{ height: "100%", width: 30, borderColor: '#1B223C', borderWidth: 1, borderRadius: 50 }} />
-                <Text style={{ fontWeight: 500, fontSize: 16, marginHorizontal: 5, color: monedero <= 500 ? "#EB5757": "#1B223C" }}>{monedero}</Text>
+                <Text style={{ fontWeight: 500, fontSize: 16, marginHorizontal: 5, color: monedero <= 500 ? "#EB5757" : "#1B223C" }}>{monedero}</Text>
             </View>
             <View>
                 <Text style={styles.textoListas}>Mascotas</Text>
