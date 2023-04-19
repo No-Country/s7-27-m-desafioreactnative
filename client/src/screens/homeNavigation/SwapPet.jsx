@@ -13,6 +13,7 @@ import {
   Alert,
 } from "react-native";
 
+
 import { AntDesign } from "react-native-vector-icons";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -20,8 +21,9 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import data from "../../data/characters";
 
 export default function SwapPet() {
+  const route = useRoute();
   const navigation = useNavigation();
-
+  const { nombre } = route.params;
   const [currentImage, setCurrentImage] = useState(data[0].image);
   const [currentName, setCurrentName] = useState(data[0].name);
 
@@ -36,8 +38,12 @@ export default function SwapPet() {
         text: "OK",
         onPress: () =>
           navigation.navigate("Home", {
-            nombre: currentName,
-            imagenOpcional: currentImage,
+            // nombre: currentName == "Gato" ? nombre : currentName,
+            nombre:  nombre ,
+            imagenOpcional:
+              currentName == "Gato"
+                ? require("../assets/cat_rest.gif")
+                : currentImage,
           }),
       },
     ]);
@@ -177,8 +183,8 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: secundario,
-    paddingVertical:5,
-    
+    paddingVertical: 5,
+
     borderRadius: 10,
   },
   buttonText: {
