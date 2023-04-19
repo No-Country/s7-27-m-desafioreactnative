@@ -30,7 +30,7 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 * ##### Celeste Diaz - Desarrolladora UX/UI - [LinkedIn](https://www.linkedin.com/in/bluewesome/) - [Behance](https://www.behance.net/Bluewesome) #####
 * ##### Leandro Pereyra - Desarrollador Front End - [LinkedIn](https://www.linkedin.com/in/leandro-pereyra/) - [Sitio Web](https://leandropereyra.ar) #####
 * ##### Antonella Bonaglia - Desarrolladora Front End - [LinkedIn](https://www.linkedin.com/in/) #####
-* ##### Orlando Flores Diaz - Desarrollador Front End - [LinkedIn](https://www.linkedin.com/in/orlando-flores365/) - [Portfolio](https://lalomax.github.io/My-portfolio/) #####
+* ##### Orlando Flores - Desarrollador Front End - [LinkedIn](https://www.linkedin.com/in/orlando-flores365/) - [Portfolio](https://lalomax.github.io/My-portfolio/) #####
 * ##### Ray Cardenas - Desarrollador Front End - [LinkedIn](https://www.linkedin.com/in/ray-kevin-cardenas-mayma-a59a341bb) #####
 * ##### Tomás Villagra - Desarrollador Front End - [LinkedIn](https://www.linkedin.com/in/tomas-villagra-381a8a24b/) #####
 * ##### Juan Cruz Musso - Desarrollador Back End - [LinkedIn](https://www.linkedin.com/in/) #####
