@@ -95,7 +95,7 @@ const OBJETOS = [
 function Tienda(props) {
 
     const { monedero } = props;
-    const {handleAlertConfirm} = props;
+    const { handleAlertConfirm } = props;
 
 
     //MASCOTAS
@@ -107,24 +107,14 @@ function Tienda(props) {
                 "Ya has comprado este item"
             );
         } else {
-            Alert.alert(
-                "Confirmar acción",
-                "¿Está seguro de que desea realizar esta compra?",
-                [
-                    {
-                        text: "Cancelar",
-                        style: "cancel"
-                    },
-                    {
-                        text: "Aceptar",
-                        onPress: () => {
-                            onMascotasClick(item);
-                            handleAlertConfirm();
-                        }
-                    }
-                ]
-            );
+
+            onMascotasClick(item);
+            handleAlertConfirm();
         }
+
+
+
+
     }
 
     //FONDOS
@@ -136,23 +126,8 @@ function Tienda(props) {
                 "Ya has comprado este item"
             );
         } else {
-            Alert.alert(
-                "Confirmar acción",
-                "¿Está seguro de que desea realizar esta compra?",
-                [
-                    {
-                        text: "Cancelar",
-                        style: "cancel"
-                    },
-                    {
-                        text: "Aceptar",
-                        onPress: () => {
-                            onFondosClick(item);
-                            handleAlertConfirm();
-                        }
-                    }
-                ]
-            );
+            onFondosClick(item);
+            handleAlertConfirm();
         }
     }
 
@@ -165,23 +140,8 @@ function Tienda(props) {
                 "Ya has comprado este item"
             );
         } else {
-            Alert.alert(
-                "Confirmar acción",
-                "¿Está seguro de que desea realizar esta compra?",
-                [
-                    {
-                        text: "Cancelar",
-                        style: "cancel"
-                    },
-                    {
-                        text: "Aceptar",
-                        onPress: () => {
-                            onObjetosClick(item);
-                            handleAlertConfirm();
-                        }
-                    }
-                ]
-            );
+            onObjetosClick(item);
+            handleAlertConfirm();
         }
     }
     return (
@@ -189,7 +149,7 @@ function Tienda(props) {
         <>
             <View style={{ borderColor: '#1B223C', borderWidth: 1, borderRadius: 50, width: 110, height: 30, marginBottom: 15, marginTop: 30, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                 <Image source={monedero <= 500 ? PinkPigCoin : PigCoin} style={{ height: "100%", width: 30, borderColor: '#1B223C', borderWidth: 1, borderRadius: 50 }} />
-                <Text style={{ fontWeight: 500, fontSize: 16, marginHorizontal: 5, color: monedero <= 500 ? "#EB5757": "#1B223C" }}>{monedero}</Text>
+                <Text style={{ fontWeight: 500, fontSize: 16, marginHorizontal: 5, color: monedero <= 500 ? "#EB5757" : "#1B223C" }}>{monedero}</Text>
             </View>
             <View>
                 <Text style={styles.textoListas}>Mascotas</Text>
