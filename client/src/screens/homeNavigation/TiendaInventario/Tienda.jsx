@@ -1,4 +1,5 @@
-import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { Alert, Text, View, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from "react-native";
 import {
     MaterialCommunityIcons,
     AntDesign,
@@ -38,11 +39,7 @@ const MASCOTAS = [
 
 
 const FONDOS = [
-    {
-        id: '1',
-        title: '500',
-        imageUrl: require('../../../../assets/fondos/fondo1.png')
-    },
+
     {
         id: '2',
         title: '500',
@@ -61,21 +58,21 @@ const OBJETOS = [
         title: '500',
         imageUrl: require('../../../../assets/objetos/item1-01.png')
     },
-    {
-        id: '2',
-        title: '500',
-        imageUrl: require('../../../../assets/objetos/item2-01.png')
-    },
-    {
-        id: '3',
-        title: '500',
-        imageUrl: require('../../../../assets/objetos/item3-01.png')
-    },
-    {
-        id: '4',
-        title: '500',
-        imageUrl: require('../../../../assets/objetos/item4-01.png')
-    },
+    // {
+    //     id: '2',
+    //     title: '500',
+    //     imageUrl: require('../../../../assets/objetos/item2-01.png')
+    // },
+    // {
+    //     id: '3',
+    //     title: '500',
+    //     imageUrl: require('../../../../assets/objetos/item3-01.png')
+    // },
+    // {
+    //     id: '4',
+    //     title: '500',
+    //     imageUrl: require('../../../../assets/objetos/item4-01.png')
+    // },
     {
         id: '5',
         title: '500',
@@ -97,35 +94,68 @@ const OBJETOS = [
 
 function Tienda(props) {
 
-//MASCOTAS
-    const { onMascotasClick } = props;
+    const { monedero } = props;
+    const { handleAlertConfirm } = props;
+
+
+    //MASCOTAS
+    const { onMascotasClick, mascotas } = props;
     const handleMascotasPress = (item) => {
-        onMascotasClick(item);
+        if (mascotas.includes(item)) {
+            Alert.alert(
+                "Error",
+                "Ya has comprado este item"
+            );
+        } else {
+
+            onMascotasClick(item);
+            handleAlertConfirm();
+        }
+
+
+
+
     }
 
-//FONDOS
-    const { onFondosClick } = props;
+    //FONDOS
+    const { onFondosClick, fondos } = props;
     const handleFondosPress = (item) => {
-        onFondosClick(item);
+        if (fondos.includes(item)) {
+            Alert.alert(
+                "Error",
+                "Ya has comprado este item"
+            );
+        } else {
+            onFondosClick(item);
+            handleAlertConfirm();
+        }
     }
 
-//OBJETOS / ADORNOS
-    const { onObjetosClick } = props;
+    //OBJETOS / ADORNOS
+    const { onObjetosClick, objetos } = props;
     const handleObjetosPress = (item) => {
-        onObjetosClick(item);
+        if (objetos.includes(item)) {
+            Alert.alert(
+                "Error",
+                "Ya has comprado este item"
+            );
+        } else {
+            onObjetosClick(item);
+            handleAlertConfirm();
+        }
     }
     return (
 
         <>
             <View style={{ borderColor: '#1B223C', borderWidth: 1, borderRadius: 50, width: 110, height: 30, marginBottom: 15, marginTop: 30, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                <Image source={PigCoin} style={{ height: "100%", width: 30, borderColor: '#1B223C', borderWidth: 1, borderRadius: 50 }} />
-                <Text style={{ fontWeight: 500, fontSize: 16, marginHorizontal: 5, color: "#1B223C" }}>600</Text>
+                <Image source={monedero <= 500 ? PinkPigCoin : PigCoin} style={{ height: "100%", width: 30, borderColor: '#1B223C', borderWidth: 1, borderRadius: 50 }} />
+                <Text style={{ fontWeight: 500, fontSize: 16, marginHorizontal: 5, color: monedero <= 500 ? "#EB5757" : "#1B223C" }}>{monedero}</Text>
             </View>
             <View>
                 <Text style={styles.textoListas}>Mascotas</Text>
                 <FlatList
                     data={MASCOTAS}
-                    renderItem ={ ({ item }) => (
+                    renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => handleMascotasPress(item)}>
                             <View style={styles.item}>
                                 <Image source={item.imageUrl} style={styles.image} />
@@ -142,7 +172,7 @@ function Tienda(props) {
                 <Text style={styles.textoListas}>Fondos de habitacion</Text>
                 <FlatList
                     data={FONDOS}
-                    renderItem ={ ({ item }) => (
+                    renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => handleFondosPress(item)}>
                             <View style={styles.item}>
                                 <Image source={item.imageUrl} style={styles.image} />
@@ -158,7 +188,7 @@ function Tienda(props) {
                 <Text style={styles.textoListas}>Items personalizacion de fondo</Text>
                 <FlatList
                     data={OBJETOS}
-                    renderItem ={ ({ item }) => (
+                    renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => handleObjetosPress(item)}>
                             <View style={styles.item}>
                                 <Image source={item.imageUrl} style={styles.image} />
