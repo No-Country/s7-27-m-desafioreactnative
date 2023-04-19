@@ -1,6 +1,8 @@
 
 
-<img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1681843052/pawsitive/logoparaleNAdro-01_utulfl.png' alt="pawsitive"/>
+/*<img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1681843052/pawsitive/logoparaleNAdro-01_utulfl.png' alt="pawsitive"/>*/
+<img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1681938653/pawsitive/gif_ztazsi.gif' alt="pawsitive"/>
+
  <p align="center">
 <h1 style="text-align: center;">Pawsitive</h1>
 Pawsitive es un juego de mascotas virtuales en el que tendrás que cuidar y mantener feliz a tu adorable animal de compañía. Comenzarás eligiendo tu mascota favorita, que puede ser un gato, perro, unicornio, tortuga, puerco y/o un oso, y luego tendrás que alimentarla, darle de beber, bañarla, curarla y asegurarte de que duerma lo suficiente para que esté saludable y feliz.
