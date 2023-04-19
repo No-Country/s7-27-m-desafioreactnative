@@ -42,9 +42,11 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 * ##### Expo #####
 
 ### _Back_
+* ##### Typescript #####
 * ##### Node.js #####
 * ##### Express #####
-* ##### MongoDb #####
+* ##### Passport #####
+* ##### Mongoose #####
 
 ## Requerimientos:
 * Para clonar el proyecto basta abrir VSCode
