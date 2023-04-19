@@ -195,13 +195,13 @@ const styles = StyleSheet.create({
   arbder: {
     position: "absolute",
     right: 0,
-    bottom: 180,
+    bottom: 150,
     zIndex: 10,
   },
   arbizq: {
     position: "absolute",
     left: 0,
-    bottom: 180,
+    bottom: 150,
     zIndex: 0,
   },
   btncontainer: {
