@@ -49,7 +49,7 @@ const [cargas, setCargas] = useState(cantidad/2.76); // el 2.76 es lo que se tie
       <View style={styles.containerStart}>
         <Text style={styles.textName}> {nombre} </Text>
       </View>
-      <TouchableOpacity style={styles.buttonPersonaje} onPress={()=>navigation.navigate("SwapPet")}>
+      <TouchableOpacity style={styles.buttonPersonaje} onPress={()=>navigation.navigate("SwapPet", {nombre, imagenSeleccionada})}>
           <Image source={require("../../../assets/personajes.png")} />
         </TouchableOpacity>
 
