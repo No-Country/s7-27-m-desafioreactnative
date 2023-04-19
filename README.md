@@ -52,4 +52,3 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 * Instalar dependencias con `npm install` dentro de la carpeta client
 * Una vez instalado el proyecto hacer `npm start` dentro de la carpeta client
 * Desde si móvil escanear el código QR con la app de Expo Go (necesitará tener instalado [Expo Go](https://expo.dev/) )
-* Fin
