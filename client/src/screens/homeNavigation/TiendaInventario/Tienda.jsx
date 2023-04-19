@@ -99,72 +99,90 @@ function Tienda(props) {
 
 
     //MASCOTAS
-    const { onMascotasClick } = props;
+    const { onMascotasClick, mascotas } = props;
     const handleMascotasPress = (item) => {
-        Alert.alert(
-            "Confirmar acción",
-            "¿Está seguro de que desea realizar esta compra?",
-            [
-                {
-                    text: "Cancelar",
-                    style: "cancel"
-                },
-                {
-                    text: "Aceptar",
-                    onPress: () => {
-                        // Ejecutar la función si el usuario presiona "Aceptar"
-                        onMascotasClick(item);
-                        handleAlertConfirm();
+        if (mascotas.includes(item)) {
+            Alert.alert(
+                "Error",
+                "Ya has comprado este item"
+            );
+        } else {
+            Alert.alert(
+                "Confirmar acción",
+                "¿Está seguro de que desea realizar esta compra?",
+                [
+                    {
+                        text: "Cancelar",
+                        style: "cancel"
+                    },
+                    {
+                        text: "Aceptar",
+                        onPress: () => {
+                            onMascotasClick(item);
+                            handleAlertConfirm();
+                        }
                     }
-                }
-            ]
-        );
+                ]
+            );
+        }
     }
 
     //FONDOS
-    const { onFondosClick } = props;
+    const { onFondosClick, fondos } = props;
     const handleFondosPress = (item) => {
-        Alert.alert(
-            "Confirmar acción",
-            "¿Está seguro de que desea realizar esta acción?",
-            [
-                {
-                    text: "Cancelar",
-                    style: "cancel"
-                },
-                {
-                    text: "Aceptar",
-                    onPress: () => {
-                        // Ejecutar la función si el usuario presiona "Aceptar"
-                        onFondosClick(item);
-                        handleAlertConfirm();
+        if (fondos.includes(item)) {
+            Alert.alert(
+                "Error",
+                "Ya has comprado este item"
+            );
+        } else {
+            Alert.alert(
+                "Confirmar acción",
+                "¿Está seguro de que desea realizar esta compra?",
+                [
+                    {
+                        text: "Cancelar",
+                        style: "cancel"
+                    },
+                    {
+                        text: "Aceptar",
+                        onPress: () => {
+                            onFondosClick(item);
+                            handleAlertConfirm();
+                        }
                     }
-                }
-            ]
-        );
+                ]
+            );
+        }
     }
 
     //OBJETOS / ADORNOS
-    const { onObjetosClick } = props;
+    const { onObjetosClick, objetos } = props;
     const handleObjetosPress = (item) => {
-        Alert.alert(
-            "Confirmar acción",
-            "¿Está seguro de que desea realizar esta acción?",
-            [
-                {
-                    text: "Cancelar",
-                    style: "cancel"
-                },
-                {
-                    text: "Aceptar",
-                    onPress: () => {
-                        // Ejecutar la función si el usuario presiona "Aceptar"
-                        onObjetosClick(item);
-                        handleAlertConfirm();
+        if (objetos.includes(item)) {
+            Alert.alert(
+                "Error",
+                "Ya has comprado este item"
+            );
+        } else {
+            Alert.alert(
+                "Confirmar acción",
+                "¿Está seguro de que desea realizar esta compra?",
+                [
+                    {
+                        text: "Cancelar",
+                        style: "cancel"
+                    },
+                    {
+                        text: "Aceptar",
+                        onPress: () => {
+                            onObjetosClick(item);
+                            handleAlertConfirm();
+                        }
                     }
-                }
-            ]
-        );
+                ]
+            );
+        }
     }
     return (
 
