@@ -47,9 +47,9 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 * ##### MongoDb #####
 
 ## Requerimientos:
-* Para clonar el proyecto basta con hacer `git clone https://github.com/No-Country/s7-27-m-desafioreactnative.git`
+* Para clonar el proyecto basta abrir VSCode
+* Clonar el proyecto con `git clone https://github.com/No-Country/s7-27-m-desafioreactnative.git`
 * Instalar dependencias con `npm install` dentro de la carpeta client
-* Para correr la app necesitará tener instalado [Expo Go](https://expo.dev/) en su móvil
 * Una vez instalado el proyecto hacer `npm start` dentro de la carpeta client
-* Escanear el código QR desde la app de Expo Go 
+* Desde si móvil escanear el código QR con la app de Expo Go (necesitará tener instalado [Expo Go](https://expo.dev/) )
 * Fin
