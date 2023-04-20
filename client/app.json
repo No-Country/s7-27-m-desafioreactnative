@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Tamagotchi",
+    "name": "Pawsitive",
     "slug": "client",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/screens/assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/screens/assets/gif.gif",
+      "image": "./src/screens/assets/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#798BB2"
     },
@@ -20,13 +20,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/screens/assets/logo.png",
         "backgroundColor": "#798BB2"
       },
       "package": "com.txakur.client"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/screens/assets/logo.png"
     },
     "extra": {
       "eas": {
