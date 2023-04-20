@@ -18,7 +18,7 @@ Pero cuidado, si no cuidas bien a tu mascota, se pondrá triste y perderá su en
 <p>Esta aplicacion esta desarrollada con las tecnologias React native para su uso en entornos mobile, Express y MongoDB para su servidor implementado</p>
 <h4>Deployment</h4>
 
-- [Android] - [Descargar Apk de la aplicación para Android]()
+- [Android] - [Descargar Apk de la aplicación para Android](https://expo.dev/artifacts/eas/kyevpALYMkfMGKYW2zoDUx.apk)
 
 - [API] - [Api deployada](https://s7-27-m-desafioreactnative-production.up.railway.app)
 
